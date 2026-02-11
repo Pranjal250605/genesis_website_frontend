@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero"
 import Navbar from "@/components/sections/Navbar"
 import About from "./components/sections/About"
+import Core from "@/components/sections/core"
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <About />
+      <Core />
     </div>
   )
 }
