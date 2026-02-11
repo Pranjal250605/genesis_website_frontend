@@ -2,6 +2,7 @@ import Hero from "@/components/sections/Hero"
 import Navbar from "@/components/sections/Navbar"
 import About from "./components/sections/About"
 import Core from "@/components/sections/core"
+import Global_Footprint from "@/components/sections/Global_Footprint"
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Hero />
       <About />
       <Core />
+      <Global_Footprint />
     </div>
   )
 }
