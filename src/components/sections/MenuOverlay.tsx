@@ -15,10 +15,22 @@ const socials = ["Instagram", "LinkedIn", "Twitter"];
 interface MenuOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void;
+  onNavigate: (
+    page:
+      | "home"
+      | "about-us"
+      | "services"
+      | "impact-innovation"
+      | "careers"
+      | "social-initiatives"
+  ) => void;
 }
 
-export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
+export default function MenuOverlay({
+  isOpen,
+  onClose,
+  onNavigate,
+}: MenuOverlayProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -29,6 +41,16 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  const handleClick = (label: string) => {
+    if (label === "ABOUT US") onNavigate("about-us");
+    if (label === "SERVICES") onNavigate("services");
+    if (label === "CAREERS") onNavigate("careers");
+    if (label === "SOCIAL INITIATIVES") onNavigate("social-initiatives");
+    if (label === "IMPACT AND INNOVATION") onNavigate("impact-innovation");
+
+    onClose(); // ✅ Close overlay after navigation
+  };
 
   return (
     <AnimatePresence>
@@ -43,7 +65,7 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
           {/* Layer 1: Dark gradient base */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-[#1a1200]" />
 
-          {/* Layer 2: Earth-like radial glow — bottom right sphere */}
+          {/* Layer 2: Earth-like radial glow */}
           <div
             className="absolute pointer-events-none"
             style={{
@@ -52,12 +74,13 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
               width: "70vw",
               height: "70vw",
               borderRadius: "50%",
-              background: "radial-gradient(circle at 40% 40%, #D6BC97 0%, #b39a72 15%, #7a6845 30%, #4a3f28 50%, #1a1400 70%, transparent 85%)",
+              background:
+                "radial-gradient(circle at 40% 40%, #D6BC97 0%, #b39a72 15%, #7a6845 30%, #4a3f28 50%, #1a1400 70%, transparent 85%)",
               opacity: 0.7,
             }}
           />
 
-          {/* Layer 3: image 27 world map — on top of the sphere glow */}
+          {/* Layer 3: Map texture */}
           <img
             src={MapTexture}
             alt=""
@@ -78,7 +101,7 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
 
           {/* Layer 5: Content */}
           <div className="relative z-10 h-full flex flex-col px-12 lg:px-20 pt-32">
-            {/* Menu links — left aligned, vertically centered */}
+            {/* Menu links */}
             <div className="flex-1 flex flex-col justify-center gap-5">
               {menuItems.map((label, i) => (
                 <motion.span
@@ -91,18 +114,13 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
                     ease: "easeOut",
                   }}
                   className="text-white/90 text-3xl lg:text-5xl font-bold tracking-tight hover:text-amber-400 transition-colors duration-300 w-fit cursor-pointer"
-                  onClick={() => {
-                    if (label === "ABOUT US") onNavigate("about-us");
-                    if (label === "SERVICES") onNavigate("services");
-                    if (label === "CAREERS") onNavigate("careers");
-                    if (label === "IMPACT AND INNOVATION") onNavigate("impact-innovation");
-                  }}
+                  onClick={() => handleClick(label)}
                 >
                   {label}
                 </motion.span>
               ))}
 
-              {/* Green accent link */}
+              {/* Accent link */}
               <motion.span
                 initial={{ x: -40, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -117,7 +135,7 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
               </motion.span>
             </div>
 
-            {/* Footer: separator + socials */}
+            {/* Footer */}
             <motion.div
               className="pb-10"
               initial={{ opacity: 0 }}
