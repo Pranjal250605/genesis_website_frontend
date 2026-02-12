@@ -3,17 +3,21 @@ import Logo from '@/components/images/logo.png';
 import { Globe, Menu, X } from 'lucide-react';
 import MenuOverlay from '@/components/sections/MenuOverlay';
 
-const Navbar = () => {
+interface NavbarProps {
+  onNavigate: (page: "home" | "about-us" | "services") => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-    <MenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+    <MenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} onNavigate={(page) => { setMenuOpen(false); onNavigate(page); }} />
     <nav className="fixed top-4 left-0 right-0 z-[1000] flex justify-center px-4">
       <div className="flex h-20 w-full max-w-[1440px] items-center justify-between rounded-[40px] border border-white/10 bg-zinc-950/20 px-10 shadow-2xl backdrop-blur-xl">
         
         {/* Logo Section */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 cursor-pointer" onClick={() => { setMenuOpen(false); onNavigate("home"); }}>
             <img 
                 src={Logo}
                 alt="Main Logo" 

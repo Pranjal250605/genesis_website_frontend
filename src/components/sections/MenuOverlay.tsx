@@ -15,9 +15,10 @@ const socials = ["Instagram", "LinkedIn", "Twitter"];
 interface MenuOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onNavigate: (page: "home" | "about-us" | "services") => void;
 }
 
-export default function MenuOverlay({ isOpen }: MenuOverlayProps) {
+export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -89,7 +90,11 @@ export default function MenuOverlay({ isOpen }: MenuOverlayProps) {
                     delay: 0.15 + i * 0.08,
                     ease: "easeOut",
                   }}
-                  className="text-white/90 text-3xl lg:text-5xl font-bold tracking-tight hover:text-amber-400 transition-colors duration-300 w-fit cursor-default"
+                  className="text-white/90 text-3xl lg:text-5xl font-bold tracking-tight hover:text-amber-400 transition-colors duration-300 w-fit cursor-pointer"
+                  onClick={() => {
+                    if (label === "ABOUT US") onNavigate("about-us");
+                    if (label === "SERVICES") onNavigate("services");
+                  }}
                 >
                   {label}
                 </motion.span>

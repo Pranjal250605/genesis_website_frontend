@@ -1,16 +1,16 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import { motion } from 'framer-motion'; 
+import { useLayoutEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import BackgroundImg from "@/components/images/unnamed.webp"; 
+import BackgroundImg from "@/components/images/unnamed (10).webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const About = () => {
-  const containerRef = useRef(null);
-  const maskRef = useRef(null);
-  const imageRef = useRef(null);
-  const overlayRef = useRef(null);
+const AboutUs = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const maskRef = useRef<HTMLHeadingElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -18,7 +18,7 @@ const About = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=700%", // Longer scroll to fit all 3 pairs comfortably
+          end: "+=700%",
           pin: true,
           scrub: 1,
         }
@@ -30,96 +30,102 @@ const About = () => {
       tl.fromTo(imageRef.current, { scale: 1.2, filter: "brightness(0.5) grayscale(0.5)" }, { scale: 1, filter: "brightness(0.8) grayscale(0)", duration: 5 }, 0);
 
       // 2. TEXT SEQUENCING
-      const pairs = [".pair-1", ".pair-2", ".pair-3"];
+      const pairs = [".aboutus-pair-1", ".aboutus-pair-2", ".aboutus-pair-3"];
       pairs.forEach((pair, i) => {
         tl.fromTo(pair, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.5, ease: "expo.out" });
         tl.to({}, { duration: 3 }); // Reading pause
-        
+
         if (i !== pairs.length - 1) {
           tl.to(pair, { opacity: 0, y: -40, duration: 1.2 });
         }
       });
 
       tl.to({}, { duration: 2 }); // Final buffer
-      
+
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050505]">
-      
-      {/* RECTANGLE LAYER BLUR: Blends Earth Hero */}
+
+      {/* TOP GRADIENT BLEND */}
       <div className="absolute top-0 left-0 w-full h-48 z-50 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none" />
 
       {/* DATA INITIALIZATION HUD */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
         className="absolute top-12 left-12 z-50 flex flex-col gap-1 pointer-events-none"
       >
+        <div className="flex items-center gap-2">
+          <motion.span animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2 }} className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
+          <p className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-bold">Nav_Module // About Us</p>
+        </div>
+        <span className="text-[8px] text-white/20 uppercase tracking-[0.3em] ml-3">Genesis_Identity_v1.0</span>
       </motion.div>
 
       {/* BRAND MASK */}
       <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
-        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">GENESIS</h1>
+        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">ABOUT US</h1>
       </div>
 
       {/* BACKGROUND & READABILITY */}
       <div className="absolute inset-0 z-0">
-        <img ref={imageRef} src={BackgroundImg} className="h-full w-full object-cover" alt="city" />
+        <img ref={imageRef} src={BackgroundImg} className="h-full w-full object-cover" alt="About Us" />
         <div ref={overlayRef} className="absolute inset-0 z-10 bg-black/20" />
         <div className="absolute inset-0 z-20 bg-gradient-to-tr from-black/80 via-black/20 to-transparent" />
       </div>
 
       {/* CONTENT LAYER */}
       <div className="relative z-30 flex h-full w-full items-end justify-start p-12 md:p-32">
-        
+
         {/* Pair 1 */}
-        <div className="pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
+        <div className="aboutus-pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
           <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Technology That <br/> Solves <span className="text-amber-400">Real Problems</span>
+            Bridging Innovation <br/>& <span className="text-amber-400">Execution</span>
           </h2>
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We design and deliver solutions that create value for people and organizations.
+              We connect markets, technology, and talent across regions to operate beyond geographical limitations.
             </p>
           </div>
         </div>
 
         {/* Pair 2 */}
-        <div className="pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
+        <div className="aboutus-pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
           <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Built for Growth, <br/> <span className="text-amber-400">Designed for Scale</span>
+            Strategy Into <br/><span className="text-amber-400">Measurable Outcomes</span>
           </h2>
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              Our innovation-driven approach helps teams move from ideas to measurable results.
+              We enable growth through intelligent technology adoption, turning digital complexity into absolute clarity.
             </p>
           </div>
         </div>
 
         {/* Pair 3 */}
-        <div className="pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
+        <div className="aboutus-pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
           <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Partners <br/> <span className="text-amber-400">in Progress</span>
+            Innovation With <br/><span className="text-amber-400">Tangible Impact</span>
           </h2>
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We work with trust, speed, and quality to build long-term success together.
+              We prioritize execution excellence and sustainable growth to create long-term value for a global market.
             </p>
           </div>
         </div>
 
       </div>
 
+      {/* BOTTOM GRADIENT BLEND */}
       <div className="absolute bottom-0 left-0 w-full h-32 z-50 bg-gradient-to-t from-black to-transparent" />
     </section>
   );
 };
 
-export default About;
+export default AboutUs;
