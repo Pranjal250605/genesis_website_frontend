@@ -8,7 +8,7 @@ import Services from "@/components/sections/Services"
 gsap.registerPlugin(ScrollTrigger)
 
 interface ServicesPageProps {
-  onNavigate: (page: "home" | "about-us" | "services") => void
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation") => void
 }
 
 export default function ServicesPage({ onNavigate }: ServicesPageProps) {
@@ -26,7 +26,12 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
     })
     gsap.ticker.lagSmoothing(0)
 
+    const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
+
     return () => {
+      cancelAnimationFrame(rafId)
       lenis.destroy()
       gsap.ticker.remove(lenis.raf)
     }

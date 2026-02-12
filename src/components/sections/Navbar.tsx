@@ -4,7 +4,7 @@ import { Globe, Menu, X } from 'lucide-react';
 import MenuOverlay from '@/components/sections/MenuOverlay';
 
 interface NavbarProps {
-  onNavigate: (page: "home" | "about-us" | "services") => void;
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation") => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {

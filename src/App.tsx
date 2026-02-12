@@ -2,20 +2,28 @@ import { useEffect, useState } from "react"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import Hero from "@/components/sections/Hero"
+
+// Layout Components
 import Navbar from "@/components/sections/Navbar"
-import About from "./components/sections/About"
-import Core from "@/components/sections/core"
+
+// Home Sections
+import Hero from "@/components/sections/Hero"
+import About from "@/components/sections/About"
+import Core from "@/components/sections/Core" // Standardized casing
+import Services from "@/components/sections/Services" // Added your new component
 import Global_Footprint from "@/components/sections/Global_Footprint"
 import Partners from "@/components/sections/Partners"
 import CeoVision from "@/components/sections/CeoVision"
 import Contact from "@/components/sections/Contact"
+
+// Pages
 import AboutUsPage from "@/pages/AboutUsPage"
 import ServicesPage from "@/pages/ServicesPage"
+import ImpactInnovationPage from "@/pages/ImpactInnovationPage"
 
 gsap.registerPlugin(ScrollTrigger)
 
-type Page = "home" | "about-us" | "services"
+type Page = "home" | "about-us" | "services" | "impact-innovation"
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home")
@@ -23,12 +31,11 @@ export default function App() {
   const handleNavigate = (page: Page) => {
     ScrollTrigger.getAll().forEach(st => st.kill())
     window.scrollTo(0, 0)
-    const urlMap: Record<Page, string> = { home: "/", "about-us": "/about-us", services: "/services" }
+    const urlMap: Record<Page, string> = { home: "/", "about-us": "/about-us", services: "/services", "impact-innovation": "/impact-innovation" }
     window.history.pushState({ page }, "", urlMap[page])
     setCurrentPage(page)
   }
 
-  // Browser back/forward button support
   useEffect(() => {
     const handlePop = (e: PopStateEvent) => {
       const page = (e.state?.page as Page) || "home"
@@ -40,7 +47,6 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePop)
   }, [])
 
-  // Lenis smooth scroll — only for home page
   useEffect(() => {
     if (currentPage !== "home") return
 
@@ -51,10 +57,7 @@ export default function App() {
     })
 
     lenis.on("scroll", ScrollTrigger.update)
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000)
-    })
+    gsap.ticker.add((time) => lenis.raf(time * 1000))
     gsap.ticker.lagSmoothing(0)
 
     return () => {
@@ -63,24 +66,28 @@ export default function App() {
     }
   }, [currentPage])
 
-  if (currentPage === "about-us") {
-    return <AboutUsPage onNavigate={handleNavigate} />
-  }
-
-  if (currentPage === "services") {
-    return <ServicesPage onNavigate={handleNavigate} />
-  }
-
   return (
     <div className="min-h-screen bg-[#050505]">
+      {/* Navbar stays outside the conditional logic so it's ALWAYS visible */}
       <Navbar onNavigate={handleNavigate} />
-      <Hero />
-      <About />
-      <Core />
-      <Global_Footprint />
-      <Partners />
-      <CeoVision />
-      <Contact />
+      
+      <main>
+        {currentPage === "home" && (
+          <>
+            <Hero />
+            <About />
+            <Core />
+            <Global_Footprint />
+            <Partners />
+            <CeoVision />
+            <Contact />
+          </>
+        )}
+
+        {currentPage === "about-us" && <AboutUsPage onNavigate={handleNavigate} />}
+        {currentPage === "services" && <ServicesPage onNavigate={handleNavigate} />}
+        {currentPage === "impact-innovation" && <ImpactInnovationPage onNavigate={handleNavigate} />}
+      </main>
     </div>
   )
 }

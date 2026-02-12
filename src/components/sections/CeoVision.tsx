@@ -1,8 +1,12 @@
 import CeoImg from "@/components/images/ceo.jpg";
+import Starry from "@/components/ui/Starry";
 
 export default function CeoVision() {
   return (
     <section className="relative w-full bg-[#050505] py-24 px-6 lg:px-16 overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Starry />
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left Column — Text */}
         <div>
@@ -52,12 +56,12 @@ export default function CeoVision() {
         </div>
 
         {/* Right Column — CEO Image */}
-        <div className="flex justify-center lg:justify-end">
-          <div className="w-full max-w-md lg:max-w-lg overflow-hidden rounded-[32px] border border-white/10 shadow-2xl">
+        <div className="flex justify-center lg:justify-end relative z-10">
+          <div className="w-full max-w-md lg:max-w-lg overflow-hidden rounded-[32px] border border-white/10 shadow-2xl bg-[#050505]">
             <img
               src={CeoImg}
               alt="Kohie Yoshida — CEO & Founder"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover opacity-100 block"
             />
           </div>
         </div>

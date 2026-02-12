@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Starry from "@/components/ui/Starry"; // Ensure this import is correct
 
 interface ServiceCardData {
   number: string;
@@ -67,7 +68,6 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for the rotation to avoid "jittery" movement
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), {
     stiffness: 150,
     damping: 20,
@@ -105,7 +105,6 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
-        // ✅ COMBINED STYLE PROP: Merged all dynamic styles into one object
         style={{ 
           rotateX, 
           rotateY, 
@@ -117,7 +116,6 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
         }}
         className="relative flex flex-col rounded-[28px] border bg-white/[0.02] backdrop-blur-xl overflow-hidden transition-[border-color,box-shadow] duration-500 h-full cursor-pointer"
       >
-        {/* Holographic shimmer overlay */}
         <div
           className="pointer-events-none absolute inset-0 z-10 rounded-[28px] transition-opacity duration-500"
           style={{
@@ -127,7 +125,6 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
           }}
         />
 
-        {/* Card content with translateZ for depth pop */}
         <div
           className="relative z-20 flex flex-col h-full p-8 lg:p-10 transition-transform duration-500 ease-out"
           style={{ 
@@ -135,21 +132,17 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
             transformStyle: "preserve-3d"
           }}
         >
-          {/* Number badge */}
           <div className="flex items-center gap-3 mb-6">
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-amber-400/60">{card.number}</span>
             <div className="flex-1 h-px bg-gradient-to-r from-amber-400/30 to-transparent" />
           </div>
 
-          {/* Title */}
           <h3 className="text-[26px] lg:text-[30px] font-bold text-amber-400 leading-tight uppercase tracking-tight mb-5">
             {card.title}
           </h3>
 
-          {/* Description */}
           <p className="text-[15px] text-white/70 leading-relaxed mb-7">{card.desc}</p>
 
-          {/* List */}
           <ul className="flex flex-col gap-3 mb-8 flex-1">
             {card.list.map((item) => (
               <li key={item} className="flex items-start gap-3">
@@ -159,7 +152,6 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
             ))}
           </ul>
 
-          {/* Footer divider + text */}
           <div className="mt-auto">
             <div className="h-px w-full bg-gradient-to-r from-white/10 via-amber-400/20 to-white/10 mb-5" />
             <p className="text-[12px] text-white/40 uppercase tracking-[0.15em] leading-relaxed">
@@ -174,15 +166,22 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
 
 export default function Services() {
   return (
-    <section className="relative min-h-screen w-full bg-[#050505] overflow-hidden py-32">
-      {/* Ambient background glow */}
+    /* Changed bg-[#050505] to bg-transparent to allow Starry to show through */
+    <section className="relative min-h-screen w-full bg-transparent overflow-hidden py-32">
+      
+      {/* Background Layer: Stars explicitly placed at z-0 */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Starry />
+      </div>
+
+      {/* Ambient background glow (over the stars, under the text) */}
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
         style={{
           width: "80vw",
           height: "80vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(251,191,36,0.03) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(251,191,36,0.04) 0%, transparent 70%)",
         }}
       />
 

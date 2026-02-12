@@ -68,7 +68,7 @@ export default function Global() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full bg-[#050505] overflow-hidden"
+      className="relative min-h-screen w-full bg-[#050505]"
     >
       <Starry />
 
