@@ -2,18 +2,15 @@ import { useEffect } from "react"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import Navbar from "@/components/sections/Navbar"
-import AboutUs from "@/components/sections/AboutUs"
-import TeamMarquee from "@/components/sections/TeamMarquee"
-import Global_Footprint from "@/components/sections/Global_Footprint"
+import Careers from "@/components/sections/Careers"
 
 gsap.registerPlugin(ScrollTrigger)
 
-interface AboutUsPageProps {
+interface CareersPageProps {
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
 }
 
-export default function AboutUsPage({ onNavigate }: AboutUsPageProps) {
+export default function CareersPage({ onNavigate: _onNavigate }: CareersPageProps) {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -28,9 +25,6 @@ export default function AboutUsPage({ onNavigate }: AboutUsPageProps) {
     })
     gsap.ticker.lagSmoothing(0)
 
-    // Recalculate all ScrollTrigger positions after Lenis takes over scrolling.
-    // Without this, pinned sections (AboutUs, Global_Footprint) won't activate
-    // because GSAP calculated positions before Lenis was connected.
     const rafId = requestAnimationFrame(() => {
       ScrollTrigger.refresh()
     })
@@ -44,10 +38,7 @@ export default function AboutUsPage({ onNavigate }: AboutUsPageProps) {
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <Navbar onNavigate={onNavigate} />
-      <AboutUs />
-      <TeamMarquee />
-      <Global_Footprint />
+      <Careers />
     </div>
   )
 }

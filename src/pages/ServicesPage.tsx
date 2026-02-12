@@ -8,7 +8,7 @@ import Services from "@/components/sections/Services"
 gsap.registerPlugin(ScrollTrigger)
 
 interface ServicesPageProps {
-  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation") => void
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
 }
 
 export default function ServicesPage({ onNavigate }: ServicesPageProps) {

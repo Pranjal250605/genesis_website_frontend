@@ -15,7 +15,7 @@ const socials = ["Instagram", "LinkedIn", "Twitter"];
 interface MenuOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation") => void;
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void;
 }
 
 export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
@@ -94,6 +94,7 @@ export default function MenuOverlay({ isOpen, onNavigate }: MenuOverlayProps) {
                   onClick={() => {
                     if (label === "ABOUT US") onNavigate("about-us");
                     if (label === "SERVICES") onNavigate("services");
+                    if (label === "CAREERS") onNavigate("careers");
                     if (label === "IMPACT AND INNOVATION") onNavigate("impact-innovation");
                   }}
                 >

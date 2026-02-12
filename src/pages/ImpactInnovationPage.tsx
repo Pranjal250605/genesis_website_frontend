@@ -8,7 +8,7 @@ import SignatureEvent from "@/components/sections/SignatureEvent"
 gsap.registerPlugin(ScrollTrigger)
 
 interface ImpactInnovationPageProps {
-  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation") => void
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
 }
 
 export default function ImpactInnovationPage({ onNavigate: _onNavigate }: ImpactInnovationPageProps) {

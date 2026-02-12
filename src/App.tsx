@@ -20,10 +20,11 @@ import Contact from "@/components/sections/Contact"
 import AboutUsPage from "@/pages/AboutUsPage"
 import ServicesPage from "@/pages/ServicesPage"
 import ImpactInnovationPage from "@/pages/ImpactInnovationPage"
+import CareersPage from "@/pages/CareersPage"
 
 gsap.registerPlugin(ScrollTrigger)
 
-type Page = "home" | "about-us" | "services" | "impact-innovation"
+type Page = "home" | "about-us" | "services" | "impact-innovation" | "careers"
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home")
@@ -31,7 +32,7 @@ export default function App() {
   const handleNavigate = (page: Page) => {
     ScrollTrigger.getAll().forEach(st => st.kill())
     window.scrollTo(0, 0)
-    const urlMap: Record<Page, string> = { home: "/", "about-us": "/about-us", services: "/services", "impact-innovation": "/impact-innovation" }
+    const urlMap: Record<Page, string> = { home: "/", "about-us": "/about-us", services: "/services", "impact-innovation": "/impact-innovation", careers: "/careers" }
     window.history.pushState({ page }, "", urlMap[page])
     setCurrentPage(page)
   }
@@ -87,6 +88,7 @@ export default function App() {
         {currentPage === "about-us" && <AboutUsPage onNavigate={handleNavigate} />}
         {currentPage === "services" && <ServicesPage onNavigate={handleNavigate} />}
         {currentPage === "impact-innovation" && <ImpactInnovationPage onNavigate={handleNavigate} />}
+        {currentPage === "careers" && <CareersPage onNavigate={handleNavigate} />}
       </main>
     </div>
   )
