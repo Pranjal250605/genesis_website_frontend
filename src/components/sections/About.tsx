@@ -1,65 +1,130 @@
-import React from 'react';
-import Starry from "@/components/ui/Starry";
-import Into from "@/components/images/into.png";
-import Into1 from "@/components/images/intoup.png";
-import Into2 from "@/components/images/into below.png";
+import React, { useLayoutEffect, useRef } from 'react';
+import { motion } from 'framer-motion'; 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import BackgroundImg from "@/components/images/unnamed.webp"; 
 
-export default function About() {
-  return (
-    <div className="relative min-h-screen bg-[#050505] py-50 px-6 overflow-hidden">
-      <Starry />
-      
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col gap-40">
+gsap.registerPlugin(ScrollTrigger);
+
+const About = () => {
+  const containerRef = useRef(null);
+  const maskRef = useRef(null);
+  const imageRef = useRef(null);
+  const overlayRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=700%", // Longer scroll to fit all 3 pairs comfortably
+          pin: true,
+          scrub: 1,
+        }
+      });
+
+      // 1. BLEND & REVEAL
+      tl.to(overlayRef.current, { backgroundColor: "rgba(0,0,0,0.6)", backdropFilter: "blur(3px)", duration: 2 }, 0);
+      tl.fromTo(maskRef.current, { scale: 0.9, opacity: 1 }, { scale: 50, opacity: 0, ease: "power2.in", duration: 5 });
+      tl.fromTo(imageRef.current, { scale: 1.2, filter: "brightness(0.5) grayscale(0.5)" }, { scale: 1, filter: "brightness(0.8) grayscale(0)", duration: 5 }, 0);
+
+      // 2. TEXT SEQUENCING
+      const pairs = [".pair-1", ".pair-2", ".pair-3"];
+      pairs.forEach((pair, i) => {
+        tl.fromTo(pair, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.5, ease: "expo.out" });
+        tl.to({}, { duration: 3 }); // Reading pause
         
-        {/* Card 1: Introduction */}
-        <div className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-zinc-900/20 p-12 pb-20 backdrop-blur-xl transition-all hover:border-amber-500/60">
-          <div 
-            className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none"
-            style={{ 
-              backgroundImage: `url(${Into1})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'bottom'
-            }} 
-          />
-          <div className="relative z-10 text-center">
-            <h3 className="text-amber-400 text-sm font-bold tracking-[0.4em] uppercase pt-5 mb-8">Introduction</h3>
-            <p className="text-white/80 text-xl leading-relaxed max-w-3xl mx-auto pt-3 font-light">
-              At GENESIS, we are committed to building transformative solutions that bridge technology, business, and human potential. Our mission is to empower organizations and individuals through innovation-driven services, scalable digital solutions, and forward-thinking collaboration. By combining strategic expertise with technical excellence, we aim to create sustainable value in an evolving global landscape.
+        if (i !== pairs.length - 1) {
+          tl.to(pair, { opacity: 0, y: -40, duration: 1.2 });
+        }
+      });
+
+      tl.to({}, { duration: 2 }); // Final buffer
+      
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050505]">
+      
+      {/* RECTANGLE LAYER BLUR: Blends Earth Hero */}
+      <div className="absolute top-0 left-0 w-full h-48 z-50 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none" />
+
+      {/* DATA INITIALIZATION HUD */}
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute top-12 left-12 z-50 flex flex-col gap-1 pointer-events-none"
+      >
+        <div className="flex items-center gap-2">
+          <motion.span animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2 }} className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
+          <p className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-bold">Data_Stream // Initializing</p>
+        </div>
+        <span className="text-[8px] text-white/20 uppercase tracking-[0.3em] ml-3">Genesis_Core_v1.0.4</span>
+      </motion.div>
+
+      {/* BRAND MASK */}
+      <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
+        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">GENESIS</h1>
+      </div>
+
+      {/* BACKGROUND & READABILITY */}
+      <div className="absolute inset-0 z-0">
+        <img ref={imageRef} src={BackgroundImg} className="h-full w-full object-cover" alt="city" />
+        <div ref={overlayRef} className="absolute inset-0 z-10 bg-black/20" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-tr from-black/80 via-black/20 to-transparent" />
+      </div>
+
+      {/* CONTENT LAYER */}
+      <div className="relative z-30 flex h-full w-full items-end justify-start p-12 md:p-32">
+        
+        {/* Pair 1 */}
+        <div className="pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
+          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+            Technology That <br/> Solves <span className="text-amber-400">Real Problems</span>
+          </h2>
+          <div className="flex items-start">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
+            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+              We design and deliver solutions that create value for people and organizations.
             </p>
           </div>
         </div>
 
-        {/* Card 2: Shared Leadership */}
-        <div className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-zinc-900/20 p-12 backdrop-blur-xl transition-all hover:border-amber-500/60">
-          <div 
-            className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none"
-            style={{ 
-              backgroundImage: `url(${Into2})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'top'
-            }} 
-          />
-          <div className="relative z-10">
-            <h3 className="text-center text-amber-400 text-sm font-bold tracking-[0.4em] pt-4 uppercase mb-8">Shared Leadership with Edify Co. Ltd.</h3>
-            <p className="text-center text-white/80 text-xl leading-relaxed pt-2 mb-12 font-light">
-              GENESIS operates as part of a broader leadership vision shared with Edify Co. Ltd. (Japan), positioning us within a dynamic and future-focused group. Together, we combine complementary strengths to drive innovation across multiple industries and geographies.
+        {/* Pair 2 */}
+        <div className="pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
+          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+            Built for Growth, <br/> <span className="text-amber-400">Designed for Scale</span>
+          </h2>
+          <div className="flex items-start">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
+            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+              Our innovation-driven approach helps teams move from ideas to measurable results.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-white/10">
-              <div className="text-center">
-                <h4 className="text-amber-400 font-light font-['Noto_Sans'] text-sm uppercase tracking-widest mb-4">Genesis Focus</h4>
-                <p className="text-white/50 text-base leading-relaxed">Sales Enablement • Product Development (Software & Hardware) • Workforce Reskilling • Crypto & Blockchain Solutions • Technology Project Outsourcing</p>
-              </div>
-              <div className="text-center flex flex-col items-center">
-                <h4 className="text-amber-400 text-sm font-light font-['Noto_Sans'] uppercase tracking-widest mb-4">Edify Co. Ltd. Focus</h4>
-                <p className="text-white/50 text-base leading-relaxed mb-6">Artificial Intelligence • Drone Technology • GX (Green Transformation) Initiatives</p>
-                <button className="px-6 py-2 cursor-pointer rounded-full bg-white/5 border border-white/10 text-xs text-white/60 hover:bg-white/10 transition-all">Visit Edify ↗</button>
-              </div>
-            </div>
+          </div>
+        </div>
+
+        {/* Pair 3 */}
+        <div className="pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
+          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+            Partners <br/> <span className="text-amber-400">in Progress</span>
+          </h2>
+          <div className="flex items-start">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
+            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+              We work with trust, speed, and quality to build long-term success together.
+            </p>
           </div>
         </div>
 
       </div>
-    </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-32 z-50 bg-gradient-to-t from-black to-transparent" />
+    </section>
   );
-}
+};
+
+export default About;

@@ -1,7 +1,21 @@
-import React from 'react';
-import Vid from "@/components/images/JapanAsla.mp4";
+import React, { useState, useEffect } from 'react';
+import Vid from "@/components/images/japan.mp4";
+import JapanMap from "@/components/images/istockphoto-537287287-612x612.jpg"; 
 
 function Hero() {
+  // State for ticking coordinates
+  const [coords, setCoords] = useState({ lat: '22.00', lng: '30.00' });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newLat = (22 + Math.random() * 0.4).toFixed(2);
+      const newLng = (30 + Math.random() * 0.6).toFixed(2);
+      setCoords({ lat: newLat, lng: newLng });
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative flex min-h-screen items-center overflow-hidden bg-[#050505]">
       {/* 1. Background Video */}
@@ -14,71 +28,77 @@ function Hero() {
       >
         <source src={Vid} type="video/mp4" />
       </video>
-
-      {/* 2. Gradient Overlay (Darkens the bottom and left for readability) */}
+      
+      {/* 2. Overlays */}
       <div className="absolute inset-0 z-10 overflow-hidden">
-        {/* Layer A: The Solid Gray Tint */}
         <div className="absolute inset-0 bg-gray-900/30" />
-
-        {/* Layer B: The Gradient + Blur */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
       </div>
 
-      {/* 3. Content Container (Constrained and Left-Aligned) */}
+      {/* 3. Content Container */}
       <div className="relative z-20 w-full max-w-[1440px] mx-auto px-12 lg:px-24">
-        <div className="mt-20">
+        <div>
           {/* Metadata Row */}
-          <div className="flex w-full items-end justify-between mt-40">
+          <div className="flex w-full items-end justify-between mb-8">
   
-            {/* LEFT GROUP: Branding & Mission */}
-            <div className="flex items-end gap-8">
-              <div className="flex flex-col gap-4 text-white/40">
-                <span className="text-[11px] uppercase tracking-[0.2em] font-medium">Est. 2024</span>
-                <div className="h-px w-12 bg-white/20" />
-                <p className="text-[12px] uppercase tracking-widest leading-relaxed">
-                  Empowering Tomorrow's<br/>Tech Landscape.
-                </p>
+            {/* LEFT GROUP */}
+            <div className="flex flex-col gap-6">
+              <div className="h-px w-12 bg-amber-400/60" />
+              
+              <div className="flex items-center gap-3">
+                <h2 className="text-amber-400 text-lg tracking-[0.2em] font-medium uppercase">
+                  Genesis Group
+                </h2>
+                <img 
+                  src={JapanMap} 
+                  alt="Japan Location" 
+                  className="h-5 w-auto object-contain opacity-90 grayscale-[20%]" 
+                />
               </div>
-
-              {/* GENESIS GROUP sits next to the paragraph, aligned to the bottom */}
-              <h2 className="text-amber-400 text-2xl font-medium tracking-[0.3em] ">
-                GENESIS GROUP
-              </h2>
             </div>
 
-            {/* RIGHT GROUP: Coordinates */}
-            <div className="flex flex-col text-right">
-              <h1 className="text-amber-400 text-xl  tracking-wider">
-                35°41'22"N 139°41'30"E
+            {/* RIGHT GROUP: Coordinates (Text Updated) */}
+            <div className="flex flex-col text-right min-w-[220px]">
+              <h1 className="text-amber-400 text-xl tracking-wider tabular-nums">
+                35°41'{coords.lat}"N 139°41'{coords.lng}"E
               </h1>
               <p className="text-[12px] uppercase tracking-widest text-white/40">
-                Tokyo, Japan · Headquarters
+                Hiroshima, Japan · Headquarters
               </p>
             </div>
             
           </div>
           
-
-          {/* Thin Horizontal Line across the section */}
-          <div className="w-full h-px bg-white/40 mt-10 mb-20" />
+          <div className="w-full h-px bg-white/40 mt-6 mb-12" />
 
           <div className='ml-14'>
-            {/* Main Japanese Headline */}
-            <h1 className="font-['Montserrat'] text-6xl md:text-8xl font-bold leading-[1.1] text-amber-400">
-              未来の希望を、<br/>
-              実装しよう。
+            <h1 className="text-6xl md:text-7xl font-bold leading-[1.1] text-amber-400">
+              テクノロジーの <br />
+              未来を切り拓く
             </h1>
             
-            {/* English Sub-headline */}
-            <p className="mt-8 text-xl md:text-2xl font-light tracking-wide text-white/70 max-w-[600px]">
-              Bridging Innovation: From Japan to the World.
+            <p className="mt-6 text-xl md:text-2xl font-normal leading-normal tracking-wide text-gray-100">
+              Bridging Innovation:<br />
+              From Japan to the World.
             </p>
 
-            {/* CTA Button */}
-            <div className="mt-12 ml-4">
-              <button className="flex items-center cursor-pointer gap-3 rounded-full bg-amber-400 px-8 py-4 text-lg font-bold text-zinc-950 transition-all hover:bg-amber-300 hover:scale-105 active:scale-95">
+            <div className="mt-10">
+              <button className="
+                group relative flex items-center gap-3 
+                rounded-full border border-white/20 
+                bg-[#556982] backdrop-blur-xl 
+                px-8 py-3 
+                text-sm font-semibold tracking-widest text-white uppercase 
+                transition-all duration-300 ease-out 
+                hover:bg-[#60748e] hover:border-white/40 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(85,105,130,0.4)] 
+                active:scale-95
+              ">
                 Visit Edify
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                <svg 
+                  width="14" height="14" viewBox="0 0 24 24" 
+                  fill="none" stroke="currentColor" strokeWidth="2.5"
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                >
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </button>
@@ -87,7 +107,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
          <div className="animate-bounce text-amber-400/50">
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
