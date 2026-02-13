@@ -264,85 +264,27 @@
   },
   "careers_page": {
     "hero_eyebrow": "Careers at Genesis",
-    "hero_title": "Build the <span class=\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\">Future.</span>",
-    "hero_subtitle": "Combining international exposure with strong academic foundations.",
-    "cta_view_roles": "View Open Roles",
-    "cta_philosophy": "Our Philosophy",
-    "scroll_indicator": "Scroll",
-    "team_eyebrow": "Our Team",
-    "team_title": "The minds behind Genesis",
-    "team_cards": {
-      "academic": {
-        "title": "Academic Depth",
-        "description": "Strong foundations from top IITs."
-      },
-      "global": {
-        "title": "Global Perspective",
-        "description": "International exposure across research ecosystems."
-      },
-      "frontier": {
-        "title": "Frontier Tech",
-        "description": "Experience in AI, Blockchain, and massive-scale systems."
-      },
-      "precision": {
-        "title": "Culture of Precision",
-        "description": "A shared commitment to intellectual rigor."
-      }
+    "hero_title": "Join Our <span class=\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\">Talent Network</span>",
+    "hero_subtitle": "We are not hiring for specific roles right now, but we are always interested in connecting with strong tech talent. Share your CV and we'll contact you when a suitable role opens.",
+    "confirmation_message": "Thank you! Your profile has been received successfully. We'll contact you when a matching opportunity is available.",
+    "form": {
+      "full_name": "Full Name",
+      "full_name_placeholder": "Enter your full name",
+      "email": "Email",
+      "email_placeholder": "Enter your email address",
+      "area_of_interest": "Area of Interest",
+      "area_placeholder": "e.g. AI/ML, Blockchain, Full Stack, DevOps...",
+      "cv_upload": "CV Upload",
+      "cv_placeholder": "Click to upload your CV",
+      "submit": "Submit CV"
     },
-    "hiring_eyebrow": "Hiring Philosophy",
-    "hiring_title": "We don't just hire<br />for roles. <span class=\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\">We hire for impact.</span>",
-    "hiring_subtitle": "Every person at Genesis is selected not just for what they know, but for who they are and what they're capable of becoming.",
-    "hiring_traits": [
-      "Curiosity & research-driven thinking",
-      "Integrity & ownership",
-      "Collaborative problem-solving",
-      "Passion for building at the frontier",
-      "Bias toward action over perfection"
-    ],
-    "opportunities_eyebrow": "Open Opportunities",
-    "opportunities_title": "Find your role",
-    "roles_header": {
-      "role": "Role",
-      "team": "Team",
-      "location": "Location",
-      "type": "Type"
-    },
-    "roles": {
-      "ai_ml": {
-        "title": "AI & ML Engineering",
-        "team": "Research & Engineering",
-        "location": "Remote / Bengaluru",
-        "type": "Full-time"
-      },
-      "blockchain": {
-        "title": "Blockchain & Web3",
-        "team": "Distributed Systems",
-        "location": "Remote / Singapore",
-        "type": "Full-time"
-      },
-      "fullstack": {
-        "title": "Full Stack Development",
-        "team": "Product Engineering",
-        "location": "Remote / Delhi NCR",
-        "type": "Full-time"
-      },
-      "design": {
-        "title": "Product Design",
-        "team": "Design & UX",
-        "location": "Remote",
-        "type": "Full-time / Contract"
-      },
-      "devops": {
-        "title": "DevOps & Infrastructure",
-        "team": "Platform Engineering",
-        "location": "Remote / Bengaluru",
-        "type": "Full-time"
-      }
-    },
-    "apply_now": "Apply Now",
-    "cta_unlisted_role_eyebrow": "Don't see your role?",
-    "cta_unlisted_role_title": "Ready to make <span class=\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\">your mark?</span>",
-    "cta_unlisted_role_subtitle": "Send us your profile and tell us how you'd make an impact. The right people always find a place at Genesis.",
-    "cta_unlisted_role_button": "Apply via Email"
+    "errors": {
+      "full_name_required": "Full name is required",
+      "email_required": "Email is required",
+      "email_invalid": "Please enter a valid email address",
+      "area_required": "Area of interest is required",
+      "cv_required": "Please upload your CV",
+      "cv_format": "Only PDF, DOC, and DOCX files are accepted"
+    }
   }
 }

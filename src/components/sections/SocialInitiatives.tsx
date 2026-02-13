@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Flower2, Sparkles, Sun, Users, HeartHandshake } from "lucide-react";
+import { Flower2, Sparkles, Sun, Users, HeartHandshake, Landmark, GraduationCap, Building2, BookOpen } from "lucide-react";
 import Starry from "@/components/ui/Starry";
 
 /* ─── Data ─── */
@@ -39,6 +39,18 @@ const missionPoints = [
   "Bridging the gap between modern technology and ancient wisdom.",
   "Empowering individuals regardless of socioeconomic background.",
   "Building long-term community resilience through mindful practices.",
+];
+
+interface Partner {
+  icon: React.ElementType;
+  name: string;
+  country: string;
+}
+
+const cultureCenterPartners: Partner[] = [
+  { icon: GraduationCap, name: "IIT Mandi", country: "India" },
+  { icon: Building2, name: "ISKCON", country: "India" },
+  { icon: BookOpen, name: "Bhaktivedanta University", country: "India" },
 ];
 
 /* ─── Breathing Animation Variants ─── */
@@ -292,6 +304,124 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               {/* Right: Rippling zero cost visual */}
               <div className="relative p-8 lg:p-12 flex items-center justify-center min-h-[400px]">
                 <ZeroCostVisual />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            INDO–JAPAN CULTURE CENTER
+        ═══════════════════════════════════════════ */}
+        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            className="rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
+          >
+            {/* Header */}
+            <div className="p-10 lg:p-14 border-b border-white/10">
+              <div className="flex items-center gap-4 mb-5">
+                <motion.div
+                  animate={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.7, 1, 0.7],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="w-12 h-12 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center"
+                >
+                  <Landmark size={22} className="text-amber-400/80" strokeWidth={1.5} />
+                </motion.div>
+                <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em]">
+                  Featured Initiative
+                </span>
+              </div>
+              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug">
+                Indo–Japan{" "}
+                <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
+                  Culture Center
+                </span>
+              </h2>
+            </div>
+
+            {/* Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Left: Description */}
+              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="text-[28px]">🇮🇳</span>
+                  <div className="w-8 h-px bg-gradient-to-r from-amber-400/40 to-transparent" />
+                  <span className="text-[28px]">🇯🇵</span>
+                </div>
+
+                <p className="text-[17px] font-light text-white/70 leading-loose mb-8">
+                  This initiative aims to provide a supportive environment for people from both countries to work effectively in each other's country, fostering deeper collaboration between India and Japan.
+                </p>
+
+                <p className="text-[17px] font-light text-white/60 leading-loose">
+                  Through this mission, we are trying to overcome present drawbacks, encourage both societies to interact with each other, and grow together.
+                </p>
+
+                {/* Decorative divider */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="w-24 h-px bg-gradient-to-r from-amber-400/30 to-transparent mt-10 origin-left"
+                />
+              </div>
+
+              {/* Right: Partners */}
+              <div className="p-10 lg:p-14">
+                <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-8 block">
+                  Major Partners
+                </span>
+
+                <div className="space-y-6">
+                  {cultureCenterPartners.map((partner, i) => {
+                    const Icon = partner.icon;
+                    return (
+                      <motion.div
+                        key={partner.name}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
+                        className="group flex items-center gap-5 p-5 rounded-2xl border border-transparent transition-all duration-500 hover:border-white/10 hover:bg-white/[0.02]"
+                      >
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.06, 1],
+                            opacity: [0.7, 1, 0.7],
+                          }}
+                          transition={{
+                            duration: 8,
+                            delay: i * 0.6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                          className="shrink-0 w-14 h-14 rounded-2xl bg-amber-400/[0.06] border border-amber-400/20 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/30 group-hover:bg-amber-400/[0.1]"
+                        >
+                          <Icon size={24} className="text-amber-400/70 transition-colors duration-500 group-hover:text-amber-400" strokeWidth={1.5} />
+                        </motion.div>
+                        <div>
+                          <h4 className="text-[18px] font-light text-white/90 tracking-wide transition-colors duration-500 group-hover:text-amber-400">
+                            {partner.name}
+                          </h4>
+                          <span className="text-[13px] font-light text-white/40 uppercase tracking-[0.2em]">
+                            {partner.country}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </motion.div>

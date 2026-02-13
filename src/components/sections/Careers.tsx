@@ -1,63 +1,32 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
-  GraduationCap,
-  Globe2,
-  Cpu,
-  Target,
+  Upload,
+  CheckCircle2,
+  User,
+  Mail,
+  Briefcase,
+  FileText,
   ArrowUpRight,
-  Sparkles,
-  Heart,
-  Lightbulb,
-  Shield,
-  Users,
-  BrainCircuit,
-  ShieldCheck,
-  Code2,
-  Palette,
-  Server,
-  ChevronRight,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import Starry from "@/components/ui/Starry";
 
-/* ───────────────────── Data ───────────────────── */
+/* ───────────────────── Types ───────────────────── */
 
-const teamCards = [
-  {
-    icon: GraduationCap,
-    key: "academic",
-  },
-  {
-    icon: Globe2,
-    key: "global",
-  },
-  {
-    icon: Cpu,
-    key: "frontier",
-  },
-  {
-    icon: Target,
-    key: "precision",
-  },
-];
+interface FormData {
+  fullName: string;
+  email: string;
+  areaOfInterest: string;
+  cv: File | null;
+}
 
-const hiringTraits = [
-  { icon: Lightbulb, index: 0 },
-  { icon: Shield, index: 1 },
-  { icon: Users, index: 2 },
-  { icon: Heart, index: 3 },
-  { icon: Sparkles, index: 4 },
-];
-
-const openRoles: { icon: LucideIcon; key: string }[] = [
-  { icon: BrainCircuit, key: "ai_ml" },
-  { icon: ShieldCheck, key: "blockchain" },
-  { icon: Code2, key: "fullstack" },
-  { icon: Palette, key: "design" },
-  { icon: Server, key: "devops" },
-];
+interface FormErrors {
+  fullName?: string;
+  email?: string;
+  areaOfInterest?: string;
+  cv?: string;
+}
 
 /* ───────────────────── Component ───────────────────── */
 
@@ -65,11 +34,20 @@ interface CareersProps {
   onNavigate?: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates") => void;
 }
 
-export default function Careers({ onNavigate }: CareersProps = {}) {
+export default function Careers(_props: CareersProps = {}) {
   const { t } = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
-  const teamRef = useRef<HTMLDivElement>(null);
-  const philosophyRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    email: "",
+    areaOfInterest: "",
+    cv: null,
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   /* Hero parallax */
   const { scrollYProgress: heroProgress } = useScroll({
@@ -81,21 +59,59 @@ export default function Careers({ onNavigate }: CareersProps = {}) {
   const heroScale = useTransform(heroProgress, [0, 1], [1, 0.9]);
   const smoothHeroY = useSpring(heroY, { stiffness: 50, damping: 20 });
 
-  /* Team section parallax */
-  const { scrollYProgress: teamProgress } = useScroll({
-    target: teamRef,
-    offset: ["start end", "end start"],
-  });
-  const teamY = useTransform(teamProgress, [0, 1], [80, -40]);
-  const smoothTeamY = useSpring(teamY, { stiffness: 60, damping: 20 });
+  /* ── Validation ── */
+  const validate = (): boolean => {
+    const newErrors: FormErrors = {};
 
-  /* Philosophy section parallax */
-  const { scrollYProgress: philosophyProgress } = useScroll({
-    target: philosophyRef,
-    offset: ["start end", "end start"],
-  });
-  const philosophyY = useTransform(philosophyProgress, [0, 1], [60, -30]);
-  const smoothPhilosophyY = useSpring(philosophyY, { stiffness: 60, damping: 20 });
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = t("careers_page.errors.full_name_required");
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = t("careers_page.errors.email_required");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = t("careers_page.errors.email_invalid");
+    }
+
+    if (!formData.areaOfInterest.trim()) {
+      newErrors.areaOfInterest = t("careers_page.errors.area_required");
+    }
+
+    if (!formData.cv) {
+      newErrors.cv = t("careers_page.errors.cv_required");
+    } else {
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(formData.cv.type)) {
+        newErrors.cv = t("careers_page.errors.cv_format");
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  /* ── Submit ── */
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    // Simulate submission delay
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    setSubmitted(true);
+  };
+
+  /* ── File change ── */
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData((prev) => ({ ...prev, cv: file }));
+    if (errors.cv) setErrors((prev) => ({ ...prev, cv: undefined }));
+  };
 
   return (
     <div className="relative min-h-screen w-full bg-[#050505]">
@@ -119,12 +135,15 @@ export default function Careers({ onNavigate }: CareersProps = {}) {
 
       <div className="relative z-10">
         {/* ═══════════════════════════════════════════
-            HERO — Dramatic Entrance
+            HERO
         ═══════════════════════════════════════════ */}
-        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center px-8 lg:px-16 text-center">
+        <section
+          ref={heroRef}
+          className="relative min-h-[70vh] flex flex-col items-center justify-center px-8 lg:px-16 text-center pt-32 pb-16"
+        >
           <motion.div
             style={{ y: smoothHeroY, opacity: heroOpacity, scale: heroScale }}
-            className="max-w-5xl"
+            className="max-w-4xl"
           >
             {/* Eyebrow */}
             <motion.div
@@ -135,7 +154,7 @@ export default function Careers({ onNavigate }: CareersProps = {}) {
             >
               <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
               <span className="text-amber-400/70 text-[11px] font-medium uppercase tracking-[0.4em]">
-                {t('careers_page.hero_eyebrow')}
+                {t("careers_page.hero_eyebrow")}
               </span>
               <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
             </motion.div>
@@ -145,11 +164,15 @@ export default function Careers({ onNavigate }: CareersProps = {}) {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[56px] lg:text-[96px] font-bold tracking-tight leading-[0.95] mb-8"
+              className="text-[48px] lg:text-[80px] font-bold tracking-tight leading-[0.95] mb-8"
             >
               <span
                 className="text-white"
-                dangerouslySetInnerHTML={{ __html: t('careers_page.hero_title', { interpolation: { escapeValue: false } }) }}
+                dangerouslySetInnerHTML={{
+                  __html: t("careers_page.hero_title", {
+                    interpolation: { escapeValue: false },
+                  }),
+                }}
               />
             </motion.h1>
 
@@ -158,367 +181,237 @@ export default function Careers({ onNavigate }: CareersProps = {}) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="text-[20px] text-white/50 leading-relaxed max-w-2xl mx-auto mb-12"
+              className="text-[18px] lg:text-[20px] text-white/50 leading-relaxed max-w-2xl mx-auto"
             >
-              {t('careers_page.hero_subtitle')}
+              {t("careers_page.hero_subtitle")}
             </motion.p>
-
-            {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <button
-                onClick={() => onNavigate?.("join-us")}
-                className="group relative px-10 py-5 rounded-full bg-amber-400 text-black font-bold text-[14px] uppercase tracking-wider overflow-hidden transition-all duration-500 hover:bg-amber-300 hover:shadow-[0_0_50px_rgba(251,191,36,0.4)] hover:scale-105 active:scale-95"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {t('careers_page.cta_view_roles')}
-                  <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </button>
-
-              <button
-                onClick={() => onNavigate?.("about-us")}
-                className="group px-10 py-5 rounded-full border border-white/10 text-white/70 font-medium text-[14px] uppercase tracking-wider backdrop-blur-xl transition-all duration-300 hover:border-amber-400/30 hover:text-white hover:bg-white/[0.03]"
-              >
-                <span className="flex items-center gap-2">
-                  {t('careers_page.cta_philosophy')}
-                  <ChevronRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </button>
-            </motion.div>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1.5 }}
-            className="absolute bottom-16 flex flex-col items-center gap-3"
-          >
-            <span className="text-white/30 text-[11px] tracking-[0.3em] uppercase">
-              {t('careers_page.scroll_indicator')}
-            </span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-px h-16 bg-gradient-to-b from-amber-400/50 via-amber-400/20 to-transparent"
-            />
           </motion.div>
         </section>
 
         {/* ═══════════════════════════════════════════
-            OUR TEAM — Asymmetric Bento Grid
+            CV SUBMISSION FORM
         ═══════════════════════════════════════════ */}
-        <section ref={teamRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-32">
-          <motion.div style={{ y: smoothTeamY }}>
-            {/* Section heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="mb-20"
-            >
-              <span className="text-amber-400/70 text-[11px] font-medium uppercase tracking-[0.4em] mb-4 block">
-                {t('careers_page.team_eyebrow')}
-              </span>
-              <h2 className="text-[48px] lg:text-[64px] font-bold tracking-tight text-white leading-tight">
-                {t('careers_page.team_title')}
-              </h2>
-            </motion.div>
+        <section className="relative max-w-[720px] mx-auto px-8 lg:px-16 pb-40">
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              /* ── Success Message ── */
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="relative rounded-[32px] border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-xl overflow-hidden"
+              >
+                {/* Ambient glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-amber-400/[0.06] blur-[100px] rounded-full pointer-events-none" />
 
-            {/* Cards grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {teamCards.map((card, i) => (
-                <TeamCard key={card.key} card={card} index={i} />
-              ))}
-            </div>
-          </motion.div>
-        </section>
+                <div className="relative z-10 py-20 px-8 lg:px-14 text-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-20 h-20 rounded-full border border-amber-400/30 bg-amber-400/[0.08] flex items-center justify-center mx-auto mb-8"
+                  >
+                    <CheckCircle2 size={36} className="text-amber-400" />
+                  </motion.div>
 
-        {/* ═══════════════════════════════════════════
-            HIRING PHILOSOPHY — Split Screen
-        ═══════════════════════════════════════════ */}
-        <section
-          id="philosophy"
-          ref={philosophyRef}
-          className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-32"
-        >
-          <motion.div
-            style={{ y: smoothPhilosophyY }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
-          >
-            {/* Header */}
-            <div className="p-10 lg:p-14 border-b border-white/10">
-              <span className="text-amber-400/70 text-[11px] font-medium uppercase tracking-[0.4em] mb-4 block">
-                {t('careers_page.hiring_eyebrow')}
-              </span>
-              <h2
-                className="text-[32px] lg:text-[48px] font-bold tracking-tight text-white leading-tight"
-                dangerouslySetInnerHTML={{ __html: t('careers_page.hiring_title', { interpolation: { escapeValue: false } }) }}
-              />
-            </div>
-
-            {/* Content split */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Left: Mission */}
-              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10">
-                <p className="text-[17px] text-white/60 leading-relaxed mb-10">
-                  {t('careers_page.hiring_subtitle')}
-                </p>
-
-                {/* Stats or metrics could go here */}
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <div className="text-[40px] font-bold text-amber-400 mb-2">50+</div>
-                    <div className="text-[13px] text-white/40 uppercase tracking-wider">Team Members</div>
-                  </div>
-                  <div>
-                    <div className="text-[40px] font-bold text-amber-400 mb-2">12</div>
-                    <div className="text-[13px] text-white/40 uppercase tracking-wider">Countries</div>
-                  </div>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                    className="text-[18px] lg:text-[20px] text-white/70 leading-relaxed max-w-lg mx-auto"
+                  >
+                    {t("careers_page.confirmation_message")}
+                  </motion.p>
                 </div>
-              </div>
-
-              {/* Right: Traits */}
-              <div className="p-10 lg:p-14">
-                <div className="space-y-6">
-                  {hiringTraits.map((trait, i) => (
-                    <HiringTrait key={i} trait={trait} index={i} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* ═══════════════════════════════════════════
-            OPEN OPPORTUNITIES — Modern Table
-        ═══════════════════════════════════════════ */}
-        <section
-          id="opportunities"
-          className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-32"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="mb-16"
-          >
-            <span className="text-amber-400/70 text-[11px] font-medium uppercase tracking-[0.4em] mb-4 block">
-              {t('careers_page.opportunities_eyebrow')}
-            </span>
-            <h2 className="text-[48px] lg:text-[64px] font-bold tracking-tight text-white">
-              {t('careers_page.opportunities_title')}
-            </h2>
-          </motion.div>
-
-          {/* Table header */}
-          <div className="hidden lg:grid grid-cols-[auto_2.5fr_1.5fr_1.5fr_1fr_auto] gap-6 px-8 py-4 mb-2">
-            <div className="w-12" />
-            <div className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/30">
-              {t('careers_page.roles_header.role')}
-            </div>
-            <div className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/30">
-              {t('careers_page.roles_header.team')}
-            </div>
-            <div className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/30">
-              {t('careers_page.roles_header.location')}
-            </div>
-            <div className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/30">
-              {t('careers_page.roles_header.type')}
-            </div>
-            <div className="w-32" />
-          </div>
-
-          <div className="h-px bg-white/[0.06] mb-3" />
-
-          {/* Roles list */}
-          <div className="space-y-2">
-            {openRoles.map((role, i) => (
-              <RoleCard key={role.key} role={role} index={i} />
-            ))}
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════
-            CTA — Unlisted Role
-        ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[1200px] mx-auto px-8 lg:px-16 pb-40">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative rounded-[32px] border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-xl overflow-hidden"
-          >
-            {/* Ambient glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-amber-400/[0.06] blur-[100px] rounded-full pointer-events-none" />
-
-            <div className="relative z-10 py-20 px-8 lg:px-16 text-center">
-              <span className="text-amber-400/70 text-[11px] font-medium uppercase tracking-[0.4em] mb-6 block">
-                {t('careers_page.cta_unlisted_role_eyebrow')}
-              </span>
-
-              <h2
-                className="text-[36px] lg:text-[56px] font-bold tracking-tight text-white leading-tight mb-6"
-                dangerouslySetInnerHTML={{ __html: t('careers_page.cta_unlisted_role_title', { interpolation: { escapeValue: false } }) }}
-              />
-
-              <p className="text-[17px] text-white/50 leading-relaxed max-w-2xl mx-auto mb-12">
-                {t('careers_page.cta_unlisted_role_subtitle')}
-              </p>
-
-              <motion.a
-                href="mailto:careers@genesis.co"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold text-[14px] uppercase tracking-wider shadow-[0_0_40px_rgba(251,191,36,0.2)] transition-all duration-500 hover:shadow-[0_0_60px_rgba(251,191,36,0.4)]"
+              </motion.div>
+            ) : (
+              /* ── Form ── */
+              <motion.div
+                key="form"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="relative rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl overflow-hidden"
               >
-                {t('careers_page.cta_unlisted_role_button')}
-                <ArrowUpRight size={18} />
-              </motion.a>
-            </div>
-          </motion.div>
+                {/* Top glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-amber-400/[0.04] blur-[100px] rounded-full pointer-events-none" />
+
+                <form onSubmit={handleSubmit} className="relative z-10 p-8 lg:p-14">
+                  <div className="space-y-8">
+                    {/* Full Name */}
+                    <div>
+                      <label className="flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.2em] text-white/40 mb-3">
+                        <User size={14} className="text-amber-400/60" />
+                        {t("careers_page.form.full_name")}
+                        <span className="text-amber-400">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.fullName}
+                        onChange={(e) => {
+                          setFormData((prev) => ({ ...prev, fullName: e.target.value }));
+                          if (errors.fullName) setErrors((prev) => ({ ...prev, fullName: undefined }));
+                        }}
+                        placeholder={t("careers_page.form.full_name_placeholder")}
+                        className={`w-full px-6 py-4 rounded-2xl bg-white/[0.03] border ${
+                          errors.fullName ? "border-red-400/50" : "border-white/10"
+                        } text-white text-[16px] placeholder:text-white/20 outline-none transition-all duration-300 focus:border-amber-400/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(251,191,36,0.06)]`}
+                      />
+                      {errors.fullName && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-400/80 text-[13px] mt-2"
+                        >
+                          {errors.fullName}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.2em] text-white/40 mb-3">
+                        <Mail size={14} className="text-amber-400/60" />
+                        {t("careers_page.form.email")}
+                        <span className="text-amber-400">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => {
+                          setFormData((prev) => ({ ...prev, email: e.target.value }));
+                          if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
+                        }}
+                        placeholder={t("careers_page.form.email_placeholder")}
+                        className={`w-full px-6 py-4 rounded-2xl bg-white/[0.03] border ${
+                          errors.email ? "border-red-400/50" : "border-white/10"
+                        } text-white text-[16px] placeholder:text-white/20 outline-none transition-all duration-300 focus:border-amber-400/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(251,191,36,0.06)]`}
+                      />
+                      {errors.email && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-400/80 text-[13px] mt-2"
+                        >
+                          {errors.email}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    {/* Area of Interest */}
+                    <div>
+                      <label className="flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.2em] text-white/40 mb-3">
+                        <Briefcase size={14} className="text-amber-400/60" />
+                        {t("careers_page.form.area_of_interest")}
+                        <span className="text-amber-400">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.areaOfInterest}
+                        onChange={(e) => {
+                          setFormData((prev) => ({ ...prev, areaOfInterest: e.target.value }));
+                          if (errors.areaOfInterest) setErrors((prev) => ({ ...prev, areaOfInterest: undefined }));
+                        }}
+                        placeholder={t("careers_page.form.area_placeholder")}
+                        className={`w-full px-6 py-4 rounded-2xl bg-white/[0.03] border ${
+                          errors.areaOfInterest ? "border-red-400/50" : "border-white/10"
+                        } text-white text-[16px] placeholder:text-white/20 outline-none transition-all duration-300 focus:border-amber-400/40 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(251,191,36,0.06)]`}
+                      />
+                      {errors.areaOfInterest && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-400/80 text-[13px] mt-2"
+                        >
+                          {errors.areaOfInterest}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    {/* CV Upload */}
+                    <div>
+                      <label className="flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.2em] text-white/40 mb-3">
+                        <FileText size={14} className="text-amber-400/60" />
+                        {t("careers_page.form.cv_upload")}
+                        <span className="text-amber-400">*</span>
+                      </label>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileChange}
+                        className="hidden"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className={`w-full px-6 py-6 rounded-2xl border border-dashed ${
+                          errors.cv ? "border-red-400/50" : "border-white/15"
+                        } bg-white/[0.02] text-center transition-all duration-300 hover:border-amber-400/30 hover:bg-white/[0.04] group cursor-pointer`}
+                      >
+                        {formData.cv ? (
+                          <div className="flex items-center justify-center gap-3">
+                            <FileText size={20} className="text-amber-400" />
+                            <span className="text-white/70 text-[15px]">
+                              {formData.cv.name}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col items-center gap-3">
+                            <Upload
+                              size={24}
+                              className="text-white/20 transition-colors duration-300 group-hover:text-amber-400/60"
+                            />
+                            <span className="text-white/30 text-[14px] transition-colors duration-300 group-hover:text-white/50">
+                              {t("careers_page.form.cv_placeholder")}
+                            </span>
+                            <span className="text-white/15 text-[12px]">
+                              PDF, DOC, DOCX
+                            </span>
+                          </div>
+                        )}
+                      </button>
+                      {errors.cv && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-400/80 text-[13px] mt-2"
+                        >
+                          {errors.cv}
+                        </motion.p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Submit button */}
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    className="w-full mt-10 px-10 py-5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold text-[14px] uppercase tracking-wider shadow-[0_0_40px_rgba(251,191,36,0.15)] transition-all duration-500 hover:shadow-[0_0_60px_rgba(251,191,36,0.3)] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  >
+                    {isSubmitting ? (
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full"
+                      />
+                    ) : (
+                      <>
+                        {t("careers_page.form.submit")}
+                        <ArrowUpRight size={16} />
+                      </>
+                    )}
+                  </motion.button>
+                </form>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
       </div>
     </div>
-  );
-}
-
-/* ═══════════════════════════════════════════
-    Sub-components
-═══════════════════════════════════════════ */
-
-function TeamCard({ card, index }: { card: typeof teamCards[0]; index: number }) {
-  const { t } = useTranslation();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const Icon = card.icon;
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 60, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative rounded-[28px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 hover:shadow-[0_0_50px_rgba(251,191,36,0.12)] hover:bg-white/[0.04]"
-    >
-      {/* Corner accent */}
-      <div className="absolute -top-px -left-px w-32 h-32 bg-gradient-to-br from-amber-400/10 via-amber-400/5 to-transparent rounded-tl-[28px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      {/* Icon */}
-      <motion.div
-        animate={isInView ? { scale: [0, 1], rotate: [0, 360] } : {}}
-        transition={{ duration: 0.8, delay: index * 0.15 + 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-16 h-16 rounded-2xl border border-white/10 bg-white/[0.03] flex items-center justify-center mb-8 transition-all duration-500 group-hover:border-amber-400/30 group-hover:bg-amber-400/[0.08] group-hover:scale-110"
-      >
-        <Icon size={28} className="text-white/40 transition-colors duration-500 group-hover:text-amber-400" strokeWidth={1.5} />
-      </motion.div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        <h3 className="text-[24px] font-bold text-white/90 tracking-tight mb-4 transition-colors duration-500 group-hover:text-amber-400">
-          {t(`careers_page.team_cards.${card.key}.title`)}
-        </h3>
-        <p className="text-[15px] text-white/50 leading-relaxed">
-          {t(`careers_page.team_cards.${card.key}.description`)}
-        </p>
-      </div>
-
-      {/* Bottom glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </motion.div>
-  );
-}
-
-function HiringTrait({ trait, index }: { trait: typeof hiringTraits[0]; index: number }) {
-  const { t } = useTranslation();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const Icon = trait.icon;
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      className="group flex items-center gap-5"
-    >
-      <motion.div
-        animate={isInView ? { scale: [0, 1.2, 1], rotate: [0, 180, 0] } : {}}
-        transition={{ duration: 0.8, delay: index * 0.1 + 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="shrink-0 w-12 h-12 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center transition-all duration-300 group-hover:border-amber-400/30 group-hover:bg-amber-400/[0.08] group-hover:scale-110"
-      >
-        <Icon size={20} className="text-white/30 transition-colors duration-300 group-hover:text-amber-400" strokeWidth={1.5} />
-      </motion.div>
-      <span className="text-[16px] text-white/60 font-medium transition-colors duration-300 group-hover:text-white">
-        {t(`careers_page.hiring_traits.${index}`)}
-      </span>
-    </motion.div>
-  );
-}
-
-function RoleCard({ role, index }: { role: typeof openRoles[0]; index: number }) {
-  const { t } = useTranslation();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const Icon = role.icon;
-
-  return (
-    <motion.a
-      ref={ref}
-      href={`mailto:careers@genesis.co?subject=Application for ${t(`careers_page.roles.${role.key}.title`)}`}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
-      className="group grid grid-cols-1 lg:grid-cols-[auto_2.5fr_1.5fr_1.5fr_1fr_auto] gap-4 lg:gap-6 items-center px-8 py-7 rounded-2xl border border-transparent bg-transparent backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-white/[0.03] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] cursor-pointer"
-    >
-      {/* Icon */}
-      <div className="hidden lg:flex w-12 h-12 rounded-xl border border-white/10 bg-white/[0.02] items-center justify-center shrink-0 transition-all duration-300 group-hover:border-amber-400/30 group-hover:bg-amber-400/[0.06] group-hover:scale-110">
-        <Icon size={20} className="text-white/30 transition-colors duration-300 group-hover:text-amber-400" strokeWidth={1.5} />
-      </div>
-
-      {/* Title */}
-      <div className="flex items-center gap-3 lg:block">
-        <Icon size={20} className="lg:hidden text-white/30 group-hover:text-amber-400 transition-colors duration-300" strokeWidth={1.5} />
-        <span className="text-[19px] font-bold text-white tracking-tight transition-colors duration-300 group-hover:text-amber-400">
-          {t(`careers_page.roles.${role.key}.title`)}
-        </span>
-      </div>
-
-      {/* Team */}
-      <span className="text-[15px] text-white/40">
-        {t(`careers_page.roles.${role.key}.team`)}
-      </span>
-
-      {/* Location */}
-      <span className="text-[15px] text-white/40">
-        {t(`careers_page.roles.${role.key}.location`)}
-      </span>
-
-      {/* Type */}
-      <span className="text-[15px] text-white/40">
-        {t(`careers_page.roles.${role.key}.type`)}
-      </span>
-
-      {/* Apply button */}
-      <div className="flex items-center gap-2 lg:opacity-0 lg:translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-        <span className="text-amber-400 text-[14px] font-bold uppercase tracking-wider whitespace-nowrap">
-          {t('careers_page.apply_now')}
-        </span>
-        <ArrowUpRight size={16} className="text-amber-400" />
-      </div>
-    </motion.a>
   );
 }

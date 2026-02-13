@@ -281,86 +281,28 @@
   },
   "careers_page": {
     "hero_eyebrow": "ジェネシスでのキャリア",
-    "hero_title": "未来を<1>築く。</1>",
-    "hero_subtitle": "国際的な経験と強力な学術的基盤を組み合わせています。",
-    "cta_view_roles": "募集中の職種を見る",
-    "cta_philosophy": "私たちの哲学",
-    "scroll_indicator": "スクロール",
-    "team_eyebrow": "私たちのチーム",
-    "team_title": "ジェネシスの頭脳",
-    "team_cards": {
-      "academic": {
-        "title": "学術的な深さ",
-        "description": "トップIITからの強力な基盤。"
-      },
-      "global": {
-        "title": "グローバルな視点",
-        "description": "研究エコシステム全体での国際的な露出。"
-      },
-      "frontier": {
-        "title": "フロンティア技術",
-        "description": "AI、ブロックチェーン、大規模システムでの経験。"
-      },
-      "precision": {
-        "title": "精密さの文化",
-        "description": "知的な厳密さへの共通のコミットメント。"
-      }
+    "hero_title": "<span class=\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\">タレントネットワーク</span>に参加",
+    "hero_subtitle": "現在、特定のポジションの募集は行っておりませんが、優秀な技術人材との繋がりを常に求めています。CVをお送りいただければ、適切なポジションが開いた際にご連絡いたします。",
+    "confirmation_message": "ありがとうございます！プロフィールを正常に受信しました。マッチする機会が見つかり次第、ご連絡いたします。",
+    "form": {
+      "full_name": "氏名",
+      "full_name_placeholder": "氏名を入力してください",
+      "email": "メールアドレス",
+      "email_placeholder": "メールアドレスを入力してください",
+      "area_of_interest": "関心分野",
+      "area_placeholder": "例：AI/ML、ブロックチェーン、フルスタック、DevOps...",
+      "cv_upload": "CV アップロード",
+      "cv_placeholder": "クリックしてCVをアップロード",
+      "submit": "CVを送信"
     },
-    "hiring_eyebrow": "採用哲学",
-    "hiring_title": "私たちは単に役割のために<br />採用するのではありません。<1>インパクトのために採用します。</1>",
-    "hiring_subtitle": "ジェネシスのすべての人は、彼らが何を知っているかだけでなく、彼らが誰であり、何になれる可能性があるかで選ばれます。",
-    "hiring_traits": [
-      "好奇心と研究主導の思考",
-      "誠実さとオーナーシップ",
-      "協調的な問題解決",
-      "フロンティアでの構築への情熱",
-      "完璧さより行動への偏り"
-    ],
-    "opportunities_eyebrow": "募集中の機会",
-    "opportunities_title": "あなたの役割を見つける",
-    "roles_header": {
-      "role": "役割",
-      "team": "チーム",
-      "location": "場所",
-      "type": "タイプ"
-    },
-    "roles": {
-      "ai_ml": {
-        "title": "AI & MLエンジニアリング",
-        "team": "研究・エンジニアリング",
-        "location": "リモート / ベンガルール",
-        "type": "正社員"
-      },
-      "blockchain": {
-        "title": "ブロックチェーン & Web3",
-        "team": "分散システム",
-        "location": "リモート / シンガポール",
-        "type": "正社員"
-      },
-      "fullstack": {
-        "title": "フルスタック開発",
-        "team": "製品エンジニアリング",
-        "location": "リモート / デリーNCR",
-        "type": "正社員"
-      },
-      "design": {
-        "title": "製品デザイン",
-        "team": "デザイン & UX",
-        "location": "リモート",
-        "type": "正社員 / 契約"
-      },
-      "devops": {
-        "title": "DevOps & インフラストラクチャ",
-        "team": "プラットフォームエンジニアリング",
-        "location": "リモート / ベンガルール",
-        "type": "正社員"
-      }
-    },
-    "apply_now": "今すぐ応募",
-    "cta_unlisted_role_eyebrow": "あなたの役割が見つかりませんか？",
-    "cta_unlisted_role_title": "あなたの<1>足跡</1>を残す準備はできましたか？",
-    "cta_unlisted_role_subtitle": "あなたのプロフィールを送って、どのようにインパクトを与えたいか教えてください。適切な人材は常にジェネシスで場所を見つけます。",
-    "cta_unlisted_role_button": "メールで応募"
+    "errors": {
+      "full_name_required": "氏名は必須です",
+      "email_required": "メールアドレスは必須です",
+      "email_invalid": "有効なメールアドレスを入力してください",
+      "area_required": "関心分野は必須です",
+      "cv_required": "CVをアップロードしてください",
+      "cv_format": "PDF、DOC、DOCXファイルのみ受け付けています"
+    }
   },
   "social_page": {
     "hero_eyebrow": "ウェルネスと目的",
