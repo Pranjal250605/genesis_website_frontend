@@ -2,10 +2,19 @@ import { motion } from "framer-motion";
 import { useTranslation, Trans } from "react-i18next";
 import Starry from "@/components/ui/Starry";
 
+import koheiImg from "@/components/images/kohei yoshida.png";
+import nickImg from "@/components/images/nick nakatani.png";
+import rahulImg from "@/components/images/rahul rai.png";
+import takakoImg from "@/components/images/takako1.png";
+import reshuImg from "@/components/images/reshu bansal.png";
+import prafulImg from "@/components/images/praful hambarde.png";
+import makotoImg from "@/components/images/makoto oda.png";
+
 interface TeamMember {
   name: string;
   role: string;
   initials: string;
+  image?: string;
 }
 
 // Deterministic gradient based on initials for consistent colors
@@ -27,11 +36,19 @@ function PersonCircle({ member, index }: { member: TeamMember; index: number }) 
     <div className="flex flex-col items-center gap-5 flex-shrink-0 w-72 group">
       {/* Circle avatar */}
       <div
-        className={`w-80 h-80 rounded-full bg-gradient-to-br ${gradient} border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/40 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)]`}
+        className={`w-44 h-44 rounded-full ${member.image ? "" : `bg-gradient-to-br ${gradient}`} border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/40 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] overflow-hidden`}
       >
-        <span className="text-5xl font-bold text-white/80 uppercase tracking-wider select-none">
-          {member.initials}
-        </span>
+        {member.image ? (
+          <img
+            src={member.image}
+            alt={member.name}
+            className="w-full h-full object-cover object-top"
+          />
+        ) : (
+          <span className="text-3xl font-bold text-white/80 uppercase tracking-wider select-none">
+            {member.initials}
+          </span>
+        )}
       </div>
 
       {/* Name tag */}
@@ -67,27 +84,34 @@ function MarqueeRow({
 export default function TeamMarquee() {
   const { t } = useTranslation();
 
-  const leadershipTeam: TeamMember[] = [
-    { name: t('teamSection.leadership.rm.name'), role: t('teamSection.leadership.rm.role'), initials: "RM" },
-    { name: t('teamSection.leadership.at.name'), role: t('teamSection.leadership.at.role'), initials: "AT" },
-    { name: t('teamSection.leadership.vs.name'), role: t('teamSection.leadership.vs.role'), initials: "VS" },
-    { name: t('teamSection.leadership.sc.name'), role: t('teamSection.leadership.sc.role'), initials: "SC" },
-    { name: t('teamSection.leadership.ad.name'), role: t('teamSection.leadership.ad.role'), initials: "AD" },
-    { name: t('teamSection.leadership.yw.name'), role: t('teamSection.leadership.yw.role'), initials: "YW" },
-    { name: t('teamSection.leadership.pk.name'), role: t('teamSection.leadership.pk.role'), initials: "PK" },
-    { name: t('teamSection.leadership.ki.name'), role: t('teamSection.leadership.ki.role'), initials: "KI" },
-  ];
+  const leadershipImages: Record<string, string | undefined> = {
+    ky: koheiImg,
+    nn: nickImg,
+    rr: rahulImg,
+    tf: takakoImg,
+    rb: reshuImg,
+  };
 
-  const mentors: TeamMember[] = [
-    { name: t('teamSection.mentors.hn.name'), role: t('teamSection.mentors.hn.role'), initials: "HN" },
-    { name: t('teamSection.mentors.as.name'), role: t('teamSection.mentors.as.role'), initials: "AS" },
-    { name: t('teamSection.mentors.ev.name'), role: t('teamSection.mentors.ev.role'), initials: "EV" },
-    { name: t('teamSection.mentors.tm.name'), role: t('teamSection.mentors.tm.role'), initials: "TM" },
-    { name: t('teamSection.mentors.mp.name'), role: t('teamSection.mentors.mp.role'), initials: "MP" },
-    { name: t('teamSection.mentors.dl.name'), role: t('teamSection.mentors.dl.role'), initials: "DL" },
-    { name: t('teamSection.mentors.rk.name'), role: t('teamSection.mentors.rk.role'), initials: "RK" },
-    { name: t('teamSection.mentors.sh.name'), role: t('teamSection.mentors.sh.role'), initials: "SH" },
-  ];
+  const leadershipKeys = ["ky", "nn", "tm", "sm", "yy", "rr", "ym", "ks", "ka", "aa", "tf", "rb", "ky2", "mn", "mo", "tk", "km", "ni"];
+  const leadershipTeam: TeamMember[] = leadershipKeys.map((key) => ({
+    name: t(`teamSection.leadership.${key}.name`),
+    role: t(`teamSection.leadership.${key}.role`),
+    initials: t(`teamSection.leadership.${key}.initials`),
+    image: leadershipImages[key],
+  }));
+
+  const mentorImages: Record<string, string | undefined> = {
+    ph: prafulImg,
+    mo2: makotoImg,
+  };
+
+  const mentorKeys = ["ph", "mo2", "ko", "ue", "ma"];
+  const mentors: TeamMember[] = mentorKeys.map((key) => ({
+    name: t(`teamSection.mentors.${key}.name`),
+    role: t(`teamSection.mentors.${key}.role`),
+    initials: t(`teamSection.mentors.${key}.initials`),
+    image: mentorImages[key],
+  }));
 
   return (
     <section className="relative w-full py-28 overflow-hidden bg-[#050505]">

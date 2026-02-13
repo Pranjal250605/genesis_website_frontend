@@ -116,24 +116,31 @@
     "leadershipTitle": "Leadership <1>Team</1>",
     "mentorsTitle": "Industry & Academic <1>Mentors</1>",
     "leadership": {
-      "rm": { "name": "Rajesh Mehta", "role": "CEO & Founder", "initials": "RM" },
-      "at": { "name": "Aiko Tanaka", "role": "COO, Japan Ops", "initials": "AT" },
-      "vs": { "name": "Vikram Singh", "role": "CTO", "initials": "VS" },
-      "sc": { "name": "Sarah Chen", "role": "VP of Strategy", "initials": "SC" },
-      "ad": { "name": "Arjun Desai", "role": "Head of Innovation", "initials": "AD" },
-      "yw": { "name": "Yuki Watanabe", "role": "Director, Partnerships", "initials": "YW" },
-      "pk": { "name": "Priya Kapoor", "role": "CFO", "initials": "PK" },
-      "ki": { "name": "Kenji Ito", "role": "Head of Engineering", "initials": "KI" }
+      "ky": { "name": "Kohei Yoshida", "role": "GENESIS CEO / Edify CEO", "initials": "KY" },
+      "nn": { "name": "Nick Nakatani", "role": "Edify COO / Corporate Strategy", "initials": "NN" },
+      "tm": { "name": "Toshiaki Miyatake", "role": "GENESIS CTO / Edify CMO", "initials": "TM" },
+      "sm": { "name": "Shushi Matsui", "role": "General Manager of Business Operations", "initials": "SM" },
+      "yy": { "name": "Yutaka Yamamoto", "role": "General Manager of Construction Division", "initials": "YY" },
+      "rr": { "name": "Rahul Rai", "role": "Edify CTO / Head of India", "initials": "RR" },
+      "ym": { "name": "Yuma Murakami", "role": "Head of Product Development", "initials": "YM" },
+      "ks": { "name": "Kota Sudo", "role": "Edify Chief Strategy Officer", "initials": "KS" },
+      "ka": { "name": "Kotaro Abe", "role": "Edify Hokkaido CEO", "initials": "KA" },
+      "aa": { "name": "Ayaka Abe", "role": "Edify Hokkaido COO", "initials": "AA" },
+      "tf": { "name": "Takako Fujiwara", "role": "Chief Research Officer / Executive Officer", "initials": "TF" },
+      "rb": { "name": "Reshu Bansal", "role": "Edify CAIO / Engineer", "initials": "RB" },
+      "ky2": { "name": "Kao Yamamoto", "role": "Corporate Planning", "initials": "KY" },
+      "mn": { "name": "Midori Nishidate", "role": "Corporate Planning", "initials": "MN" },
+      "mo": { "name": "Moena", "role": "Edify India Recruitment Advisor", "initials": "MO" },
+      "tk": { "name": "Taiki Kondo", "role": "GENESIS Real Estate Division Manager", "initials": "TK" },
+      "km": { "name": "Kaito Miyamoto", "role": "Team Member", "initials": "KM" },
+      "ni": { "name": "Nishiguchi", "role": "Intern", "initials": "NI" }
     },
     "mentors": {
-      "hn": { "name": "Dr. Hiroshi Nakamura", "role": "AI Research, Kyushu University", "initials": "HN" },
-      "as": { "name": "Prof. Anand Sharma", "role": "IIT Ropar", "initials": "AS" },
-      "ev": { "name": "Dr. Elena Voss", "role": "Blockchain Advisory", "initials": "EV" },
-      "tm": { "name": "Prof. Takeshi Mori", "role": "Robotics, Tokyo Institute", "initials": "TM" },
-      "mp": { "name": "Dr. Meera Patel", "role": "IIT Mandi", "initials": "MP" },
-      "dl": { "name": "Prof. David Lin", "role": "Cybersecurity Research", "initials": "DL" },
-      "rk": { "name": "Dr. Ravi Kumar", "role": "Cloud & Infrastructure", "initials": "RK" },
-      "sh": { "name": "Prof. Sakura Hayashi", "role": "Digital Transformation", "initials": "SH" }
+      "ph": { "name": "Praful Hambarde", "role": "Advisory Member / IIT Mandi Assistant Professor", "initials": "PH" },
+      "mo2": { "name": "Makoto Oda", "role": "Outside Director / Lawyer", "initials": "MO" },
+      "ko": { "name": "Koshimizu", "role": "Advisory Lawyer", "initials": "KO" },
+      "ue": { "name": "Ueno", "role": "Financial Advisor", "initials": "UE" },
+      "ma": { "name": "Matsuda", "role": "Advisory Tax Accountant", "initials": "MA" }
     }
   },
   "joinUsSection": {
@@ -192,31 +199,10 @@
     "news": {
       "tx001": {
         "id": "TX-001",
-        "date": "28 Jan 2026",
-        "category": "Expansion",
-        "headline": "Genesis Announces Expansion of Hakata Satellite Office for Next-Gen AI Research.",
-        "summary": "The new facility will serve as a dedicated hub for foundational AI model research, bringing together talent from Kyushu University and industry partners to accelerate breakthroughs in autonomous reasoning systems."
-      },
-      "tx002": {
-        "id": "TX-002",
-        "date": "12 Jan 2026",
-        "category": "Blockchain",
-        "headline": "Integrating Cardano Blockchain for Secure Autonomous Drone Logistics.",
-        "summary": "Genesis deploys Cardano-based smart contracts to create tamper-proof chain-of-custody records for autonomous drone delivery operations across urban corridors."
-      },
-      "tx003": {
-        "id": "TX-003",
-        "date": "04 Dec 2025",
-        "category": "Leadership",
-        "headline": "CEO Kohei Yoshida Speaks at Tokyo Deep Tech Summit.",
-        "summary": "Yoshida-san presented Genesis' vision for human-machine synergy, outlining the company's roadmap for sovereign AI capabilities within Japan's defence ecosystem."
-      },
-      "tx004": {
-        "id": "TX-004",
-        "date": "18 Nov 2025",
-        "category": "Partnership",
-        "headline": "New Partnership Established with Kyushu University I2CNER.",
-        "summary": "A multi-year research collaboration focused on carbon-neutral energy systems, leveraging AI-driven material discovery and simulation at unprecedented scale."
+        "date": "April 2026",
+        "category": "Event",
+        "headline": "IDEATHON — Genesis x IIT Mandi",
+        "summary": "Genesis Group is proud to announce IDEATHON, a flagship innovation challenge happening at IIT Mandi in April 2026. Bringing together top student minds and industry experts, the event will feature intensive problem-solving rounds, mentorship sessions, and hands-on workshops spanning AI, drone technology, and sustainable engineering. Participants will compete to build real-world solutions under the guidance of Genesis engineers and academic mentors. Stay tuned for registration details and more updates."
       }
     }
   },
@@ -285,6 +271,22 @@
       "area_required": "Area of interest is required",
       "cv_required": "Please upload your CV",
       "cv_format": "Only PDF, DOC, and DOCX files are accepted"
+    }
+  },
+  "gxSection": {
+    "panel1Title": "Leading the Green Transformation",
+    "panel1Sub": "Innovation for a carbon-neutral society.",
+    "panel2Title": "We turn sustainability into real business strategy.",
+    "panel2Sub": "Practical GX training for leaders, innovators, and organizations.",
+    "panel3Title": "Learn from Global Experts",
+    "panel3Sub": "Guided by leading researchers and industry professionals in energy and sustainability.",
+    "card": {
+      "company": "Edify",
+      "name": "Fujiwara - Chief Research Officer",
+      "subtitle": "GX Educational Materials Supervisor",
+      "heading": "[Affiliations]",
+      "affiliation1": "Kyoto University Graduate School of Energy Science, Doctoral Program in Energy Economics",
+      "affiliation2": "Kyushu University GX Lab, I²CNER (International Institute for Carbon-Neutral Energy Research: 2019-2025)"
     }
   }
 }

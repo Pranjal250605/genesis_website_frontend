@@ -4,10 +4,11 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Starry from "@/components/ui/Starry";
 import Core_img from "@/components/images/core_img.png";
-import Container1 from "@/components/images/container1.png";
-import Container2 from "@/components/images/container2.png";
-import Container3 from "@/components/images/container3.png";
-import Container4 from "@/components/images/container4.png";
+import GreenTransImg from "@/components/images/Image (AI Analytics).png";
+import OutsourcingImg from "@/components/images/Image (Business Solutions).png";
+import CryptoImg from "@/components/images/Image (Cybersecurity).png";
+import ReskillingImg from "@/components/images/reskilling.png";
+import DroneImg from "@/components/images/dronee.png";
 import { Target, BarChart3, ShieldCheck, Clock, Radar } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -19,35 +20,35 @@ export default function Core() {
     const capabilities = [
         {
             key: 'greenTransformation',
-            thumb: Container4,
+            thumb: GreenTransImg,
             icon: Target,
             clients: "220+",
             projects: "580+"
         },
         {
             key: 'outsourcing',
-            thumb: Container1,
+            thumb: OutsourcingImg,
             icon: BarChart3,
             clients: "150+",
             projects: "340+"
         },
         {
             key: 'crypto',
-            thumb: Container2,
+            thumb: CryptoImg,
             icon: ShieldCheck,
             clients: "180+",
             projects: "420+"
         },
         {
             key: 'reskilling',
-            thumb: Container3,
+            thumb: ReskillingImg,
             icon: Clock,
             clients: "190+",
             projects: "500+"
         },
         {
             key: 'drone',
-            thumb: Container1,
+            thumb: DroneImg,
             icon: Radar,
             clients: "90+",
             projects: "210+"

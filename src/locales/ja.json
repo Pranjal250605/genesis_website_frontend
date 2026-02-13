@@ -506,24 +506,31 @@
     "leadershipTitle": "リーダーシップ<1>チーム</1>",
     "mentorsTitle": "業界＆学術<1>メンター</1>",
     "leadership": {
-      "rm": { "name": "ラジェシュ・メータ", "role": "CEO & 創設者", "initials": "RM" },
-      "at": { "name": "田中 愛子", "role": "COO、日本業務", "initials": "AT" },
-      "vs": { "name": "ヴィクラム・シン", "role": "CTO", "initials": "VS" },
-      "sc": { "name": "サラ・チェン", "role": "戦略担当VP", "initials": "SC" },
-      "ad": { "name": "アルジュン・デサイ", "role": "イノベーション責任者", "initials": "AD" },
-      "yw": { "name": "渡辺 祐樹", "role": "パートナーシップ担当ディレクター", "initials": "YW" },
-      "pk": { "name": "プリヤ・カプール", "role": "CFO", "initials": "PK" },
-      "ki": { "name": "伊藤 健二", "role": "エンジニアリング責任者", "initials": "KI" }
+      "ky": { "name": "吉田 宏平", "role": "GENESIS CEO / Edify CEO", "initials": "KY" },
+      "nn": { "name": "ニック・中谷", "role": "Edify COO / 経営戦略", "initials": "NN" },
+      "tm": { "name": "宮武 俊明", "role": "GENESIS CTO / Edify CMO", "initials": "TM" },
+      "sm": { "name": "松井 秀始", "role": "事業部長", "initials": "SM" },
+      "yy": { "name": "山本 豊", "role": "建設部門長", "initials": "YY" },
+      "rr": { "name": "ラフル・ライ", "role": "Edify CTO / インド統括", "initials": "RR" },
+      "ym": { "name": "村上 遊真", "role": "プロダクト開発責任者", "initials": "YM" },
+      "ks": { "name": "須藤 航太", "role": "Edify 最高戦略責任者", "initials": "KS" },
+      "ka": { "name": "阿部 虎太郎", "role": "Edify 北海道 CEO", "initials": "KA" },
+      "aa": { "name": "阿部 彩花", "role": "Edify 北海道 COO", "initials": "AA" },
+      "tf": { "name": "藤原 貴子", "role": "最高研究責任者 / 執行役員", "initials": "TF" },
+      "rb": { "name": "レシュ・バンサル", "role": "Edify CAIO / エンジニア", "initials": "RB" },
+      "ky2": { "name": "山本 薫", "role": "経営企画", "initials": "KY" },
+      "mn": { "name": "西舘 みどり", "role": "経営企画", "initials": "MN" },
+      "mo": { "name": "モエナ", "role": "Edify インド採用アドバイザー", "initials": "MO" },
+      "tk": { "name": "近藤 大輝", "role": "GENESIS 不動産部門マネージャー", "initials": "TK" },
+      "km": { "name": "宮本 海翔", "role": "チームメンバー", "initials": "KM" },
+      "ni": { "name": "西口", "role": "インターン", "initials": "NI" }
     },
     "mentors": {
-      "hn": { "name": "中村 博士", "role": "AI研究、九州大学", "initials": "HN" },
-      "as": { "name": "アナンド・シャルマ教授", "role": "IITローパー", "initials": "AS" },
-      "ev": { "name": "エレナ・ヴォス博士", "role": "ブロックチェーンアドバイザリー", "initials": "EV" },
-      "tm": { "name": "森 健教授", "role": "ロボティクス、東京工業大学", "initials": "TM" },
-      "mp": { "name": "ミーラ・パテル博士", "role": "IITマンディ", "initials": "MP" },
-      "dl": { "name": "デビッド・リン教授", "role": "サイバーセキュリティ研究", "initials": "DL" },
-      "rk": { "name": "ラヴィ・クマール博士", "role": "クラウド＆インフラストラクチャ", "initials": "RK" },
-      "sh": { "name": "林 さくら教授", "role": "デジタルトランスフォーメーション", "initials": "SH" }
+      "ph": { "name": "プラフル・ハンバルデ", "role": "アドバイザリーメンバー / IITマンディ助教", "initials": "PH" },
+      "mo2": { "name": "小田 誠", "role": "社外取締役 / 弁護士", "initials": "MO" },
+      "ko": { "name": "小清水", "role": "顧問弁護士", "initials": "KO" },
+      "ue": { "name": "上野", "role": "財務アドバイザー", "initials": "UE" },
+      "ma": { "name": "松田", "role": "顧問税理士", "initials": "MA" }
     }
   },
   "joinUsSection": {
@@ -582,31 +589,10 @@
     "news": {
       "tx001": {
         "id": "TX-001",
-        "date": "2026年1月28日",
-        "category": "拡大",
-        "headline": "ジェネシス、次世代AI研究のため博多サテライトオフィスの拡張を発表。",
-        "summary": "新施設は、九州大学や業界パートナーからの人材を結集し、自律的推論システムのブレークスルーを加速するための基礎AIモデル研究の専門ハブとして機能します。"
-      },
-      "tx002": {
-        "id": "TX-002",
-        "date": "2026年1月12日",
-        "category": "ブロックチェーン",
-        "headline": "安全な自律ドローン物流のためのカルダノブロックチェーンの統合。",
-        "summary": "ジェネシスは、都市回廊を横断する自律ドローン配送業務のために、改ざん不可能な保管履歴記録を作成するためにカルダノベースのスマートコントラクトを展開します。"
-      },
-      "tx003": {
-        "id": "TX-003",
-        "date": "2025年12月4日",
-        "category": "リーダーシップ",
-        "headline": "CEO吉田宏平、東京ディープテックサミットで講演。",
-        "summary": "吉田氏は、人間と機械の共生に関するジェネシスのビジョンを提示し、日本の防衛エコシステム内での主権AI能力に関する同社のロードマップを概説しました。"
-      },
-      "tx004": {
-        "id": "TX-004",
-        "date": "2025年11月18日",
-        "category": "パートナーシップ",
-        "headline": "九州大学I2CNERとの新たなパートナーシップを確立。",
-        "summary": "AI駆動の材料発見とシミュレーションを前例のない規模で活用し、カーボンニュートラルなエネルギーシステムに焦点を当てた複数年にわたる研究協力。"
+        "date": "2026年4月",
+        "category": "イベント",
+        "headline": "IDEATHON — ジェネシス x IIT マンディ",
+        "summary": "ジェネシスグループは、2026年4月にIITマンディで開催されるフラッグシップイノベーションチャレンジ「IDEATHON」を発表します。トップクラスの学生と業界の専門家が集結し、AI、ドローン技術、持続可能なエンジニアリングにわたる集中的な問題解決ラウンド、メンターシップセッション、実践的なワークショップが開催されます。参加者はジェネシスのエンジニアと学術メンターの指導のもと、実世界のソリューション構築を競います。登録の詳細や最新情報にご期待ください。"
       }
     }
   },
@@ -775,5 +761,21 @@
     "gallery_eyebrow": "モーメント",
     "gallery_title": "イベント<1>ギャラリー</1>",
     "gallery_alt": "イベント写真"
+  },
+  "gxSection": {
+    "panel1Title": "グリーントランスフォーメーションをリードする",
+    "panel1Sub": "カーボンニュートラル社会のためのイノベーション。",
+    "panel2Title": "サステナビリティを実際のビジネス戦略に変える。",
+    "panel2Sub": "リーダー、イノベーター、組織のための実践的なGXトレーニング。",
+    "panel3Title": "グローバルエキスパートから学ぶ",
+    "panel3Sub": "エネルギーとサステナビリティ分野の第一線の研究者や業界のプロフェッショナルによる指導。",
+    "card": {
+      "company": "Edify",
+      "name": "藤原最高研究責任者",
+      "subtitle": "GX教材監修",
+      "heading": "【所属】",
+      "affiliation1": "京都大学エネルギー科学研究科 エネルギー社会・環境 エネルギー経済博士課程",
+      "affiliation2": "九州大学 GX研究室 I²CNER (カーボンニュートラル・エネルギー国際研究所: 2019-2025)"
+    }
   }
 }

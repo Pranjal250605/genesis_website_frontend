@@ -9,6 +9,12 @@ import {
 import Starry from "@/components/ui/Starry";
 import IitMandiImg from "@/components/images/IIT_Mandi_Logo_High_Resolution (1).jpg";
 import IitRoparImg from "@/components/images/iit-ropar-01.jpeg";
+import StateHealth from "@/components/images/State-Health-Society-Bihar-Vacancy (1).jpg";
+import Iskcon from "@/components/images/iskcon_logo (1).jpg";
+import TpcLogo from "@/components/images/tpcDcMO6EeUxpMd8ygs48Aem1pO1752661194034_200x200.png";
+import Regvis from "@/components/images/Regvis.png";
+
+const academicPartners = [IitMandiImg, IitRoparImg, StateHealth, Iskcon, TpcLogo, Regvis];
 
 /* ─── Data ─── */
 
@@ -78,16 +84,6 @@ export default function ImpactInnovation() {
   const heroY = useTransform(heroProgress, [0, 1], [0, 150]);
   const heroOpacity = useTransform(heroProgress, [0, 0.7], [1, 0]);
   const heroScale = useTransform(heroProgress, [0, 1], [1, 0.92]);
-
-  /* Partner cards parallax */
-  const { scrollYProgress: partnerProgress } = useScroll({
-    target: partnerRef,
-    offset: ["start end", "end start"],
-  });
-  const partnerMandiY = useTransform(partnerProgress, [0, 1], [80, -40]);
-  const partnerRoparY = useTransform(partnerProgress, [0, 1], [120, -60]);
-  const smoothMandiY = useSpring(partnerMandiY, { stiffness: 80, damping: 20 });
-  const smoothRoparY = useSpring(partnerRoparY, { stiffness: 80, damping: 20 });
 
   /* Defence section parallax */
   const { scrollYProgress: defenceProgress } = useScroll({
@@ -159,9 +155,9 @@ export default function ImpactInnovation() {
         {/* ═══════════════════════════════════════════
             ACADEMIC PARTNERSHIPS — Parallax cards + stagger
         ═══════════════════════════════════════════ */}
-        <section ref={partnerRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-32">
+        <section ref={partnerRef} className="relative pb-32 overflow-hidden">
           {/* Section heading */}
-          <div className="mb-12">
+          <div className="max-w-[1440px] mx-auto px-8 lg:px-16 mb-12">
             <motion.span
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -179,43 +175,35 @@ export default function ImpactInnovation() {
             </h2>
           </div>
 
-          {/* Asymmetric Bento grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 auto-rows-auto">
+          {/* Infinite scroll marquee */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative overflow-hidden"
+          >
+            {/* Edge fades */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 lg:w-40 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 lg:w-40 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
 
-            {/* ── IIT MANDI — Large hero card (7/12) ── */}
-            <motion.div
-              style={{ y: smoothMandiY }}
-              className="lg:col-span-7"
-            >
-              <BentoCard
-                image={IitMandiImg}
-                alt="IIT Mandi"
-                badge="Active Collaboration"
-                title="IIT Mandi"
-                description="Fostering innovation and applied research to translate emerging ideas into scalable solutions across AI, data science, and next-generation computing."
-                delay={0}
-                imageHeight="h-72 lg:h-80"
-              />
-            </motion.div>
-
-            {/* ── IIT ROPAR — Tall side card (5/12) ── */}
-            <motion.div
-              style={{ y: smoothRoparY }}
-              className="lg:col-span-5"
-            >
-              <BentoCard
-                image={IitRoparImg}
-                alt="IIT Ropar"
-                badge="Memorandum of Understanding"
-                badgePosition="image"
-                title="IIT Ropar"
-                description="Establishing a long-term framework for research excellence and industry execution — bridging academic rigor with scalable, market-ready innovation."
-                delay={0.15}
-                imageHeight="h-64 lg:h-72"
-                tall
-              />
-            </motion.div>
-          </div>
+            <div className="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+              {[...academicPartners, ...academicPartners].map((src, i) => (
+                <div
+                  key={i}
+                  className="group relative flex-shrink-0 w-72 h-48 bg-white/[0.03] backdrop-blur-3xl rounded-[32px] border border-white/10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 shadow-2xl flex items-center justify-center p-4"
+                >
+                  <div className="flex items-center justify-center w-full h-full bg-white rounded-2xl p-4">
+                    <img
+                      src={src}
+                      alt={`Partner ${(i % academicPartners.length) + 1}`}
+                      className="max-w-full max-h-full object-contain grayscale-[20%] group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </section>
 
         {/* ═══════════════════════════════════════════
@@ -309,105 +297,6 @@ export default function ImpactInnovation() {
 /* ═══════════════════════════════════════════
     Sub-components
 ═══════════════════════════════════════════ */
-
-function BentoCard({
-  image,
-  alt,
-  badge,
-  badgePosition = "content",
-  title,
-  description,
-  delay,
-  imageHeight,
-  tall,
-}: {
-  image: string;
-  alt: string;
-  badge: string;
-  badgePosition?: "content" | "image";
-  title: string;
-  description: string;
-  delay: number;
-  imageHeight: string;
-  tall?: boolean;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 60, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative rounded-[28px] bg-white/[0.03] backdrop-blur-xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 hover:shadow-[0_0_50px_rgba(251,191,36,0.08)] ${
-        tall ? "flex flex-col" : ""
-      }`}
-    >
-      {/* Image */}
-      <div className={`relative ${imageHeight} ${tall ? "lg:flex-1 min-h-[240px]" : ""} w-full overflow-hidden`}>
-        <motion.img
-          src={image}
-          alt={alt}
-          initial={{ scale: 1.15 }}
-          animate={isInView ? { scale: 1.05 } : {}}
-          transition={{ duration: 1.4, delay: delay + 0.2, ease: "easeOut" }}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-transparent" />
-
-        {badgePosition === "image" && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: delay + 0.4 }}
-            className="absolute top-5 left-6"
-          >
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-400 bg-black/60 backdrop-blur-md border border-amber-400/20 rounded-full px-3 py-1">
-              {badge}
-            </span>
-          </motion.div>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="p-8 lg:p-10">
-        {badgePosition === "content" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: delay + 0.3 }}
-            className="flex items-center gap-4 mb-5"
-          >
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full px-3 py-1">
-              {badge}
-            </span>
-            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-          </motion.div>
-        )}
-
-        <div className="overflow-hidden">
-          <motion.h3
-            initial={{ y: "100%" }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.6, delay: delay + 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className={`${tall ? "text-[28px] lg:text-[32px]" : "text-[32px] lg:text-[38px]"} font-bold text-white tracking-tight leading-tight mb-4`}
-          >
-            {title}
-          </motion.h3>
-        </div>
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: delay + 0.45 }}
-          className={`${tall ? "text-[15px]" : "text-[16px]"} text-white/60 leading-relaxed ${tall ? "" : "max-w-xl"}`}
-        >
-          {description}
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-}
 
 function DossierCard({ area, index }: { area: DefenceArea; index: number }) {
   const ref = useRef<HTMLDivElement>(null);

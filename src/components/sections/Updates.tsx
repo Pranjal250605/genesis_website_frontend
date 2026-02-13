@@ -195,9 +195,6 @@ export default function Updates() {
 
   const news: NewsItem[] = [
     { key: "tx001", featured: true },
-    { key: "tx002" },
-    { key: "tx003" },
-    { key: "tx004" },
   ];
 
   return (

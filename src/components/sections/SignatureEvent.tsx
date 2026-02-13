@@ -43,13 +43,13 @@ const timeline: TimelineNode[] = [
     year: "2026",
     location: "IIT Mandi",
     country: "India",
-    status: "active",
+    status: "completed",
   },
   {
-    year: "2027",
-    location: "IIT Dubai",
-    country: "UAE",
-    status: "upcoming",
+    year: "IDEATHON",
+    location: "IIT Mandi",
+    country: "India",
+    status: "active",
   },
 ];
 
@@ -122,10 +122,10 @@ export default function SignatureEvent() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover opacity-75"
+            className="w-full h-full object-cover opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/50 via-transparent to-transparent" />
         </motion.div>
 
         {/* Content Layer */}
@@ -178,7 +178,7 @@ export default function SignatureEvent() {
                 whileInView={{ opacity: 1, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: 0.4 }}
-                className="text-[18px] lg:text-[20px] text-white/50 leading-relaxed max-w-2xl mb-8"
+                className="text-[18px] lg:text-[20px] text-white/75 leading-relaxed max-w-2xl mb-8"
               >
                 International event series focused on top-tier talent in AI and
                 Drone Technology — connecting global innovators with real-world
@@ -210,7 +210,7 @@ export default function SignatureEvent() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
-                  className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-full px-5 py-2"
+                  className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-full px-5 py-2"
                 >
                   <Calendar size={13} strokeWidth={1.5} />
                   2025
@@ -316,7 +316,7 @@ export default function SignatureEvent() {
                 <img
                   src={src}
                   alt={`Event photo ${(i % galleryImages.length) + 1}`}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-90 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100"
                 />
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/40 via-transparent to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-500" />
@@ -372,7 +372,7 @@ function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; inde
           >
             {isCompleted && <CheckCircle2 size={18} className="text-amber-400/80" strokeWidth={2} />}
             {isActive && <Zap size={16} className="text-amber-400" strokeWidth={2} />}
-            {isUpcoming && <Circle size={8} className="text-white/25" strokeWidth={0} fill="currentColor" />}
+            {isUpcoming && <Circle size={8} className="text-white/50" strokeWidth={0} fill="currentColor" />}
           </motion.div>
         </div>
 
@@ -395,17 +395,17 @@ function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; inde
         >
           <span
             className={`text-[28px] font-bold tracking-tight block mb-1 ${
-              isActive ? "text-amber-400" : isCompleted ? "text-white/60" : "text-white/30"
+              isActive ? "text-amber-400" : isCompleted ? "text-white/85" : "text-white/60"
             }`}
           >
             {node.year}
           </span>
-          <span className={`text-[14px] font-bold block mb-1 ${isUpcoming ? "text-white/50" : "text-white/90"}`}>
+          <span className={`text-[14px] font-bold block mb-1 ${isUpcoming ? "text-white/70" : "text-white/95"}`}>
             {node.location}
           </span>
           <div className="flex items-center gap-1.5">
-            <MapPin size={11} className="text-white/30" strokeWidth={1.5} />
-            <span className="text-[11px] text-white/40 uppercase tracking-wider">
+            <MapPin size={11} className="text-white/50" strokeWidth={1.5} />
+            <span className="text-[11px] text-white/60 uppercase tracking-wider">
               {node.country}
             </span>
           </div>
@@ -418,7 +418,7 @@ function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; inde
             className="mt-3"
           >
             {isCompleted && (
-              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400/60 bg-amber-400/5 border border-amber-400/15 rounded-full px-2.5 py-0.5">
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400/80 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
                 Completed
               </span>
             )}
@@ -428,8 +428,8 @@ function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; inde
               </span>
             )}
             {isUpcoming && (
-              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/30 bg-white/[0.03] border border-white/10 rounded-full px-2.5 py-0.5">
-                Upcoming
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/55 bg-white/[0.05] border border-white/15 rounded-full px-2.5 py-0.5">
+                Coming Soon
               </span>
             )}
           </motion.div>
@@ -494,7 +494,7 @@ function TimelineNodeMobile({ node, index }: { node: TimelineNode; index: number
           >
             {isCompleted && <CheckCircle2 size={18} className="text-amber-400/80" strokeWidth={2} />}
             {isActive && <Zap size={16} className="text-amber-400" strokeWidth={2} />}
-            {isUpcoming && <Circle size={8} className="text-white/25" strokeWidth={0} fill="currentColor" />}
+            {isUpcoming && <Circle size={8} className="text-white/50" strokeWidth={0} fill="currentColor" />}
           </motion.div>
         </div>
       </div>
@@ -518,17 +518,17 @@ function TimelineNodeMobile({ node, index }: { node: TimelineNode; index: number
       >
         <span
           className={`text-[24px] font-bold tracking-tight block mb-1 ${
-            isActive ? "text-amber-400" : isCompleted ? "text-white/60" : "text-white/30"
+            isActive ? "text-amber-400" : isCompleted ? "text-white/85" : "text-white/60"
           }`}
         >
           {node.year}
         </span>
-        <span className={`text-[14px] font-bold block mb-1 ${isUpcoming ? "text-white/50" : "text-white/90"}`}>
+        <span className={`text-[14px] font-bold block mb-1 ${isUpcoming ? "text-white/70" : "text-white/95"}`}>
           {node.location}
         </span>
         <div className="flex items-center gap-1.5">
-          <MapPin size={11} className="text-white/30" strokeWidth={1.5} />
-          <span className="text-[11px] text-white/40 uppercase tracking-wider">
+          <MapPin size={11} className="text-white/50" strokeWidth={1.5} />
+          <span className="text-[11px] text-white/60 uppercase tracking-wider">
             {node.country}
           </span>
         </div>
@@ -540,7 +540,7 @@ function TimelineNodeMobile({ node, index }: { node: TimelineNode; index: number
           className="mt-3"
         >
           {isCompleted && (
-            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400/60 bg-amber-400/5 border border-amber-400/15 rounded-full px-2.5 py-0.5">
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400/80 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
               Completed
             </span>
           )}
@@ -550,8 +550,8 @@ function TimelineNodeMobile({ node, index }: { node: TimelineNode; index: number
             </span>
           )}
           {isUpcoming && (
-            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/30 bg-white/[0.03] border border-white/10 rounded-full px-2.5 py-0.5">
-              Upcoming
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/55 bg-white/[0.05] border border-white/15 rounded-full px-2.5 py-0.5">
+              Coming Soon
             </span>
           )}
         </motion.div>

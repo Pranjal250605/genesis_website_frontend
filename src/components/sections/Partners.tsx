@@ -13,7 +13,6 @@ import StateHealth from "@/components/images/State-Health-Society-Bihar-Vacancy 
 import Iskcon from "@/components/images/iskcon_logo (1).jpg";
 import TpcLogo from "@/components/images/tpcDcMO6EeUxpMd8ygs48Aem1pO1752661194034_200x200.png";
 import Regvis from "@/components/images/Regvis.png";
-import Kyushu from "@/components/images/Kyushu_University_logo,_type_B.png";
 import IitRopar from "@/components/images/iit-ropar-01.jpeg";
 import IitMandi from "@/components/images/IIT_Mandi_Logo_High_Resolution (1).jpg";
 
@@ -23,7 +22,7 @@ const collaborations = [
 ];
 
 const partners = [
-    StateHealth, Iskcon, TpcLogo, Regvis, Kyushu, IitRopar, IitMandi,
+    StateHealth, Iskcon, TpcLogo, Regvis, IitRopar, IitMandi,
 ];
 
 export default function Partners() {

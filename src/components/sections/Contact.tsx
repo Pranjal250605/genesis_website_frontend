@@ -43,7 +43,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
             </h4>
             <ul className="flex flex-col gap-3 items-start">
               <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.company.whoAreWe')}</button></li>
-              <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.company.governance')}</a></li>
+              <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.company.governance')}</button></li>
               <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.company.theTeam')}</button></li>
             </ul>
           </div>
@@ -66,8 +66,8 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
               {t('contactSection.members.title')}
             </h4>
             <ul className="flex flex-col gap-3 items-start">
-              <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.members.ourMembers')}</a></li>
-              <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.members.associateMembers')}</a></li>
+              <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.members.ourMembers')}</button></li>
+              <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.members.associateMembers')}</button></li>
               <li><button onClick={() => onNavigate?.("join-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.members.join')}</button></li>
             </ul>
           </div>
@@ -98,14 +98,6 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-4">
               <h4 className="text-white text-lg font-bold font-['Montserrat']">{t('contactSection.contact.title')}</h4>
-                <a href="mailto:contact@genesis.co" className="px-4 py-1.5 rounded-full bg-white/10 text-white/50 text-[10px] font-medium border border-white/5 hover:bg-white/20 transition-all inline-flex items-center gap-1">
-                    {t('contactSection.contact.ctaButton')}
-                    <ArrowUpRight
-                        className="text-white"
-                        size={12}
-                        strokeWidth={1}
-                    />
-                </a>
             </div>
 
             <div className="grid grid-cols-2 gap-8">

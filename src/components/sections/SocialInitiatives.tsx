@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Flower2, Sparkles, Sun, Users, HeartHandshake, Landmark, GraduationCap, Building2, BookOpen } from "lucide-react";
 import Starry from "@/components/ui/Starry";
+import indiaJapanBg from "@/components/images/indiajapan1.png";
 
 /* ─── Data ─── */
 
@@ -218,7 +219,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               />
               <div className="relative px-10 py-5 rounded-full bg-white/[0.03] backdrop-blur-xl border border-amber-400/30">
                 <span className="text-[14px] font-light text-amber-400 uppercase tracking-[0.35em]">
-                  Offered Free of Cost in India
+                  Cross-Border Social Initiative by GENESIS Group
                 </span>
               </div>
             </div>
@@ -312,16 +313,32 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         {/* ═══════════════════════════════════════════
             INDO–JAPAN CULTURE CENTER
         ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40 flex flex-col items-center">
+          {/* Background image */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0 mx-8 lg:mx-16 rounded-[32px] overflow-hidden"
+          >
+            <img
+              src={indiaJapanBg}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/30" />
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.4, ease: "easeOut" }}
-            className="rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
+            className="relative mt-32 rounded-[32px] bg-white/10 backdrop-blur-lg border border-white/20 overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.05)]"
           >
             {/* Header */}
-            <div className="p-10 lg:p-14 border-b border-white/10">
+            <div className="p-10 lg:p-14 border-b border-white/15">
               <div className="flex items-center gap-4 mb-5">
                 <motion.div
                   animate={{
@@ -352,7 +369,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             {/* Content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left: Description */}
-              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10">
+              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/15">
                 <div className="flex items-center gap-3 mb-8">
                   <span className="text-[28px]">🇮🇳</span>
                   <div className="w-8 h-px bg-gradient-to-r from-amber-400/40 to-transparent" />

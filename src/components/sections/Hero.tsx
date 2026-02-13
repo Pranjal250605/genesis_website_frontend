@@ -90,13 +90,13 @@ function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                group relative flex items-center gap-3 w-fit
-                rounded-full border border-white/20
+                group relative flex items-center justify-center gap-4 w-fit whitespace-nowrap
+                rounded-full border border-white/25
                 bg-[#556982] backdrop-blur-xl
-                px-8 py-4
-                text-sm font-semibold tracking-widest text-white uppercase
+                px-10 py-5
+                text-lg sm:text-xl font-bold tracking-[0.15em] text-white uppercase
                 transition-all duration-300 ease-out
-                hover:bg-[#60748e] hover:border-white/40 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(85,105,130,0.4)]
+                hover:bg-[#60748e] hover:border-white/40 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(85,105,130,0.5)]
                 active:scale-95
               ">
                 <img
