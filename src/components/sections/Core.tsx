@@ -1,4 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Starry from "@/components/ui/Starry";
@@ -12,51 +13,42 @@ import { Target, BarChart3, ShieldCheck, Clock, Radar } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Core() {
+    const { t } = useTranslation();
     const sectionRef = useRef<HTMLElement>(null);
 
     const capabilities = [
         {
-            title: "Green transformation",
-            tag: "Software · Hardware",
+            key: 'greenTransformation',
             thumb: Container4,
             icon: Target,
-            desc: "We connect innovative software and hardware solutions with the right markets through precision-driven sales execution and partnership development.",
             clients: "220+",
             projects: "580+"
         },
         {
-            title: "Tech Project Outsourcing",
-            tag: "Tailored to Your Needs",
+            key: 'outsourcing',
             thumb: Container1,
             icon: BarChart3,
-            desc: "Custom-built technology solutions designed to meet the unique operational, strategic, and scalability requirements of modern enterprises.",
             clients: "150+",
             projects: "340+"
         },
         {
-            title: "Crypto & Blockchain",
-            tag: "Secure · Scalable · Decentralized",
+            key: 'crypto',
             thumb: Container2,
             icon: ShieldCheck,
-            desc: "From Web3 strategy to blockchain implementation, we help businesses adopt decentralized technologies with confidence.",
             clients: "180+",
             projects: "420+"
         },
         {
-            title: "Reskilling & Innovation",
-            tag: "Driving Future Growth",
+            key: 'reskilling',
             thumb: Container3,
             icon: Clock,
-            desc: "We prepare organizations and professionals for the evolving digital economy through structured reskilling programs.",
             clients: "190+",
             projects: "500+"
         },
         {
-            title: "Drone Technology",
-            tag: "Aerial · Autonomous · Intelligent",
+            key: 'drone',
             thumb: Container1,
             icon: Radar,
-            desc: "Leveraging cutting-edge drone systems and autonomous aerial platforms to deliver advanced surveying, logistics, and monitoring solutions across industries.",
             clients: "90+",
             projects: "210+"
         }
@@ -110,13 +102,18 @@ export default function Core() {
                 {/* HEADER */}
                 <div className="text-center mb-12">
                     <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.6em] mb-4 block">
-                        GENESIS'
+                        {t('coreSection.eyebrow')}
                     </span>
                     <h2 className="text-white text-5xl lg:text-7xl font-bold tracking-tight mb-8">
-                        WHAT WE DO
+                        {t('coreSection.title')}
                     </h2>
                     <p className="text-white/50 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-                        Comprehensive solutions engineered to drive <span className="text-amber-400">digital transformation</span> and competitive advantage
+                        <Trans
+                            i18nKey="coreSection.subtitle"
+                            components={{
+                                1: <span className="text-amber-400" />
+                            }}
+                        />
                     </p>
                 </div>
 
@@ -129,7 +126,7 @@ export default function Core() {
                             <div className="relative h-44 w-full overflow-hidden border-b border-white/5">
                                 <img
                                     src={item.thumb}
-                                    alt={item.title}
+                                    alt={t(`coreSection.capabilities.${item.key}.title`)}
                                     className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 opacity-80"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/40 to-transparent" />
@@ -141,24 +138,24 @@ export default function Core() {
                             </div>
 
                             <div className="p-6 pt-5 flex flex-col flex-1">
-                                <h3 className="text-white text-lg font-bold mb-1 tracking-tight">{item.title}</h3>
+                                <h3 className="text-white text-lg font-bold mb-1 tracking-tight">{t(`coreSection.capabilities.${item.key}.title`)}</h3>
                                 <span className="text-amber-400/60 text-[10px] font-bold uppercase tracking-widest mb-4 block">
-                                    {item.tag}
+                                    {t(`coreSection.capabilities.${item.key}.tag`)}
                                 </span>
 
                                 <p className="text-white/40 text-[12px] font-medium leading-relaxed mb-6 flex-1">
-                                    {item.desc}
+                                    {t(`coreSection.capabilities.${item.key}.desc`)}
                                 </p>
 
                                 {/* STATS FOOTER */}
                                 <div className="flex gap-8 pt-5 border-t border-white/10 mt-auto">
                                     <div>
                                         <div className="text-amber-400 text-xl font-bold tracking-tighter">{item.clients}</div>
-                                        <div className="text-white/20 text-[9px] font-bold uppercase tracking-widest mt-1">Clients</div>
+                                        <div className="text-white/20 text-[9px] font-bold uppercase tracking-widest mt-1">{t('coreSection.stats.clients')}</div>
                                     </div>
                                     <div>
                                         <div className="text-amber-400 text-xl font-bold tracking-tighter">{item.projects}</div>
-                                        <div className="text-white/20 text-[9px] font-bold uppercase tracking-widest mt-1">Projects</div>
+                                        <div className="text-white/20 text-[9px] font-bold uppercase tracking-widest mt-1">{t('coreSection.stats.projects')}</div>
                                     </div>
                                 </div>
                             </div>

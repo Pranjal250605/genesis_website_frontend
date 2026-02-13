@@ -1,19 +1,17 @@
-import React from "react";
-import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
-import {
-  Flower2,
-  Sparkles,
-  Sun,
-  Users,
-  HeartHandshake,
-  ArrowRight,
-} from "lucide-react";
-import StarField from "@/components/ui/Starry";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Flower2, Sparkles, Sun, Users, HeartHandshake } from "lucide-react";
+import Starry from "@/components/ui/Starry";
 
-/* ───────────────────── Data ───────────────────── */
+/* ─── Data ─── */
 
-const focusCards = [
+interface FocusCard {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}
+
+const focusAreas: FocusCard[] = [
   {
     icon: Flower2,
     title: "Yoga",
@@ -43,32 +41,12 @@ const missionPoints = [
   "Building long-term community resilience through mindful practices.",
 ];
 
-/* ───────────────────── Animation Variants ───────────────────── */
+/* ─── Breathing Animation Variants ─── */
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.9,
-      delay: i * 0.15,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
-    },
-  }),
-};
-
-const stagger: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const breathe: Variants = {
+const breathingVariants = {
   animate: {
-    scale: [1, 1.08, 1],
-    opacity: [0.15, 0.25, 0.15],
+    scale: [1, 1.05, 1],
+    opacity: [0.8, 1, 0.8],
     transition: {
       duration: 8,
       repeat: Infinity,
@@ -77,151 +55,427 @@ const breathe: Variants = {
   },
 };
 
-const ripple = (delay: number): Variants => ({
-  animate: {
-    scale: [0.6, 1.6],
-    opacity: [0.4, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeOut",
-      delay,
-    },
-  },
-});
+/* ─── Component ─── */
 
-/* ───────────────────── Main Component ───────────────────── */
+interface SocialInitiativesProps {
+  onNavigate?: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates") => void;
+}
 
-export default function SocialInitiatives() {
+export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps = {}) {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const missionRef = useRef<HTMLDivElement>(null);
+
+  /* Hero parallax */
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(heroProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.7], [1, 0]);
+  const smoothHeroY = useSpring(heroY, { stiffness: 50, damping: 20 });
+
+  /* Mission section parallax */
+  const { scrollYProgress: missionProgress } = useScroll({
+    target: missionRef,
+    offset: ["start end", "end start"],
+  });
+  const missionY = useTransform(missionProgress, [0, 1], [100, -50]);
+  const smoothMissionY = useSpring(missionY, { stiffness: 60, damping: 20 });
+
   return (
-    <div className="relative min-h-screen bg-[#050505] overflow-hidden text-white selection:bg-amber-400/30">
-      
-      {/* Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <StarField />
-      </div>
+    <div className="relative min-h-screen w-full bg-[#050505]">
+      {/* Starry background */}
+      <Starry />
 
+      {/* Ambient pulsing light */}
       <motion.div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full pointer-events-none z-0"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(251,191,36,0.07) 0%, rgba(251,191,36,0.02) 40%, transparent 70%)",
+        animate={{
+          opacity: [0.15, 0.3, 0.15],
+          scale: [1, 1.2, 1],
         }}
-        variants={breathe}
-        animate="animate"
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-amber-400/20 blur-[120px] pointer-events-none"
+        style={{ zIndex: 1 }}
       />
 
-      {/* Content */}
       <div className="relative z-10">
-
-        {/* HERO */}
-        <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 text-center pt-28">
+        {/* ═══════════════════════════════════════════
+            HERO — Soft & Welcoming
+        ═══════════════════════════════════════════ */}
+        <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pt-44 pb-40">
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="max-w-3xl"
+            style={{ y: smoothHeroY, opacity: heroOpacity }}
+            className="max-w-4xl mx-auto text-center"
           >
-            <motion.div
-              variants={fadeUp}
-              custom={0}
-              className="flex items-center justify-center gap-3 mb-8"
+            {/* Eyebrow */}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-10 block"
             >
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-amber-400/40" />
-              <span className="text-amber-400/60 text-xs font-medium uppercase tracking-[0.35em]">
-                Wellness & Purpose
-              </span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-amber-400/40" />
-            </motion.div>
+              Wellness and Purpose
+            </motion.span>
 
+            {/* Title — soft gradient on "Initiatives" */}
             <motion.h1
-              variants={fadeUp}
-              custom={1}
-              className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[0.95]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, delay: 0.2, ease: "easeOut" }}
+              className="text-[52px] lg:text-[88px] font-extralight text-white uppercase tracking-tight leading-[1.05] mb-12"
             >
               Social{" "}
-              <span className="bg-gradient-to-r from-amber-200/90 via-amber-400/80 to-amber-500/70 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
                 Initiatives
               </span>
             </motion.h1>
 
+            {/* Subtitle */}
             <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="mt-8 text-lg md:text-xl text-white/40 max-w-xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.6, delay: 0.4 }}
+              className="text-[20px] font-light text-white/60 leading-loose max-w-2xl mx-auto"
             >
               Balancing technological progress with human well-being.
             </motion.p>
+
+            {/* Decorative divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 2, delay: 0.6, ease: "easeInOut" }}
+              className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent mx-auto mt-12 origin-center"
+            />
           </motion.div>
         </section>
 
-        {/* FOCUS GRID */}
-        <section className="py-32 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={stagger}
-          >
-            {focusCards.map((card, i) => {
-              const Icon = card.icon;
-              return (
-                <motion.div
-                  key={card.title}
-                  variants={fadeUp}
-                  custom={i}
-                  className="rounded-[32px] border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-10 flex flex-col items-center text-center"
-                >
-                  <div className="relative mb-8">
-                    <div className="w-16 h-16 rounded-full border border-white/[0.08] bg-white/[0.02] flex items-center justify-center">
-                      <Icon size={26} className="text-amber-400/70" strokeWidth={1.2} />
-                    </div>
-                  </div>
-
-                  <h3 className="text-lg font-medium text-white/80 mb-3">
-                    {card.title}
-                  </h3>
-                  <p className="text-white/30 text-sm">
-                    {card.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-32 px-6 text-center">
+        {/* ═══════════════════════════════════════════
+            OUR FOCUS — Zen Grid with Breathing Icons
+        ═══════════════════════════════════════════ */}
+        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+          {/* Section heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              duration: 1,
-              ease: [0.25, 0.46, 0.45, 0.94] as const,
-            }}
-            className="max-w-3xl mx-auto"
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-6xl font-light mb-6">
-              Join the{" "}
-              <span className="bg-gradient-to-r from-amber-200/80 to-amber-400/70 bg-clip-text text-transparent">
-                Mission.
+            <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-5 block">
+              Our Focus
+            </span>
+            <h2 className="text-[40px] lg:text-[56px] font-extralight text-white uppercase tracking-tight leading-snug">
+              Pillars of{" "}
+              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
+                Well-being
               </span>
             </h2>
+          </motion.div>
 
-            <a
-              href="mailto:initiatives@genesis.co"
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-white/10 hover:border-amber-400/50 transition-all"
-            >
-              <span className="text-sm text-white/70">
-                Get Involved
+          {/* Grid of focus cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {focusAreas.map((focus, i) => (
+              <FocusCard key={focus.title} focus={focus} index={i} />
+            ))}
+          </div>
+
+          {/* Free badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+            className="flex justify-center"
+          >
+            <div className="relative">
+              <motion.div
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 rounded-full bg-amber-400/20 blur-xl"
+              />
+              <div className="relative px-10 py-5 rounded-full bg-white/[0.03] backdrop-blur-xl border border-amber-400/30">
+                <span className="text-[14px] font-light text-amber-400 uppercase tracking-[0.35em]">
+                  Offered Free of Cost in India
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            MISSION & IMPACT — Split Screen with Ripples
+        ═══════════════════════════════════════════ */}
+        <section ref={missionRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+          <motion.div
+            style={{ y: smoothMissionY }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            className="rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
+          >
+            {/* Section header */}
+            <div className="p-10 lg:p-14 border-b border-white/10">
+              <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-5 block">
+                Mission and Impact
               </span>
-              <ArrowRight size={16} />
-            </a>
+              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug">
+                Cultivating a{" "}
+                <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
+                  Conscious
+                </span>{" "}
+                Society
+              </h2>
+            </div>
+
+            {/* Split content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Left: Mission points */}
+              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10">
+                <div className="space-y-8">
+                  {missionPoints.map((point, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
+                      className="flex items-start gap-4"
+                    >
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0.6, 1, 0.6],
+                        }}
+                        transition={{
+                          duration: 8,
+                          delay: i * 0.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="shrink-0 w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center mt-1"
+                      >
+                        <HeartHandshake size={14} className="text-amber-400/80" strokeWidth={1.5} />
+                      </motion.div>
+                      <p className="text-[16px] font-light text-white/70 leading-loose">
+                        {point}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Sub-badge */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                  className="mt-12 pt-10 border-t border-white/10"
+                >
+                  <span className="text-[13px] font-light text-amber-400/60 uppercase tracking-[0.3em]">
+                    Zero Economic Barriers
+                  </span>
+                </motion.div>
+              </div>
+
+              {/* Right: Rippling zero cost visual */}
+              <div className="relative p-8 lg:p-12 flex items-center justify-center min-h-[400px]">
+                <ZeroCostVisual />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            CTA — Join the Mission
+        ═══════════════════════════════════════════ */}
+        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            className="text-center"
+          >
+            <h2 className="text-[48px] lg:text-[72px] font-extralight text-white uppercase tracking-tight leading-snug mb-14">
+              Join the{" "}
+              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
+                Mission
+              </span>
+              .
+            </h2>
+
+            {/* CTA Button with fill animation */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+              onClick={() => onNavigate?.("join-us")}
+              className="group relative px-14 py-6 rounded-full border border-amber-400/30 text-white/80 font-light text-[15px] uppercase tracking-[0.35em] overflow-hidden transition-all duration-500 hover:text-white hover:border-amber-400/50 hover:shadow-[0_0_40px_rgba(251,191,36,0.15)] cursor-pointer"
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-amber-300/20"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
+              <span className="relative z-10">Join Us</span>
+            </motion.button>
           </motion.div>
         </section>
       </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+    Sub-components
+═══════════════════════════════════════════ */
+
+function FocusCard({ focus, index }: { focus: FocusCard; index: number }) {
+  const Icon = focus.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 1.2, delay: index * 0.15, ease: "easeOut" }}
+      className="group relative rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 p-10 transition-all duration-700 hover:bg-white/[0.04] hover:border-amber-400/20 hover:shadow-[0_0_40px_rgba(251,191,36,0.08)]"
+    >
+      {/* Floating icon with breathing glow */}
+      <div className="flex justify-center mb-10">
+        <motion.div
+          variants={breathingVariants}
+          animate="animate"
+          className="relative"
+          style={{ transitionDelay: `${index * 0.5}s` }}
+        >
+          {/* Outer glow */}
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 8,
+              delay: index * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute inset-0 rounded-full bg-amber-400/30 blur-xl"
+          />
+
+          {/* Icon container */}
+          <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-amber-400/10 to-amber-300/5 border border-amber-400/20 flex items-center justify-center">
+            <Icon size={32} className="text-amber-400/80" strokeWidth={1.5} />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-[22px] font-light text-white/90 text-center mb-5 tracking-wide">
+        {focus.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-[15px] font-light text-white/50 text-center leading-loose">
+        {focus.description}
+      </p>
+
+      {/* Bottom accent line */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: index * 0.15 + 0.4, ease: "easeOut" }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent origin-center"
+      />
+    </motion.div>
+  );
+}
+
+function ZeroCostVisual() {
+  return (
+    <div className="relative w-full max-w-[320px] aspect-square">
+      {/* Concentric rippling circles */}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <motion.div
+          key={i}
+          animate={{
+            scale: [1 + i * 0.15, 1.3 + i * 0.15, 1 + i * 0.15],
+            opacity: [0.4 - i * 0.08, 0.15 - i * 0.03, 0.4 - i * 0.08],
+          }}
+          transition={{
+            duration: 8,
+            delay: i * 0.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-0 rounded-full border border-amber-400/30"
+          style={{
+            width: `${100 - i * 12}%`,
+            height: `${100 - i * 12}%`,
+            top: `${i * 6}%`,
+            left: `${i * 6}%`,
+          }}
+        />
+      ))}
+
+      {/* Central 0$ text */}
+      <motion.div
+        animate={{
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute inset-0 flex flex-col items-center justify-center"
+      >
+        <motion.div
+          animate={{
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-0 rounded-full bg-amber-400/10 blur-2xl"
+        />
+
+        <div className="relative text-center">
+          <div className="text-[80px] lg:text-[120px] font-light text-amber-400/90 leading-none">
+            0
+          </div>
+          <div className="text-[40px] lg:text-[60px] font-light text-amber-400/70 -mt-4">
+            $
+          </div>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+            className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent mx-auto mt-4 origin-center"
+          />
+          <p className="text-[11px] font-light text-white/40 uppercase tracking-[0.3em] mt-4">
+            No Barriers
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 }

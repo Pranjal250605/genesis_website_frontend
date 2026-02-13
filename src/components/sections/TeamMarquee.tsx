@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation, Trans } from "react-i18next";
 import Starry from "@/components/ui/Starry";
 
 interface TeamMember {
@@ -6,28 +7,6 @@ interface TeamMember {
   role: string;
   initials: string;
 }
-
-const leadershipTeam: TeamMember[] = [
-  { name: "Rajesh Mehta", role: "CEO & Founder", initials: "RM" },
-  { name: "Aiko Tanaka", role: "COO, Japan Ops", initials: "AT" },
-  { name: "Vikram Singh", role: "CTO", initials: "VS" },
-  { name: "Sarah Chen", role: "VP of Strategy", initials: "SC" },
-  { name: "Arjun Desai", role: "Head of Innovation", initials: "AD" },
-  { name: "Yuki Watanabe", role: "Director, Partnerships", initials: "YW" },
-  { name: "Priya Kapoor", role: "CFO", initials: "PK" },
-  { name: "Kenji Ito", role: "Head of Engineering", initials: "KI" },
-];
-
-const mentors: TeamMember[] = [
-  { name: "Dr. Hiroshi Nakamura", role: "AI Research, Kyushu University", initials: "HN" },
-  { name: "Prof. Anand Sharma", role: "IIT Ropar", initials: "AS" },
-  { name: "Dr. Elena Voss", role: "Blockchain Advisory", initials: "EV" },
-  { name: "Prof. Takeshi Mori", role: "Robotics, Tokyo Institute", initials: "TM" },
-  { name: "Dr. Meera Patel", role: "IIT Mandi", initials: "MP" },
-  { name: "Prof. David Lin", role: "Cybersecurity Research", initials: "DL" },
-  { name: "Dr. Ravi Kumar", role: "Cloud & Infrastructure", initials: "RK" },
-  { name: "Prof. Sakura Hayashi", role: "Digital Transformation", initials: "SH" },
-];
 
 // Deterministic gradient based on initials for consistent colors
 const gradients = [
@@ -86,6 +65,30 @@ function MarqueeRow({
 }
 
 export default function TeamMarquee() {
+  const { t } = useTranslation();
+
+  const leadershipTeam: TeamMember[] = [
+    { name: t('teamSection.leadership.rm.name'), role: t('teamSection.leadership.rm.role'), initials: "RM" },
+    { name: t('teamSection.leadership.at.name'), role: t('teamSection.leadership.at.role'), initials: "AT" },
+    { name: t('teamSection.leadership.vs.name'), role: t('teamSection.leadership.vs.role'), initials: "VS" },
+    { name: t('teamSection.leadership.sc.name'), role: t('teamSection.leadership.sc.role'), initials: "SC" },
+    { name: t('teamSection.leadership.ad.name'), role: t('teamSection.leadership.ad.role'), initials: "AD" },
+    { name: t('teamSection.leadership.yw.name'), role: t('teamSection.leadership.yw.role'), initials: "YW" },
+    { name: t('teamSection.leadership.pk.name'), role: t('teamSection.leadership.pk.role'), initials: "PK" },
+    { name: t('teamSection.leadership.ki.name'), role: t('teamSection.leadership.ki.role'), initials: "KI" },
+  ];
+
+  const mentors: TeamMember[] = [
+    { name: t('teamSection.mentors.hn.name'), role: t('teamSection.mentors.hn.role'), initials: "HN" },
+    { name: t('teamSection.mentors.as.name'), role: t('teamSection.mentors.as.role'), initials: "AS" },
+    { name: t('teamSection.mentors.ev.name'), role: t('teamSection.mentors.ev.role'), initials: "EV" },
+    { name: t('teamSection.mentors.tm.name'), role: t('teamSection.mentors.tm.role'), initials: "TM" },
+    { name: t('teamSection.mentors.mp.name'), role: t('teamSection.mentors.mp.role'), initials: "MP" },
+    { name: t('teamSection.mentors.dl.name'), role: t('teamSection.mentors.dl.role'), initials: "DL" },
+    { name: t('teamSection.mentors.rk.name'), role: t('teamSection.mentors.rk.role'), initials: "RK" },
+    { name: t('teamSection.mentors.sh.name'), role: t('teamSection.mentors.sh.role'), initials: "SH" },
+  ];
+
   return (
     <section className="relative w-full py-28 overflow-hidden bg-[#050505]">
 
@@ -122,10 +125,15 @@ export default function TeamMarquee() {
         >
           <div className="text-center mb-12">
             <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.6em] mb-3 block">
-              The People
+              {t('teamSection.eyebrow')}
             </span>
             <h2 className="text-white text-5xl lg:text-6xl font-bold tracking-tight">
-              Leadership <span className="text-amber-400">Team</span>
+              <Trans
+                i18nKey="teamSection.leadershipTitle"
+                components={{
+                  1: <span className="text-amber-400" />
+                }}
+              />
             </h2>
           </div>
 
@@ -141,8 +149,12 @@ export default function TeamMarquee() {
         >
           <div className="text-center mb-12">
             <h2 className="text-white text-5xl lg:text-6xl font-bold tracking-tight">
-              Industry & Academic{" "}
-              <span className="text-amber-400">Mentors</span>
+              <Trans
+                i18nKey="teamSection.mentorsTitle"
+                components={{
+                  1: <span className="text-amber-400" />
+                }}
+              />
             </h2>
           </div>
 

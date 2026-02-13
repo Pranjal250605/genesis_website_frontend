@@ -21,19 +21,17 @@ export default function ImpactInnovationPage({ onNavigate: _onNavigate }: Impact
 
     lenis.on("scroll", ScrollTrigger.update)
 
-    gsap.ticker.add((time) => {
+    const update = (time: number) => {
       lenis.raf(time * 1000)
-    })
+    }
+
+    gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
 
-    const rafId = requestAnimationFrame(() => {
-      ScrollTrigger.refresh()
-    })
-
     return () => {
-      cancelAnimationFrame(rafId)
       lenis.destroy()
-      gsap.ticker.remove(lenis.raf)
+      gsap.ticker.remove(update)
+      ScrollTrigger.getAll().forEach((st) => st.kill())
     }
   }, [])
 

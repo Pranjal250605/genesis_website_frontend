@@ -2,11 +2,11 @@ import { useEffect } from "react"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import SocialInitiatives from "@/components/sections/SocialInitiatives"
+import Updates from "@/components/sections/Updates"
 
 gsap.registerPlugin(ScrollTrigger)
 
-interface SocialInitiativesPageProps {
+interface UpdatesPageProps {
   onNavigate: (
     page:
       | "home"
@@ -20,14 +20,11 @@ interface SocialInitiativesPageProps {
   ) => void
 }
 
-export default function SocialInitiativesPage({
-  onNavigate,
-}: SocialInitiativesPageProps) {
+export default function UpdatesPage({ onNavigate: _onNavigate }: UpdatesPageProps) {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t: number) =>
-        Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
 
@@ -40,16 +37,20 @@ export default function SocialInitiativesPage({
     gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
 
+    const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
+
     return () => {
+      cancelAnimationFrame(rafId)
       lenis.destroy()
       gsap.ticker.remove(update)
-      ScrollTrigger.getAll().forEach((st) => st.kill())
     }
   }, [])
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <SocialInitiatives onNavigate={onNavigate} />
+      <Updates />
     </div>
   )
 }

@@ -1,12 +1,14 @@
 import React, { useLayoutEffect, useRef } from 'react';
-import { motion } from 'framer-motion'; 
+import { useTranslation, Trans } from 'react-i18next';
+import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import BackgroundImg from "@/components/images/unnamed.webp"; 
+import BackgroundImg from "@/components/images/unnamed.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
   const maskRef = useRef(null);
   const imageRef = useRef(null);
@@ -63,7 +65,7 @@ const About = () => {
 
       {/* BRAND MASK */}
       <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
-        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">GENESIS</h1>
+        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">{t('aboutSection.mask')}</h1>
       </div>
 
       {/* BACKGROUND & READABILITY */}
@@ -79,12 +81,18 @@ const About = () => {
         {/* Pair 1 */}
         <div className="pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
           <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Technology That <br/> Solves <span className="text-amber-400">Real Problems</span>
+            <Trans
+              i18nKey="aboutSection.pair1Title"
+              components={{
+                1: <span className="text-amber-400" />,
+                br: <br />
+              }}
+            />
           </h2>
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We design and deliver solutions that create value for people and organizations.
+              {t('aboutSection.pair1Text')}
             </p>
           </div>
         </div>
@@ -92,12 +100,18 @@ const About = () => {
         {/* Pair 2 */}
         <div className="pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
           <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Built for Growth, <br/> <span className="text-amber-400">Designed for Scale</span>
+            <Trans
+              i18nKey="aboutSection.pair2Title"
+              components={{
+                1: <span className="text-amber-400" />,
+                br: <br />
+              }}
+            />
           </h2>
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              Our innovation-driven approach helps teams move from ideas to measurable results.
+              {t('aboutSection.pair2Text')}
             </p>
           </div>
         </div>
@@ -105,12 +119,18 @@ const About = () => {
         {/* Pair 3 */}
         <div className="pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
           <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Partners <br/> <span className="text-amber-400">in Progress</span>
+            <Trans
+              i18nKey="aboutSection.pair3Title"
+              components={{
+                1: <span className="text-amber-400" />,
+                br: <br />
+              }}
+            />
           </h2>
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We work with trust, speed, and quality to build long-term success together.
+              {t('aboutSection.pair3Text')}
             </p>
           </div>
         </div>

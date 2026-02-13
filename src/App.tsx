@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import "@/i18n"
 
 // Layout Components
 import Navbar from "@/components/sections/Navbar"
@@ -20,7 +21,10 @@ import AboutUsPage from "@/pages/AboutUsPage"
 import ServicesPage from "@/pages/ServicesPage"
 import ImpactInnovationPage from "@/pages/ImpactInnovationPage"
 import CareersPage from "@/pages/CareersPage"
-import SocialInitiativesPage from "@/pages/SocialInitiativesPage" // ✅ Correct Import
+import SocialInitiativesPage from "@/pages/SocialInitiativesPage"
+import JoinUsPage from "@/pages/JoinUsPage" // New import
+import UpdatesPage from "@/pages/UpdatesPage" // New import
+import OpenApplicationPage from "@/pages/OpenApplicationPage"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -31,6 +35,9 @@ type Page =
   | "impact-innovation"
   | "careers"
   | "social-initiatives"
+  | "join-us" // New page type
+  | "updates" // New page type
+  | "open-application"
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home")
@@ -49,6 +56,9 @@ export default function App() {
       "impact-innovation": "/impact-innovation",
       careers: "/careers",
       "social-initiatives": "/social-initiatives",
+      "join-us": "/join-us", // New url map
+      updates: "/updates", // New url map
+      "open-application": "/open-application",
     }
 
     // Update browser history
@@ -114,7 +124,7 @@ export default function App() {
             <Global_Footprint />
             <Partners />
             <CeoVision />
-            <Contact />
+            <Contact onNavigate={handleNavigate} />
           </>
         )}
 
@@ -136,6 +146,18 @@ export default function App() {
 
         {currentPage === "social-initiatives" && (
           <SocialInitiativesPage onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "join-us" && (
+          <JoinUsPage onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "updates" && (
+          <UpdatesPage onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "open-application" && (
+          <OpenApplicationPage onNavigate={handleNavigate} />
         )}
       </main>
     </div>

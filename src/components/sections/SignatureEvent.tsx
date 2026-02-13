@@ -122,10 +122,10 @@ export default function SignatureEvent() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover opacity-75"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 via-transparent to-transparent" />
         </motion.div>
 
         {/* Content Layer */}
@@ -316,10 +316,10 @@ export default function SignatureEvent() {
                 <img
                   src={src}
                   alt={`Event photo ${(i % galleryImages.length) + 1}`}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100"
                 />
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 via-transparent to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/40 via-transparent to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-500" />
               </div>
             ))}
           </div>

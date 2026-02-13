@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import Unnamed1 from "@/components/images/unnamed (1).webp";
 import Unnamed2 from "@/components/images/unnamed (2).webp";
 import Unnamed3 from "@/components/images/unnamed (3).webp";
@@ -26,18 +27,25 @@ const partners = [
 ];
 
 export default function Partners() {
+    const { t } = useTranslation();
+
     return (
         <section className="relative w-full bg-[#050505] py-24 px-10 overflow-hidden">
             {/* HEADER */}
             <div className="text-center mb-16">
                 <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.6em] mb-4 block">
-                    GENESIS'
+                    {t('partnersSection.eyebrow')}
                 </span>
                 <h2 className="text-white text-5xl lg:text-7xl font-bold tracking-tight mb-8">
-                    PARTNERS & COLLABORATIONS
+                    {t('partnersSection.title')}
                 </h2>
                 <p className="text-white/50 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-                    Building the future through strategic <span className="text-amber-400">partnerships</span> and global collaborations
+                    <Trans
+                        i18nKey="partnersSection.subtitle"
+                        components={{
+                            1: <span className="text-amber-400" />
+                        }}
+                    />
                 </p>
             </div>
 
@@ -51,7 +59,7 @@ export default function Partners() {
                         >
                             <img
                                 src={src}
-                                alt={`Collaboration ${(i % collaborations.length) + 1}`}
+                                alt={`${t('partnersSection.altCollaboration')} ${(i % collaborations.length) + 1}`}
                                 className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700"
                             />
                         </div>
@@ -70,7 +78,7 @@ export default function Partners() {
                             <div className="flex items-center justify-center w-full h-full bg-white rounded-2xl p-4">
                                 <img
                                     src={src}
-                                    alt={`Partner ${(i % partners.length) + 1}`}
+                                    alt={`${t('partnersSection.altPartner')} ${(i % partners.length) + 1}`}
                                     className="max-w-full max-h-full object-contain grayscale-[20%] group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700"
                                 />
                             </div>

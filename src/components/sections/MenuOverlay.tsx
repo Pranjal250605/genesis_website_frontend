@@ -1,16 +1,15 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import MapTexture from "@/components/images/image 27.png";
 
-const menuItems = [
-  "ABOUT US",
-  "SERVICES",
-  "CAREERS",
-  "SOCIAL INITIATIVES",
-  "IMPACT AND INNOVATION",
+const menuItemKeys = [
+  "aboutusUpper",
+  "servicesUpper",
+  "careersUpper",
+  "socialInitiativesUpper",
+  "impactInnovationUpper",
 ];
-
-const socials = ["Instagram", "LinkedIn", "Twitter"];
 
 interface MenuOverlayProps {
   isOpen: boolean;
@@ -23,6 +22,8 @@ interface MenuOverlayProps {
       | "impact-innovation"
       | "careers"
       | "social-initiatives"
+      | "join-us"
+      | "updates"
   ) => void;
 }
 
@@ -31,6 +32,8 @@ export default function MenuOverlay({
   onClose,
   onNavigate,
 }: MenuOverlayProps) {
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -42,14 +45,10 @@ export default function MenuOverlay({
     };
   }, [isOpen]);
 
-  const handleClick = (label: string) => {
-    if (label === "ABOUT US") onNavigate("about-us");
-    if (label === "SERVICES") onNavigate("services");
-    if (label === "CAREERS") onNavigate("careers");
-    if (label === "SOCIAL INITIATIVES") onNavigate("social-initiatives");
-    if (label === "IMPACT AND INNOVATION") onNavigate("impact-innovation");
-
-    onClose(); // ✅ Close overlay after navigation
+  const handleClick = (index: number) => {
+    const pages = ["about-us", "services", "careers", "social-initiatives", "impact-innovation"] as const;
+    onNavigate(pages[index]);
+    onClose();
   };
 
   return (
@@ -103,9 +102,9 @@ export default function MenuOverlay({
           <div className="relative z-10 h-full flex flex-col px-12 lg:px-20 pt-32">
             {/* Menu links */}
             <div className="flex-1 flex flex-col justify-center gap-5">
-              {menuItems.map((label, i) => (
+              {menuItemKeys.map((key, i) => (
                 <motion.span
-                  key={label}
+                  key={key}
                   initial={{ x: -40, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{
@@ -114,25 +113,28 @@ export default function MenuOverlay({
                     ease: "easeOut",
                   }}
                   className="text-white/90 text-3xl lg:text-5xl font-bold tracking-tight hover:text-amber-400 transition-colors duration-300 w-fit cursor-pointer"
-                  onClick={() => handleClick(label)}
+                  onClick={() => handleClick(i)}
                 >
-                  {label}
+                  {t(`menu.${key}`)}
                 </motion.span>
               ))}
 
               {/* Accent link */}
-              <motion.span
+              <motion.a
+                href="https://edify.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ x: -40, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{
                   duration: 0.5,
-                  delay: 0.15 + menuItems.length * 0.08,
+                  delay: 0.15 + menuItemKeys.length * 0.08,
                   ease: "easeOut",
                 }}
-                className="text-[#4ade80] text-3xl lg:text-5xl font-bold tracking-tight hover:text-[#86efac] transition-colors duration-300 w-fit cursor-default mt-2"
+                className="text-[#4ade80] text-3xl lg:text-5xl font-bold tracking-tight hover:text-[#86efac] transition-colors duration-300 w-fit cursor-pointer mt-2"
               >
-                Edify Co. Ltd. ↗
-              </motion.span>
+                {t('menu.edify')}
+              </motion.a>
             </div>
 
             {/* Footer */}
@@ -144,14 +146,15 @@ export default function MenuOverlay({
             >
               <div className="w-full h-px bg-white/10 mb-6" />
               <div className="flex gap-8">
-                {socials.map((s) => (
-                  <span
-                    key={s}
-                    className="text-white/70 text-sm font-medium hover:text-white transition-colors duration-300 cursor-default"
-                  >
-                    {s}
-                  </span>
-                ))}
+                <span className="text-white/70 text-sm font-medium hover:text-white transition-colors duration-300 cursor-default">
+                  {t('socials.instagram')}
+                </span>
+                <span className="text-white/70 text-sm font-medium hover:text-white transition-colors duration-300 cursor-default">
+                  {t('socials.linkedin')}
+                </span>
+                <span className="text-white/70 text-sm font-medium hover:text-white transition-colors duration-300 cursor-default">
+                  {t('socials.twitter')}
+                </span>
               </div>
             </motion.div>
           </div>

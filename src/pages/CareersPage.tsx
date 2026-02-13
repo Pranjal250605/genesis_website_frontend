@@ -3,14 +3,16 @@ import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Careers from "@/components/sections/Careers"
+import { useTranslation } from "react-i18next"
 
 gsap.registerPlugin(ScrollTrigger)
 
 interface CareersPageProps {
-  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates") => void
 }
 
-export default function CareersPage({ onNavigate: _onNavigate }: CareersPageProps) {
+export default function CareersPage({ onNavigate }: CareersPageProps) {
+  const { t } = useTranslation();
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -20,25 +22,23 @@ export default function CareersPage({ onNavigate: _onNavigate }: CareersPageProp
 
     lenis.on("scroll", ScrollTrigger.update)
 
-    gsap.ticker.add((time) => {
+    const update = (time: number) => {
       lenis.raf(time * 1000)
-    })
+    }
+
+    gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
 
-    const rafId = requestAnimationFrame(() => {
-      ScrollTrigger.refresh()
-    })
-
     return () => {
-      cancelAnimationFrame(rafId)
       lenis.destroy()
-      gsap.ticker.remove(lenis.raf)
+      gsap.ticker.remove(update)
+      ScrollTrigger.getAll().forEach((st) => st.kill())
     }
   }, [])
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <Careers />
+      <Careers onNavigate={onNavigate} />
     </div>
   )
 }

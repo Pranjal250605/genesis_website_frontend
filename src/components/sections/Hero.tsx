@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Vid from "@/components/images/japan.mp4";
-import JapanMap from "@/components/images/istockphoto-537287287-612x612.jpg"; 
+import JapanMap from "@/components/images/istockphoto-537287287-612x612.jpg";
+import EdifyLogo from "@/components/images/[TP]Edify_logo_white_JAPAN 1.png";
 
 function Hero() {
-  // State for ticking coordinates
+  const { t } = useTranslation();
   const [coords, setCoords] = useState({ lat: '22.00', lng: '30.00' });
 
   useEffect(() => {
@@ -44,15 +46,15 @@ function Hero() {
             {/* LEFT GROUP */}
             <div className="flex flex-col gap-6">
               <div className="h-px w-12 bg-amber-400/60" />
-              
+
               <div className="flex items-center gap-3">
                 <h2 className="text-amber-400 text-lg tracking-[0.2em] font-medium uppercase">
-                  Genesis Group
+                  {t('hero.group')}
                 </h2>
-                <img 
-                  src={JapanMap} 
-                  alt="Japan Location" 
-                  className="h-5 w-auto object-contain opacity-90 grayscale-[20%]" 
+                <img
+                  src={JapanMap}
+                  alt="Japan Location"
+                  className="h-5 w-auto object-contain opacity-90 grayscale-[20%]"
                 />
               </div>
             </div>
@@ -63,7 +65,7 @@ function Hero() {
                 35°41'{coords.lat}"N 139°41'{coords.lng}"E
               </h1>
               <p className="text-[12px] uppercase tracking-widest text-white/40">
-                Hiroshima, Japan · Headquarters
+                {t('hero.location')}
               </p>
             </div>
             
@@ -72,36 +74,45 @@ function Hero() {
           <div className="w-full h-px bg-white/40 mt-6 mb-12" />
 
           <div className='ml-14'>
-            <h1 className="text-6xl md:text-7xl font-bold leading-[1.1] text-amber-400">
-              テクノロジーの <br />
-              未来を切り拓く
-            </h1>
-            
-            <p className="mt-6 text-xl md:text-2xl font-normal leading-normal tracking-wide text-gray-100">
-              Bridging Innovation:<br />
-              From Japan to the World.
-            </p>
+            <h1
+              className="text-6xl md:text-7xl font-bold leading-[1.1] text-amber-400"
+              dangerouslySetInnerHTML={{ __html: t('hero.title') }}
+            />
+
+            <p
+              className="mt-6 text-xl md:text-2xl font-normal leading-normal tracking-wide text-gray-100"
+              dangerouslySetInnerHTML={{ __html: t('hero.subtitle') }}
+            />
 
             <div className="mt-10">
-              <button className="
-                group relative flex items-center gap-3 
-                rounded-full border border-white/20 
-                bg-[#556982] backdrop-blur-xl 
-                px-8 py-3 
-                text-sm font-semibold tracking-widest text-white uppercase 
-                transition-all duration-300 ease-out 
-                hover:bg-[#60748e] hover:border-white/40 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(85,105,130,0.4)] 
+              <a
+                href="https://edify.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                group relative flex items-center gap-3 w-fit
+                rounded-full border border-white/20
+                bg-[#556982] backdrop-blur-xl
+                px-8 py-4
+                text-sm font-semibold tracking-widest text-white uppercase
+                transition-all duration-300 ease-out
+                hover:bg-[#60748e] hover:border-white/40 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(85,105,130,0.4)]
                 active:scale-95
               ">
-                Visit Edify
-                <svg 
-                  width="14" height="14" viewBox="0 0 24 24" 
+                <img
+                  src={EdifyLogo}
+                  alt="Edify Logo"
+                  className="h-9 w-auto object-contain"
+                />
+                {t('hero.cta')}
+                <svg
+                  width="16" height="16" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" strokeWidth="2.5"
                   className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                 >
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </div>

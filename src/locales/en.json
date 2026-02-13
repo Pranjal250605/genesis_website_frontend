@@ -1,0 +1,348 @@
+{
+  "navbar": {
+    "tagline": "Technology Pioneers",
+    "established": "Est. 2018",
+    "joinUs": "Join Us",
+    "updates": "Updates",
+    "language": "EN"
+  },
+  "menu": {
+    "aboutus": "About Us",
+    "services": "Services",
+    "careers": "Careers",
+    "socialInitiatives": "Social Initiatives",
+    "impactInnovation": "Impact and Innovation",
+    "edify": "Edify Co. Ltd. ↗",
+    "aboutusUpper": "ABOUT US",
+    "servicesUpper": "SERVICES",
+    "careersUpper": "CAREERS",
+    "socialInitiativesUpper": "SOCIAL INITIATIVES",
+    "impactInnovationUpper": "IMPACT AND INNOVATION"
+  },
+  "hero": {
+    "group": "Genesis Group",
+    "location": "Hiroshima, Japan · Headquarters",
+    "title": "Shaping the Future <br/> of Technology",
+    "subtitle": "Bridging Innovation:<br/>From Japan to the World.",
+    "cta": "Visit Edify",
+    "coordinates": "35°41'{{lat}}\"N 139°41'{{lng}}\"E"
+  },
+  "socials": {
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter"
+  },
+  "aboutSection": {
+    "mask": "GENESIS",
+    "pair1Title": "Technology That <br/> Solves <1>Real Problems</1>",
+    "pair1Text": "We design and deliver solutions that create value for people and organizations.",
+    "pair2Title": "Built for Growth, <br/> <1>Designed for Scale</1>",
+    "pair2Text": "Our innovation-driven approach helps teams move from ideas to measurable results.",
+    "pair3Title": "Partners <br/> <1>in Progress</1>",
+    "pair3Text": "We work with trust, speed, and quality to build long-term success together."
+  },
+  "coreSection": {
+    "eyebrow": "GENESIS'",
+    "title": "WHAT WE DO",
+    "subtitle": "Comprehensive solutions engineered to drive <1>digital transformation</1> and competitive advantage",
+    "capabilities": {
+      "greenTransformation": {
+        "title": "Green transformation",
+        "tag": "Software · Hardware",
+        "desc": "We connect innovative software and hardware solutions with the right markets through precision-driven sales execution and partnership development."
+      },
+      "outsourcing": {
+        "title": "Tech Project Outsourcing",
+        "tag": "Tailored to Your Needs",
+        "desc": "Custom-built technology solutions designed to meet the unique operational, strategic, and scalability requirements of modern enterprises."
+      },
+      "crypto": {
+        "title": "Crypto & Blockchain",
+        "tag": "Secure · Scalable · Decentralized",
+        "desc": "From Web3 strategy to blockchain implementation, we help businesses adopt decentralized technologies with confidence."
+      },
+      "reskilling": {
+        "title": "Reskilling & Innovation",
+        "tag": "Driving Future Growth",
+        "desc": "We prepare organizations and professionals for the evolving digital economy through structured reskilling programs."
+      },
+      "drone": {
+        "title": "Drone Technology",
+        "tag": "Aerial · Autonomous · Intelligent",
+        "desc": "Leveraging cutting-edge drone systems and autonomous aerial platforms to deliver advanced surveying, logistics, and monitoring solutions across industries."
+      }
+    },
+    "stats": {
+      "clients": "Clients",
+      "projects": "Projects"
+    }
+  },
+  "globalSection": {
+    "title": "Global Footprint",
+    "subtitle": "Operating across key international hubs, we connect innovation, technology, and strategy to deliver global impact.",
+    "locations": {
+      "hiroshima": {
+        "name": "Hiroshima",
+        "subtitle": "Japan HQ"
+      },
+      "delhi": {
+        "name": "New Delhi",
+        "subtitle": "India Operations"
+      },
+      "dubai": {
+        "name": "Dubai",
+        "subtitle": "UAE Office",
+        "badge": "Expanding"
+      }
+    }
+  },
+  "partnersSection": {
+    "eyebrow": "GENESIS'",
+    "title": "PARTNERS & COLLABORATIONS",
+    "subtitle": "Building the future through strategic <1>partnerships</1> and global collaborations",
+    "altCollaboration": "Collaboration",
+    "altPartner": "Partner"
+  },
+  "ceoSection": {
+    "eyebrow": "VISION FROM OUR CEO",
+    "title": "Pioneering the Future<br />of Technology",
+    "name": "Kohie Yoshida",
+    "role": "CEO & Founder",
+    "quote": "At Genesis, we believe technology is not just a tool — it is the bridge between ambition and impact. Our mission has always been to empower businesses across the globe with forward-thinking solutions that drive real, measurable transformation. From Japan to India to the UAE, we are building a network of innovation that transcends borders. Every partnership we forge, every project we deliver, is a step toward a more connected and resilient future. The world is evolving faster than ever, and we are proud to be at the forefront — pioneering what comes next.",
+    "altCeo": "Kohie Yoshida — CEO & Founder"
+  },
+  "teamSection": {
+    "eyebrow": "The People",
+    "leadershipTitle": "Leadership <1>Team</1>",
+    "mentorsTitle": "Industry & Academic <1>Mentors</1>",
+    "leadership": {
+      "rm": { "name": "Rajesh Mehta", "role": "CEO & Founder", "initials": "RM" },
+      "at": { "name": "Aiko Tanaka", "role": "COO, Japan Ops", "initials": "AT" },
+      "vs": { "name": "Vikram Singh", "role": "CTO", "initials": "VS" },
+      "sc": { "name": "Sarah Chen", "role": "VP of Strategy", "initials": "SC" },
+      "ad": { "name": "Arjun Desai", "role": "Head of Innovation", "initials": "AD" },
+      "yw": { "name": "Yuki Watanabe", "role": "Director, Partnerships", "initials": "YW" },
+      "pk": { "name": "Priya Kapoor", "role": "CFO", "initials": "PK" },
+      "ki": { "name": "Kenji Ito", "role": "Head of Engineering", "initials": "KI" }
+    },
+    "mentors": {
+      "hn": { "name": "Dr. Hiroshi Nakamura", "role": "AI Research, Kyushu University", "initials": "HN" },
+      "as": { "name": "Prof. Anand Sharma", "role": "IIT Ropar", "initials": "AS" },
+      "ev": { "name": "Dr. Elena Voss", "role": "Blockchain Advisory", "initials": "EV" },
+      "tm": { "name": "Prof. Takeshi Mori", "role": "Robotics, Tokyo Institute", "initials": "TM" },
+      "mp": { "name": "Dr. Meera Patel", "role": "IIT Mandi", "initials": "MP" },
+      "dl": { "name": "Prof. David Lin", "role": "Cybersecurity Research", "initials": "DL" },
+      "rk": { "name": "Dr. Ravi Kumar", "role": "Cloud & Infrastructure", "initials": "RK" },
+      "sh": { "name": "Prof. Sakura Hayashi", "role": "Digital Transformation", "initials": "SH" }
+    }
+  },
+  "joinUsSection": {
+    "eyebrow": "Careers at Genesis",
+    "title": "Build the Future of <1>Human-Machine Synergy.</1>",
+    "subtitle": "We're assembling a world-class team across AI, Web3, and autonomous systems. If you thrive at the edge of what's possible — we want to hear from you.",
+    "roles": {
+      "genR01": {
+        "id": "GEN-R01",
+        "title": "Lead AI Robustness Engineer",
+        "team": "AI & Machine Learning",
+        "location": "India / Remote",
+        "type": "Full-time",
+        "description": "Design and implement adversarial testing frameworks to ensure reliability, safety, and fairness across production-grade AI systems.",
+        "tags": ["PyTorch", "Red-Teaming", "MLOps", "Responsible AI"]
+      },
+      "genR02": {
+        "id": "GEN-R02",
+        "title": "Cardano Blockchain Architect",
+        "team": "Web3 & Decentralized Systems",
+        "location": "Tokyo / Hiroshima",
+        "type": "Full-time",
+        "description": "Architect and deploy smart contracts and dApps on the Cardano ecosystem, bridging enterprise use-cases with decentralized infrastructure.",
+        "tags": ["Haskell", "Plutus", "Cardano", "Smart Contracts"]
+      },
+      "genR03": {
+        "id": "GEN-R03",
+        "title": "Autonomous Drone Systems Dev",
+        "team": "Robotics & Autonomous Platforms",
+        "location": "Hiroshima",
+        "type": "Full-time",
+        "description": "Develop flight control software and real-time perception pipelines for autonomous UAV platforms operating in complex environments.",
+        "tags": ["ROS2", "Computer Vision", "C++", "PX4"]
+      },
+      "genR04": {
+        "id": "GEN-R04",
+        "title": "Research Intern",
+        "team": "Genesis Research Division",
+        "location": "Hakata",
+        "type": "Internship",
+        "description": "Contribute to applied research initiatives at the intersection of AI, defence tech, and next-generation computing under senior mentorship.",
+        "tags": ["Research", "Python", "Data Science", "Publication"]
+      }
+    },
+    "bottomCta": {
+      "text": "Don't see your role? We're always looking for exceptional people.",
+      "button": "Send Open Application"
+    }
+  },
+  "updatesSection": {
+    "eyebrow": "Press & Intelligence",
+    "title": "Latest <1>Transmissions</1> & Breakthroughs.",
+    "subtitle": "Dispatches from the frontier — expansions, partnerships, and breakthroughs shaping the next era of human-machine synergy.",
+    "transmissionId": "Genesis Transmission",
+    "featured": "Featured",
+    "news": {
+      "tx001": {
+        "id": "TX-001",
+        "date": "28 Jan 2026",
+        "category": "Expansion",
+        "headline": "Genesis Announces Expansion of Hakata Satellite Office for Next-Gen AI Research.",
+        "summary": "The new facility will serve as a dedicated hub for foundational AI model research, bringing together talent from Kyushu University and industry partners to accelerate breakthroughs in autonomous reasoning systems."
+      },
+      "tx002": {
+        "id": "TX-002",
+        "date": "12 Jan 2026",
+        "category": "Blockchain",
+        "headline": "Integrating Cardano Blockchain for Secure Autonomous Drone Logistics.",
+        "summary": "Genesis deploys Cardano-based smart contracts to create tamper-proof chain-of-custody records for autonomous drone delivery operations across urban corridors."
+      },
+      "tx003": {
+        "id": "TX-003",
+        "date": "04 Dec 2025",
+        "category": "Leadership",
+        "headline": "CEO Kohei Yoshida Speaks at Tokyo Deep Tech Summit.",
+        "summary": "Yoshida-san presented Genesis' vision for human-machine synergy, outlining the company's roadmap for sovereign AI capabilities within Japan's defence ecosystem."
+      },
+      "tx004": {
+        "id": "TX-004",
+        "date": "18 Nov 2025",
+        "category": "Partnership",
+        "headline": "New Partnership Established with Kyushu University I2CNER.",
+        "summary": "A multi-year research collaboration focused on carbon-neutral energy systems, leveraging AI-driven material discovery and simulation at unprecedented scale."
+      }
+    }
+  },
+  "contactSection": {
+    "eyebrow": "Get In Touch",
+    "cta": "Ready to Innovate with us ?",
+    "company": {
+      "title": "COMPANY",
+      "whoAreWe": "Who are we?",
+      "governance": "Governance",
+      "theTeam": "The Team"
+    },
+    "commitment": {
+      "title": "COMMITMENT",
+      "positionNotes": "Position notes",
+      "areasIntervention": "Our Areas of intervention",
+      "newsroom": "Newsroom"
+    },
+    "members": {
+      "title": "OUR MEMBERS",
+      "ourMembers": "Our members",
+      "associateMembers": "Our associate members",
+      "join": "Join"
+    },
+    "followUs": {
+      "title": "FOLLOW US",
+      "linkedin": "LinkedIn",
+      "x": "X",
+      "youtube": "YouTube"
+    },
+    "contact": {
+      "title": "CONTACT",
+      "ctaButton": "Contact Us Page",
+      "phone": "Phone No.",
+      "phoneValue": "email@genesis.org",
+      "address": "Address Line No.1",
+      "addressValue": "Pincode, Country"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "legal": "Legal Notice",
+      "cookies": "Cookies",
+      "copyright": "Copyright Genesis 2026"
+    }
+  },
+  "careers_page": {
+    "hero_eyebrow": "Careers at Genesis",
+    "hero_title": "Build the <span class=\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\">Future.</span>",
+    "hero_subtitle": "Combining international exposure with strong academic foundations.",
+    "cta_view_roles": "View Open Roles",
+    "cta_philosophy": "Our Philosophy",
+    "scroll_indicator": "Scroll",
+    "team_eyebrow": "Our Team",
+    "team_title": "The minds behind Genesis",
+    "team_cards": {
+      "academic": {
+        "title": "Academic Depth",
+        "description": "Strong foundations from top IITs."
+      },
+      "global": {
+        "title": "Global Perspective",
+        "description": "International exposure across research ecosystems."
+      },
+      "frontier": {
+        "title": "Frontier Tech",
+        "description": "Experience in AI, Blockchain, and massive-scale systems."
+      },
+      "precision": {
+        "title": "Culture of Precision",
+        "description": "A shared commitment to intellectual rigor."
+      }
+    },
+    "hiring_eyebrow": "Hiring Philosophy",
+    "hiring_title": "We don't just hire<br />for roles. <span class=\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\">We hire for impact.</span>",
+    "hiring_subtitle": "Every person at Genesis is selected not just for what they know, but for who they are and what they're capable of becoming.",
+    "hiring_traits": [
+      "Curiosity & research-driven thinking",
+      "Integrity & ownership",
+      "Collaborative problem-solving",
+      "Passion for building at the frontier",
+      "Bias toward action over perfection"
+    ],
+    "opportunities_eyebrow": "Open Opportunities",
+    "opportunities_title": "Find your role",
+    "roles_header": {
+      "role": "Role",
+      "team": "Team",
+      "location": "Location",
+      "type": "Type"
+    },
+    "roles": {
+      "ai_ml": {
+        "title": "AI & ML Engineering",
+        "team": "Research & Engineering",
+        "location": "Remote / Bengaluru",
+        "type": "Full-time"
+      },
+      "blockchain": {
+        "title": "Blockchain & Web3",
+        "team": "Distributed Systems",
+        "location": "Remote / Singapore",
+        "type": "Full-time"
+      },
+      "fullstack": {
+        "title": "Full Stack Development",
+        "team": "Product Engineering",
+        "location": "Remote / Delhi NCR",
+        "type": "Full-time"
+      },
+      "design": {
+        "title": "Product Design",
+        "team": "Design & UX",
+        "location": "Remote",
+        "type": "Full-time / Contract"
+      },
+      "devops": {
+        "title": "DevOps & Infrastructure",
+        "team": "Platform Engineering",
+        "location": "Remote / Bengaluru",
+        "type": "Full-time"
+      }
+    },
+    "apply_now": "Apply Now",
+    "cta_unlisted_role_eyebrow": "Don't see your role?",
+    "cta_unlisted_role_title": "Ready to make <span class=\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\">your mark?</span>",
+    "cta_unlisted_role_subtitle": "Send us your profile and tell us how you'd make an impact. The right people always find a place at Genesis.",
+    "cta_unlisted_role_button": "Apply via Email"
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Starry from "@/components/ui/Starry";
@@ -9,33 +10,31 @@ import DubaiImg from "@/components/images/how_and_when_was_dubai_founded_d816846
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stamps = [
-  {
-    name: "Hiroshima",
-    subtitle: "Genesis Japan HQ",
-    img: JapanImg,
-    top: "10%",
-    left: "93%",
-  },
-  {
-    name: "New Delhi",
-    subtitle: "Genesis India HQ",
-    img: IndiaImg,
-    top: "13%",
-    left: "76%",
-  },
-  {
-    name: "Dubai",
-    subtitle: "Genesis Dubai HQ",
-    badge: "Coming Soon",
-    img: DubaiImg,
-    top: "16%",
-    left: "63%",
-  },
-];
-
 export default function Global() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
+
+  const stamps = [
+    {
+      key: "hiroshima",
+      img: JapanImg,
+      top: "10%",
+      left: "93%",
+    },
+    {
+      key: "delhi",
+      img: IndiaImg,
+      top: "13%",
+      left: "76%",
+    },
+    {
+      key: "dubai",
+      img: DubaiImg,
+      top: "16%",
+      left: "63%",
+      badge: true,
+    },
+  ];
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -77,11 +76,10 @@ export default function Global() {
         {/* 1. HEADER: Optimal padding to clear navbar but save space */}
         <div className="text-center pt-32 pb-2 shrink-0">
           <h2 className="text-white text-5xl lg:text-6xl font-bold font-['Inter'] mb-3">
-            Global Footprint
+            {t('globalSection.title')}
           </h2>
           <p className="text-white/70 text-lg leading-7 mx-auto max-w-2xl">
-            Operating across key international hubs, we connect innovation,
-            technology, and strategy to deliver global impact.
+            {t('globalSection.subtitle')}
           </p>
         </div>
 
@@ -98,7 +96,7 @@ export default function Global() {
             {/* Cards */}
             {stamps.map((stamp, i) => (
               <div
-                key={stamp.name}
+                key={stamp.key}
                 className={`stamp-card-${i} absolute w-36 opacity-0 bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl hover:border-amber-400/30 transition-colors duration-500`}
                 style={{
                   top: stamp.top,
@@ -109,7 +107,7 @@ export default function Global() {
                 <div className="relative h-20 w-full overflow-hidden border-b border-white/5">
                   <img
                     src={stamp.img}
-                    alt={stamp.name}
+                    alt={t(`globalSection.locations.${stamp.key}.name`)}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/50 to-transparent" />
@@ -117,14 +115,14 @@ export default function Global() {
 
                 <div className="p-2.5">
                   <h3 className="text-white text-xs font-bold tracking-tight">
-                    {stamp.name}
+                    {t(`globalSection.locations.${stamp.key}.name`)}
                   </h3>
                   <span className="text-amber-400/60 text-[8px] font-bold uppercase tracking-widest">
-                    {stamp.subtitle}
+                    {t(`globalSection.locations.${stamp.key}.subtitle`)}
                   </span>
                   {stamp.badge && (
                     <span className="mt-1.5 block text-[8px] font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full px-2 py-0.5 w-fit">
-                      {stamp.badge}
+                      {t(`globalSection.locations.${stamp.key}.badge`)}
                     </span>
                   )}
                 </div>

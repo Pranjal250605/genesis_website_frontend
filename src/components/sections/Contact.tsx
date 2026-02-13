@@ -1,27 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Starry from "@/components/ui/Starry";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/images/logo.png"
 
-export default function Contact() {
-  const footerLinks = [
-    {
-      title: "COMPANY",
-      links: ["Who are we?", "Governance", "The Team"],
-    },
-    {
-      title: "COMMITMENT",
-      links: ["Position notes", "Our Areas of intervention", "Newsroom"],
-    },
-    {
-      title: "OUR MEMBERS",
-      links: ["Our members", "Our associate members", "Join"],
-    },
-    {
-      title: "FOLLOW US",
-      links: ["LinkedIn", "X", "YouTube"],
-    },
-  ];
+interface ContactProps {
+  onNavigate?: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates") => void;
+}
+
+export default function Contact({ onNavigate }: ContactProps = {}) {
+  const { t } = useTranslation();
 
   return (
     <div className="relative min-h-screen bg-[#050505] pt-32 pb-10 px-6 lg:px-20 overflow-hidden flex flex-col">
@@ -30,41 +18,71 @@ export default function Contact() {
       {/* 1. CALL TO ACTION SECTION */}
       <div className="relative z-10 w-full max-w-6xl mx-auto text-center mb-32">
         <span className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-4 block font-['Montserrat']">
-          Get In Touch
+          {t('contactSection.eyebrow')}
         </span>
-        <button className="group cursor-pointer relative w-full py-5 px-6 rounded-[73px] bg-white/5 border border-white/10 hover:bg-white/10 transition-all overflow-hidden">
+        <a
+          href="mailto:contact@genesis.co"
+          className="group cursor-pointer relative w-full py-5 px-6 rounded-[73px] bg-white/5 border border-white/10 hover:bg-white/10 transition-all overflow-hidden block"
+        >
           <div className="flex items-center justify-center gap-4">
             <h2 className="text-white text-4xl lg:text-6xl font-bold font-['Inter']">
-              Ready to Innovate with us ?
+              {t('contactSection.cta')}
             </h2>
             <ArrowUpRight className="text-white w-10 h-10 lg:w-14 lg:h-14 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </div>
-        </button>
+        </a>
       </div>
 
     <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col">
        {/* 2. MAIN FOOTER LINKS GRID */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20 border-t border-white/20 pt-16 justify-items-center">
-        {footerLinks.map((section, idx) => (
-            /* 1. Removed items-center and text-center 
-            2. Added w-fit to ensure the column only takes the space it needs 
-            */
-            <div key={idx} className="flex flex-col gap-6 w-fit items-start text-left">
+          {/* COMPANY */}
+          <div className="flex flex-col gap-6 w-fit items-start text-left">
             <h4 className="text-white text-sm font-bold tracking-widest font-['Montserrat']">
-                {section.title}
+              {t('contactSection.company.title')}
             </h4>
-            {/* items-start keeps the bullets/links aligned to the left */}
             <ul className="flex flex-col gap-3 items-start">
-                {section.links.map((link, lIdx) => (
-                <li key={lIdx}>
-                    <a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">
-                    {link}
-                    </a>
-                </li>
-                ))}
+              <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.company.whoAreWe')}</button></li>
+              <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.company.governance')}</a></li>
+              <li><button onClick={() => onNavigate?.("about-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.company.theTeam')}</button></li>
             </ul>
-            </div>
-        ))}
+          </div>
+
+          {/* COMMITMENT */}
+          <div className="flex flex-col gap-6 w-fit items-start text-left">
+            <h4 className="text-white text-sm font-bold tracking-widest font-['Montserrat']">
+              {t('contactSection.commitment.title')}
+            </h4>
+            <ul className="flex flex-col gap-3 items-start">
+              <li><button onClick={() => onNavigate?.("social-initiatives")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.commitment.positionNotes')}</button></li>
+              <li><button onClick={() => onNavigate?.("services")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.commitment.areasIntervention')}</button></li>
+              <li><button onClick={() => onNavigate?.("updates")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.commitment.newsroom')}</button></li>
+            </ul>
+          </div>
+
+          {/* OUR MEMBERS */}
+          <div className="flex flex-col gap-6 w-fit items-start text-left">
+            <h4 className="text-white text-sm font-bold tracking-widest font-['Montserrat']">
+              {t('contactSection.members.title')}
+            </h4>
+            <ul className="flex flex-col gap-3 items-start">
+              <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.members.ourMembers')}</a></li>
+              <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.members.associateMembers')}</a></li>
+              <li><button onClick={() => onNavigate?.("join-us")} className="text-white/60 text-sm hover:text-white transition-colors font-['Inter'] text-left">{t('contactSection.members.join')}</button></li>
+            </ul>
+          </div>
+
+          {/* FOLLOW US */}
+          <div className="flex flex-col gap-6 w-fit items-start text-left">
+            <h4 className="text-white text-sm font-bold tracking-widest font-['Montserrat']">
+              {t('contactSection.followUs.title')}
+            </h4>
+            <ul className="flex flex-col gap-3 items-start">
+              <li><a href="https://www.linkedin.com/company/genesis" target="_blank" rel="noopener noreferrer" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.followUs.linkedin')}</a></li>
+              <li><a href="https://x.com/genesis" target="_blank" rel="noopener noreferrer" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.followUs.x')}</a></li>
+              <li><a href="https://youtube.com/@genesis" target="_blank" rel="noopener noreferrer" className="text-white/60 text-sm hover:text-white transition-colors font-['Inter']">{t('contactSection.followUs.youtube')}</a></li>
+            </ul>
+          </div>
         </div>
 
         {/* 3. CONTACT & LOGO SECTION */}
@@ -79,25 +97,25 @@ export default function Contact() {
           {/* Contact Details */}
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-4">
-              <h4 className="text-white text-lg font-bold font-['Montserrat']">CONTACT</h4>
-                <a href="#" className="px-4 py-1.5 rounded-full bg-white/10 text-white/50 text-[10px] font-medium border border-white/5 hover:bg-white/20 transition-all inline-flex items-center gap-1">
-                    Contact Us Page
-                    <ArrowUpRight 
-                        className="text-white" 
-                        size={12} 
-                        strokeWidth={1} // Makes the arrow very thin
+              <h4 className="text-white text-lg font-bold font-['Montserrat']">{t('contactSection.contact.title')}</h4>
+                <a href="mailto:contact@genesis.co" className="px-4 py-1.5 rounded-full bg-white/10 text-white/50 text-[10px] font-medium border border-white/5 hover:bg-white/20 transition-all inline-flex items-center gap-1">
+                    {t('contactSection.contact.ctaButton')}
+                    <ArrowUpRight
+                        className="text-white"
+                        size={12}
+                        strokeWidth={1}
                     />
                 </a>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-8">
               <div className="flex flex-col gap-1">
-                <p className="text-white/40 text-xs uppercase font-['Inter']">Phone No.</p>
-                <p className="text-white/60 text-sm font-['Inter']">email@genesis.org</p>
+                <p className="text-white/40 text-xs uppercase font-['Inter']">{t('contactSection.contact.phone')}</p>
+                <p className="text-white/60 text-sm font-['Inter']">{t('contactSection.contact.phoneValue')}</p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-white/40 text-xs uppercase font-['Inter']">Address Line No.1</p>
-                <p className="text-white/60 text-sm font-['Inter']">Pincode, Country</p>
+                <p className="text-white/40 text-xs uppercase font-['Inter']">{t('contactSection.contact.address')}</p>
+                <p className="text-white/60 text-sm font-['Inter']">{t('contactSection.contact.addressValue')}</p>
               </div>
             </div>
           </div>
@@ -105,10 +123,10 @@ export default function Contact() {
 
         {/* 4. BOTTOM BAR */}
         <div className="mt-auto pt-8 border-t border-white/10 flex flex-wrap justify-center lg:justify-end gap-25">
-          <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">Legal Notice</a>
-          <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">Cookies</a>
-          <p className="text-white/40 text-xs">Copyright Genesis 2026</p>
+          <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">{t('contactSection.legal.privacy')}</a>
+          <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">{t('contactSection.legal.legal')}</a>
+          <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">{t('contactSection.legal.cookies')}</a>
+          <p className="text-white/40 text-xs">{t('contactSection.legal.copyright')}</p>
         </div>
       </div>
     </div>
