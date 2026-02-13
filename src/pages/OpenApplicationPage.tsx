@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
-import { ArrowLeft, Upload, Send } from "lucide-react"
+import { ArrowLeft, Upload, Send, FileText, X } from "lucide-react"
 import Starry from "@/components/ui/Starry"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -15,6 +15,8 @@ interface OpenApplicationPageProps {
 
 export default function OpenApplicationPage({ onNavigate }: OpenApplicationPageProps) {
   const { t } = useTranslation()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [cvFile, setCvFile] = useState<File | null>(null)
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -294,19 +296,59 @@ Availability: ${formData.availability}
             </div>
           </div>
 
-          {/* Resume Upload Note */}
+          {/* Resume / CV Upload */}
           <div className="rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 lg:p-10">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center shrink-0">
-                <Upload size={20} className="text-amber-400/60" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="text-white text-lg font-bold mb-2">Resume / CV</h3>
-                <p className="text-white/50 text-sm leading-relaxed">
-                  Please attach your resume/CV to the email that will be generated after submitting this form. Accepted formats: PDF, DOC, DOCX (Max 5MB)
-                </p>
-              </div>
-            </div>
+            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">Resume / CV</h3>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={(e) => setCvFile(e.target.files?.[0] || null)}
+              className="hidden"
+            />
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                fileInputRef.current?.click()
+              }}
+              className={`w-full px-6 py-8 rounded-2xl border border-dashed ${
+                cvFile ? "border-amber-400/30 bg-amber-400/[0.03]" : "border-white/15 bg-white/[0.02]"
+              } text-center transition-all duration-300 hover:border-amber-400/30 hover:bg-white/[0.04] group cursor-pointer`}
+            >
+              {cvFile ? (
+                <div className="flex items-center justify-center gap-3">
+                  <FileText size={20} className="text-amber-400" />
+                  <span className="text-white/70 text-[15px]">{cvFile.name}</span>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setCvFile(null)
+                      if (fileInputRef.current) fileInputRef.current.value = ""
+                    }}
+                    className="ml-2 p-1 rounded-full hover:bg-white/10 transition-colors"
+                  >
+                    <X size={14} className="text-white/40 hover:text-white" />
+                  </span>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center gap-3">
+                  <Upload
+                    size={28}
+                    className="text-white/20 transition-colors duration-300 group-hover:text-amber-400/60"
+                  />
+                  <span className="text-white/30 text-[14px] transition-colors duration-300 group-hover:text-white/50">
+                    Click to upload your Resume / CV
+                  </span>
+                  <span className="text-white/15 text-[12px]">
+                    PDF, DOC, DOCX (Max 5MB)
+                  </span>
+                </div>
+              )}
+            </button>
           </div>
 
           {/* Submit Button */}

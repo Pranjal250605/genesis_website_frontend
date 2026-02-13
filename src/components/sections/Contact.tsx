@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/images/logo.png"
 
 interface ContactProps {
-  onNavigate?: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates") => void;
+  onNavigate?: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates" | "contact-us") => void;
 }
 
 export default function Contact({ onNavigate }: ContactProps = {}) {
@@ -20,8 +20,8 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
         <span className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-4 block font-['Montserrat']">
           {t('contactSection.eyebrow')}
         </span>
-        <a
-          href="mailto:contact@genesis.co"
+        <button
+          onClick={() => onNavigate?.("contact-us")}
           className="group cursor-pointer relative w-full py-5 px-6 rounded-[73px] bg-white/5 border border-white/10 hover:bg-white/10 transition-all overflow-hidden block"
         >
           <div className="flex items-center justify-center gap-4">
@@ -30,7 +30,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
             </h2>
             <ArrowUpRight className="text-white w-10 h-10 lg:w-14 lg:h-14 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </div>
-        </a>
+        </button>
       </div>
 
     <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col">

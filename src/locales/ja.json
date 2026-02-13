@@ -17,7 +17,8 @@
     "servicesUpper": "事業内容",
     "careersUpper": "採用情報",
     "socialInitiativesUpper": "社会的取り組み",
-    "impactInnovationUpper": "インパクト＆イノベーション"
+    "impactInnovationUpper": "インパクト＆イノベーション",
+    "japanPortfolioUpper": "日本ポートフォリオ"
   },
   "socials": {
     "instagram": "インスタグラム",
@@ -761,6 +762,10 @@
     "gallery_eyebrow": "モーメント",
     "gallery_title": "イベント<1>ギャラリー</1>",
     "gallery_alt": "イベント写真"
+  },
+  "japanPortfolioSection": {
+    "title": "日本ポートフォリオ",
+    "subtitle": "日本に届ける革新的なAI・テクノロジーソリューション。"
   },
   "gxSection": {
     "panel1Title": "グリーントランスフォーメーションをリードする",

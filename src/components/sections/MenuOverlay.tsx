@@ -9,6 +9,7 @@ const menuItemKeys = [
   "careersUpper",
   "socialInitiativesUpper",
   "impactInnovationUpper",
+  "japanPortfolioUpper",
 ];
 
 interface MenuOverlayProps {
@@ -24,6 +25,7 @@ interface MenuOverlayProps {
       | "social-initiatives"
       | "join-us"
       | "updates"
+      | "japan-portfolio"
   ) => void;
 }
 
@@ -46,7 +48,7 @@ export default function MenuOverlay({
   }, [isOpen]);
 
   const handleClick = (index: number) => {
-    const pages = ["about-us", "services", "careers", "social-initiatives", "impact-innovation"] as const;
+    const pages = ["about-us", "services", "careers", "social-initiatives", "impact-innovation", "japan-portfolio"] as const;
     onNavigate(pages[index]);
     onClose();
   };

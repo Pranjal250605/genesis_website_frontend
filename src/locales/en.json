@@ -17,7 +17,8 @@
     "servicesUpper": "SERVICES",
     "careersUpper": "CAREERS",
     "socialInitiativesUpper": "SOCIAL INITIATIVES",
-    "impactInnovationUpper": "IMPACT AND INNOVATION"
+    "impactInnovationUpper": "IMPACT AND INNOVATION",
+    "japanPortfolioUpper": "OUR JAPAN PORTFOLIO"
   },
   "hero": {
     "group": "Genesis Group",
@@ -272,6 +273,10 @@
       "cv_required": "Please upload your CV",
       "cv_format": "Only PDF, DOC, and DOCX files are accepted"
     }
+  },
+  "japanPortfolioSection": {
+    "title": "Our Japan Portfolio",
+    "subtitle": "Innovative AI and Tech Solutions brought to Japan."
   },
   "gxSection": {
     "panel1Title": "Leading the Green Transformation",

@@ -25,6 +25,8 @@ import SocialInitiativesPage from "@/pages/SocialInitiativesPage"
 import JoinUsPage from "@/pages/JoinUsPage" // New import
 import UpdatesPage from "@/pages/UpdatesPage" // New import
 import OpenApplicationPage from "@/pages/OpenApplicationPage"
+import JapanPortfolioPage from "@/pages/JapanPortfolioPage"
+import ContactUsPage from "@/pages/ContactUsPage"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,6 +40,8 @@ type Page =
   | "join-us" // New page type
   | "updates" // New page type
   | "open-application"
+  | "japan-portfolio"
+  | "contact-us"
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home")
@@ -59,6 +63,8 @@ export default function App() {
       "join-us": "/join-us", // New url map
       updates: "/updates", // New url map
       "open-application": "/open-application",
+      "japan-portfolio": "/japan-portfolio",
+      "contact-us": "/contact-us",
     }
 
     // Update browser history
@@ -158,6 +164,14 @@ export default function App() {
 
         {currentPage === "open-application" && (
           <OpenApplicationPage onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "japan-portfolio" && (
+          <JapanPortfolioPage onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "contact-us" && (
+          <ContactUsPage onNavigate={handleNavigate} />
         )}
       </main>
     </div>

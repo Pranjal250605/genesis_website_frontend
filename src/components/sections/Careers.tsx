@@ -115,6 +115,16 @@ export default function Careers(_props: CareersProps = {}) {
 
   return (
     <div className="relative min-h-screen w-full bg-[#050505]">
+      {/* Hidden file input — placed at root level to avoid overflow/z-index issues */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx"
+        onChange={handleFileChange}
+        className="hidden"
+        id="cv-upload-input"
+      />
+
       {/* Starry background */}
       <Starry />
 
@@ -337,16 +347,13 @@ export default function Careers(_props: CareersProps = {}) {
                         {t("careers_page.form.cv_upload")}
                         <span className="text-amber-400">*</span>
                       </label>
-                      <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                        className="hidden"
-                      />
                       <button
                         type="button"
-                        onClick={() => fileInputRef.current?.click()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          fileInputRef.current?.click();
+                        }}
                         className={`w-full px-6 py-6 rounded-2xl border border-dashed ${
                           errors.cv ? "border-red-400/50" : "border-white/15"
                         } bg-white/[0.02] text-center transition-all duration-300 hover:border-amber-400/30 hover:bg-white/[0.04] group cursor-pointer`}
