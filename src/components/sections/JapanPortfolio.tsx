@@ -147,7 +147,7 @@ export default function JapanPortfolio() {
                 <div className="space-y-3">
                   <div>
                     <span className="text-amber-400/60 text-xs font-medium uppercase tracking-wider">
-                      Brand Owner
+                      {t("japanPortfolioSection.brandOwner")}
                     </span>
                     <p className="text-white/70 text-sm mt-1">
                       {project.brandOwner}
@@ -155,7 +155,7 @@ export default function JapanPortfolio() {
                   </div>
                   <div>
                     <span className="text-amber-400/60 text-xs font-medium uppercase tracking-wider">
-                      Channel Partner
+                      {t("japanPortfolioSection.channelPartner")}
                     </span>
                     <p className="text-white/70 text-sm mt-1">
                       {project.channelPartner}

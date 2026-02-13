@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,6 +8,7 @@ import BackgroundImg from "@/components/images/unnamed (10).webp";
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLHeadingElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -61,14 +63,14 @@ const AboutUs = () => {
       >
         <div className="flex items-center gap-2">
           <motion.span animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2 }} className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
-          <p className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-bold">Nav_Module // About Us</p>
+          <p className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-bold">{t("aboutus_page.hud_module")}</p>
         </div>
-        <span className="text-[8px] text-white/20 uppercase tracking-[0.3em] ml-3">Genesis_Identity_v1.0</span>
+        <span className="text-[8px] text-white/20 uppercase tracking-[0.3em] ml-3">{t("aboutus_page.hud_version")}</span>
       </motion.div>
 
       {/* BRAND MASK */}
       <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
-        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">ABOUT US</h1>
+        <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">{t("aboutus_page.mask")}</h1>
       </div>
 
       {/* BACKGROUND & READABILITY */}
@@ -83,39 +85,33 @@ const AboutUs = () => {
 
         {/* Pair 1 */}
         <div className="aboutus-pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Bridging Innovation <br/>& <span className="text-amber-400">Execution</span>
-          </h2>
+          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair1_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We connect markets, technology, and talent across regions to operate beyond geographical limitations.
+              {t("aboutus_page.pair1_text")}
             </p>
           </div>
         </div>
 
         {/* Pair 2 */}
         <div className="aboutus-pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Strategy Into <br/><span className="text-amber-400">Measurable Outcomes</span>
-          </h2>
+          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair2_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We enable growth through intelligent technology adoption, turning digital complexity into absolute clarity.
+              {t("aboutus_page.pair2_text")}
             </p>
           </div>
         </div>
 
         {/* Pair 3 */}
         <div className="aboutus-pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
-            Innovation With <br/><span className="text-amber-400">Tangible Impact</span>
-          </h2>
+          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair3_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
           <div className="flex items-start">
             <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
             <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
-              We prioritize execution excellence and sustainable growth to create long-term value for a global market.
+              {t("aboutus_page.pair3_text")}
             </p>
           </div>
         </div>

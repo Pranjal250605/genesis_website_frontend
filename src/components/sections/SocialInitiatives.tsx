@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Flower2, Sparkles, Sun, Users, HeartHandshake, Landmark, GraduationCap, Building2, BookOpen } from "lucide-react";
 import Starry from "@/components/ui/Starry";
@@ -12,35 +13,7 @@ interface FocusCard {
   description: string;
 }
 
-const focusAreas: FocusCard[] = [
-  {
-    icon: Flower2,
-    title: "Yoga",
-    description: "Traditional practices for physical harmony and strength.",
-  },
-  {
-    icon: Sparkles,
-    title: "Mindfulness",
-    description: "Cultivating present-moment awareness in daily life.",
-  },
-  {
-    icon: Sun,
-    title: "Inner Balance",
-    description: "Techniques for emotional resilience and mental clarity.",
-  },
-  {
-    icon: Users,
-    title: "Community",
-    description: "Building networks of support, compassion, and growth.",
-  },
-];
-
-const missionPoints = [
-  "Cultivating a conscious society through accessible wellness programs.",
-  "Bridging the gap between modern technology and ancient wisdom.",
-  "Empowering individuals regardless of socioeconomic background.",
-  "Building long-term community resilience through mindful practices.",
-];
+/* focusAreas and missionPoints are now computed inside the component using t() */
 
 interface Partner {
   icon: React.ElementType;
@@ -75,8 +48,18 @@ interface SocialInitiativesProps {
 }
 
 export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps = {}) {
+  const { t } = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
+
+  const focusAreas: FocusCard[] = [
+    { icon: Flower2, title: t("social_page.focus_cards.yoga.title"), description: t("social_page.focus_cards.yoga.description") },
+    { icon: Sparkles, title: t("social_page.focus_cards.mindfulness.title"), description: t("social_page.focus_cards.mindfulness.description") },
+    { icon: Sun, title: t("social_page.focus_cards.balance.title"), description: t("social_page.focus_cards.balance.description") },
+    { icon: Users, title: t("social_page.focus_cards.community.title"), description: t("social_page.focus_cards.community.description") },
+  ];
+
+  const missionPoints = t("social_page.mission_points", { returnObjects: true }) as string[];
 
   /* Hero parallax */
   const { scrollYProgress: heroProgress } = useScroll({
@@ -131,7 +114,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-10 block"
             >
-              Wellness and Purpose
+              {t("social_page.hero_eyebrow")}
             </motion.span>
 
             {/* Title — soft gradient on "Initiatives" */}
@@ -140,12 +123,8 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.4, delay: 0.2, ease: "easeOut" }}
               className="text-[52px] lg:text-[88px] font-extralight text-white uppercase tracking-tight leading-[1.05] mb-12"
-            >
-              Social{" "}
-              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
-                Initiatives
-              </span>
-            </motion.h1>
+              dangerouslySetInnerHTML={{ __html: t("social_page.hero_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }}
+            />
 
             {/* Subtitle */}
             <motion.p
@@ -154,7 +133,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               transition={{ duration: 1.6, delay: 0.4 }}
               className="text-[20px] font-light text-white/60 leading-loose max-w-2xl mx-auto"
             >
-              Balancing technological progress with human well-being.
+              {t("social_page.hero_subtitle")}
             </motion.p>
 
             {/* Decorative divider */}
@@ -180,14 +159,9 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             className="text-center mb-20"
           >
             <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-5 block">
-              Our Focus
+              {t("social_page.focus_eyebrow")}
             </span>
-            <h2 className="text-[40px] lg:text-[56px] font-extralight text-white uppercase tracking-tight leading-snug">
-              Pillars of{" "}
-              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
-                Well-being
-              </span>
-            </h2>
+            <h2 className="text-[40px] lg:text-[56px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.focus_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
           </motion.div>
 
           {/* Grid of focus cards */}
@@ -219,7 +193,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               />
               <div className="relative px-10 py-5 rounded-full bg-white/[0.03] backdrop-blur-xl border border-amber-400/30">
                 <span className="text-[14px] font-light text-amber-400 uppercase tracking-[0.35em]">
-                  Cross-Border Social Initiative by GENESIS Group
+                  {t("social_page.free_badge")}
                 </span>
               </div>
             </div>
@@ -241,15 +215,9 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             {/* Section header */}
             <div className="p-10 lg:p-14 border-b border-white/10">
               <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-5 block">
-                Mission and Impact
+                {t("social_page.mission_eyebrow")}
               </span>
-              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug">
-                Cultivating a{" "}
-                <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
-                  Conscious
-                </span>{" "}
-                Society
-              </h2>
+              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.mission_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
             </div>
 
             {/* Split content */}
@@ -297,7 +265,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
                   className="mt-12 pt-10 border-t border-white/10"
                 >
                   <span className="text-[13px] font-light text-amber-400/60 uppercase tracking-[0.3em]">
-                    Zero Economic Barriers
+                    {t("social_page.zero_barriers")}
                   </span>
                 </motion.div>
               </div>
@@ -355,15 +323,10 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
                   <Landmark size={22} className="text-amber-400/80" strokeWidth={1.5} />
                 </motion.div>
                 <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em]">
-                  Featured Initiative
+                  {t("social_page.featured_eyebrow")}
                 </span>
               </div>
-              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug">
-                Indo–Japan{" "}
-                <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
-                  Culture Center
-                </span>
-              </h2>
+              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.featured_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
             </div>
 
             {/* Content */}
@@ -377,11 +340,11 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
                 </div>
 
                 <p className="text-[17px] font-light text-white/70 leading-loose mb-8">
-                  This initiative aims to provide a supportive environment for people from both countries to work effectively in each other's country, fostering deeper collaboration between India and Japan.
+                  {t("social_page.featured_desc1")}
                 </p>
 
                 <p className="text-[17px] font-light text-white/60 leading-loose">
-                  Through this mission, we are trying to overcome present drawbacks, encourage both societies to interact with each other, and grow together.
+                  {t("social_page.featured_desc2")}
                 </p>
 
                 {/* Decorative divider */}
@@ -397,7 +360,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               {/* Right: Partners */}
               <div className="p-10 lg:p-14">
                 <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-8 block">
-                  Major Partners
+                  {t("social_page.major_partners")}
                 </span>
 
                 <div className="space-y-6">
@@ -455,13 +418,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             transition={{ duration: 1.4, ease: "easeOut" }}
             className="text-center"
           >
-            <h2 className="text-[48px] lg:text-[72px] font-extralight text-white uppercase tracking-tight leading-snug mb-14">
-              Join the{" "}
-              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">
-                Mission
-              </span>
-              .
-            </h2>
+            <h2 className="text-[48px] lg:text-[72px] font-extralight text-white uppercase tracking-tight leading-snug mb-14" dangerouslySetInnerHTML={{ __html: t("social_page.cta_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
 
             {/* CTA Button with fill animation */}
             <motion.button
@@ -478,7 +435,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               />
-              <span className="relative z-10">Join Us</span>
+              <span className="relative z-10">{t("social_page.cta_button")}</span>
             </motion.button>
           </motion.div>
         </section>
@@ -555,6 +512,7 @@ function FocusCard({ focus, index }: { focus: FocusCard; index: number }) {
 }
 
 function ZeroCostVisual() {
+  const { t } = useTranslation();
   return (
     <div className="relative w-full max-w-[320px] aspect-square">
       {/* Concentric rippling circles */}
@@ -619,7 +577,7 @@ function ZeroCostVisual() {
             className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent mx-auto mt-4 origin-center"
           />
           <p className="text-[11px] font-light text-white/40 uppercase tracking-[0.3em] mt-4">
-            No Barriers
+            {t("social_page.no_barriers")}
           </p>
         </div>
       </motion.div>

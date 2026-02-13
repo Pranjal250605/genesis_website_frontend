@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   Brain,
   Bot,
@@ -25,33 +26,6 @@ interface DefenceArea {
   description: string;
 }
 
-const defenceAreas: DefenceArea[] = [
-  {
-    icon: Brain,
-    label: "AI / Machine Learning",
-    code: "GEN-D01",
-    description: "Neural architectures & predictive modeling for strategic decision systems",
-  },
-  {
-    icon: Bot,
-    label: "Autonomous Systems",
-    code: "GEN-D02",
-    description: "Unmanned platforms with real-time situational awareness & response",
-  },
-  {
-    icon: BarChart3,
-    label: "Data Modeling & Simulation",
-    code: "GEN-D03",
-    description: "High-fidelity scenario modeling for operational readiness & planning",
-  },
-  {
-    icon: FlaskConical,
-    label: "Applied Research",
-    code: "GEN-D04",
-    description: "Emerging defence technology R&D from concept to field deployment",
-  },
-];
-
 /* ─── Reusable animated text line ─── */
 
 function AnimatedLine({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -72,6 +46,7 @@ function AnimatedLine({ children, delay = 0 }: { children: React.ReactNode; dela
 /* ─── Component ─── */
 
 export default function ImpactInnovation() {
+  const { t } = useTranslation();
   const heroRef = useRef<HTMLElement>(null);
   const partnerRef = useRef<HTMLElement>(null);
   const defenceRef = useRef<HTMLElement>(null);
@@ -92,6 +67,13 @@ export default function ImpactInnovation() {
   });
   const defenceTextY = useTransform(defenceProgress, [0, 1], [60, -30]);
   const smoothDefenceTextY = useSpring(defenceTextY, { stiffness: 80, damping: 20 });
+
+  const defenceAreas: DefenceArea[] = [
+    { icon: Brain, label: t("impact_page.defence_areas.ai.label"), code: "GEN-D01", description: t("impact_page.defence_areas.ai.description") },
+    { icon: Bot, label: t("impact_page.defence_areas.autonomous.label"), code: "GEN-D02", description: t("impact_page.defence_areas.autonomous.description") },
+    { icon: BarChart3, label: t("impact_page.defence_areas.data.label"), code: "GEN-D03", description: t("impact_page.defence_areas.data.description") },
+    { icon: FlaskConical, label: t("impact_page.defence_areas.research.label"), code: "GEN-D04", description: t("impact_page.defence_areas.research.description") },
+  ];
 
   return (
     <div className="relative min-h-screen w-full bg-[#050505]">
@@ -115,18 +97,18 @@ export default function ImpactInnovation() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-5 block"
             >
-              Genesis Research Division
+              {t("impact_page.eyebrow")}
             </motion.span>
 
             {/* Title — line-by-line reveal from below */}
-            <h1 className="text-[56px] lg:text-[88px] font-bold text-white uppercase tracking-tight leading-[0.95] mb-8">
-              <AnimatedLine delay={0.1}>
-                Impact &
-              </AnimatedLine>
-              <AnimatedLine delay={0.2}>
-                <span className="text-amber-400">Innovation</span>
-              </AnimatedLine>
-            </h1>
+            <h1
+              className="text-[56px] lg:text-[88px] font-bold text-white uppercase tracking-tight leading-[0.95] mb-8"
+              dangerouslySetInnerHTML={{
+                __html: t("impact_page.title")
+                  .replace("<1>", '<span class="text-amber-400">')
+                  .replace("</1>", "</span>"),
+              }}
+            />
 
             {/* Description — fade + blur */}
             <motion.div
@@ -144,9 +126,7 @@ export default function ImpactInnovation() {
                 className="w-px h-20 bg-gradient-to-b from-amber-400/60 to-transparent shrink-0 mt-1 origin-top"
               />
               <p className="text-[19px] text-white/50 max-w-2xl leading-relaxed">
-                Bridging academia and industry to create scalable solutions that
-                drive measurable progress across technology, defence, and
-                sustainable development.
+                {t("impact_page.subtitle")}
               </p>
             </motion.div>
           </motion.div>
@@ -165,14 +145,16 @@ export default function ImpactInnovation() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-3 block"
             >
-              Partnerships
+              {t("impact_page.partners_eyebrow")}
             </motion.span>
-            <h2 className="text-[40px] lg:text-[56px] font-bold text-white uppercase tracking-tight leading-none">
-              <AnimatedLine>
-                Academic &{" "}
-                <span className="text-amber-400">Industry</span>
-              </AnimatedLine>
-            </h2>
+            <h2
+              className="text-[40px] lg:text-[56px] font-bold text-white uppercase tracking-tight leading-none"
+              dangerouslySetInnerHTML={{
+                __html: t("impact_page.partners_title")
+                  .replace("<1>", '<span class="text-amber-400">')
+                  .replace("</1>", "</span>"),
+              }}
+            />
           </div>
 
           {/* Infinite scroll marquee */}
@@ -224,15 +206,17 @@ export default function ImpactInnovation() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-4 block"
               >
-                Classified Initiatives
+                {t("impact_page.defence_eyebrow")}
               </motion.span>
 
-              <h2 className="text-[40px] lg:text-[52px] font-bold text-white uppercase tracking-tight leading-[1.05] mb-6">
-                <AnimatedLine>Defence &</AnimatedLine>
-                <AnimatedLine delay={0.1}>
-                  <span className="text-amber-400">Consultancy</span>
-                </AnimatedLine>
-              </h2>
+              <h2
+                className="text-[40px] lg:text-[52px] font-bold text-white uppercase tracking-tight leading-[1.05] mb-6"
+                dangerouslySetInnerHTML={{
+                  __html: t("impact_page.defence_title")
+                    .replace("<1>", '<span class="text-amber-400">')
+                    .replace("</1>", "</span>"),
+                }}
+              />
 
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -249,13 +233,11 @@ export default function ImpactInnovation() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-[17px] text-white/50 leading-relaxed mb-8"
               >
-                AI-focused initiatives within India's defence ecosystem —
-                developing sovereign capabilities across intelligence, autonomy,
-                and secure systems.
+                {t("impact_page.defence_subtitle")}
               </motion.p>
 
               <div className="flex flex-col gap-3">
-                {["Advanced Analytics", "Intelligent Systems", "Sovereign Infrastructure"].map((label, i) => (
+                {(t("impact_page.defence_tags", { returnObjects: true }) as string[]).map((label, i) => (
                   <motion.div
                     key={label}
                     initial={{ opacity: 0, x: -20 }}

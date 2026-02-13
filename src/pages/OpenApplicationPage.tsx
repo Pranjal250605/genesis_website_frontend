@@ -107,7 +107,7 @@ Availability: ${formData.availability}
           className="group flex items-center gap-2 mb-12 text-white/40 hover:text-amber-400 transition-colors duration-300"
         >
           <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
-          <span className="text-sm uppercase tracking-wider">Back to Careers</span>
+          <span className="text-sm uppercase tracking-wider">{t("open_application_page.back")}</span>
         </motion.button>
 
         {/* Header */}
@@ -123,15 +123,20 @@ Availability: ${formData.availability}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-6 block"
           >
-            Open Application
+            {t("open_application_page.eyebrow")}
           </motion.span>
 
-          <h1 className="text-[48px] lg:text-[64px] font-bold text-white tracking-tight leading-[0.95] mb-6">
-            Join Our <span className="text-amber-400">Team</span>
-          </h1>
+          <h1
+            className="text-[48px] lg:text-[64px] font-bold text-white tracking-tight leading-[0.95] mb-6"
+            dangerouslySetInnerHTML={{
+              __html: t("open_application_page.title")
+                .replace("<1>", '<span class="text-amber-400">')
+                .replace("</1>", "</span>"),
+            }}
+          />
 
           <p className="text-[18px] text-white/50 leading-relaxed max-w-2xl">
-            Don't see a role that fits? We're always looking for exceptional talent. Tell us about yourself and how you'd like to contribute to Genesis.
+            {t("open_application_page.subtitle")}
           </p>
         </motion.div>
 
@@ -145,11 +150,11 @@ Availability: ${formData.availability}
         >
           {/* Personal Information */}
           <div className="rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 lg:p-10">
-            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">Personal Information</h3>
+            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">{t("open_application_page.personal_info")}</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Full Name *</label>
+                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.full_name")} <span className="text-amber-400">*</span></label>
                 <input
                   type="text"
                   name="fullName"
@@ -157,12 +162,12 @@ Availability: ${formData.availability}
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
-                  placeholder="Your name"
+                  placeholder={t("open_application_page.full_name_placeholder")}
                 />
               </div>
 
               <div>
-                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Email *</label>
+                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.email")} <span className="text-amber-400">*</span></label>
                 <input
                   type="email"
                   name="email"
@@ -170,12 +175,12 @@ Availability: ${formData.availability}
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
-                  placeholder="your@email.com"
+                  placeholder={t("open_application_page.email_placeholder")}
                 />
               </div>
 
               <div>
-                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Phone</label>
+                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.phone")}</label>
                 <input
                   type="tel"
                   name="phone"
@@ -187,7 +192,7 @@ Availability: ${formData.availability}
               </div>
 
               <div>
-                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Location *</label>
+                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.location")} <span className="text-amber-400">*</span></label>
                 <input
                   type="text"
                   name="location"
@@ -195,7 +200,7 @@ Availability: ${formData.availability}
                   value={formData.location}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
-                  placeholder="City, Country"
+                  placeholder={t("open_application_page.location_placeholder")}
                 />
               </div>
             </div>
@@ -203,12 +208,12 @@ Availability: ${formData.availability}
 
           {/* Professional Information */}
           <div className="rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 lg:p-10">
-            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">Professional Background</h3>
+            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">{t("open_application_page.professional_bg")}</h3>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">LinkedIn Profile</label>
+                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.linkedin")}</label>
                   <input
                     type="url"
                     name="linkedIn"
@@ -220,7 +225,7 @@ Availability: ${formData.availability}
                 </div>
 
                 <div>
-                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Portfolio / Website</label>
+                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.portfolio")}</label>
                   <input
                     type="url"
                     name="portfolio"
@@ -234,7 +239,7 @@ Availability: ${formData.availability}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Years of Experience *</label>
+                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.experience")} <span className="text-amber-400">*</span></label>
                   <select
                     name="yearsOfExperience"
                     required
@@ -242,34 +247,34 @@ Availability: ${formData.availability}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
                   >
-                    <option value="">Select experience</option>
-                    <option value="0-1">0-1 years</option>
-                    <option value="1-3">1-3 years</option>
-                    <option value="3-5">3-5 years</option>
-                    <option value="5-10">5-10 years</option>
-                    <option value="10+">10+ years</option>
+                    <option value="">{t("open_application_page.select_experience")}</option>
+                    <option value="0-1">{t("open_application_page.exp_0_1")}</option>
+                    <option value="1-3">{t("open_application_page.exp_1_3")}</option>
+                    <option value="3-5">{t("open_application_page.exp_3_5")}</option>
+                    <option value="5-10">{t("open_application_page.exp_5_10")}</option>
+                    <option value="10+">{t("open_application_page.exp_10_plus")}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Availability</label>
+                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.availability")}</label>
                   <select
                     name="availability"
                     value={formData.availability}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
                   >
-                    <option value="">Select availability</option>
-                    <option value="immediate">Immediate</option>
-                    <option value="2-weeks">2 weeks notice</option>
-                    <option value="1-month">1 month notice</option>
-                    <option value="flexible">Flexible</option>
+                    <option value="">{t("open_application_page.avail_select")}</option>
+                    <option value="immediate">{t("open_application_page.avail_immediate")}</option>
+                    <option value="2-weeks">{t("open_application_page.avail_2_weeks")}</option>
+                    <option value="1-month">{t("open_application_page.avail_1_month")}</option>
+                    <option value="flexible">{t("open_application_page.avail_flexible")}</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Area of Expertise *</label>
+                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.expertise")} <span className="text-amber-400">*</span></label>
                 <input
                   type="text"
                   name="expertise"
@@ -277,12 +282,12 @@ Availability: ${formData.availability}
                   value={formData.expertise}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
-                  placeholder="e.g., AI/ML, Blockchain, Full Stack Development"
+                  placeholder={t("open_application_page.expertise_placeholder")}
                 />
               </div>
 
               <div>
-                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">Why Genesis? *</label>
+                <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">{t("open_application_page.why_genesis")} <span className="text-amber-400">*</span></label>
                 <textarea
                   name="motivation"
                   required
@@ -290,7 +295,7 @@ Availability: ${formData.availability}
                   value={formData.motivation}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300 resize-none"
-                  placeholder="Tell us why you want to join Genesis and what unique value you would bring to our team..."
+                  placeholder={t("open_application_page.why_genesis_placeholder")}
                 />
               </div>
             </div>
@@ -298,7 +303,7 @@ Availability: ${formData.availability}
 
           {/* Resume / CV Upload */}
           <div className="rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 lg:p-10">
-            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">Resume / CV</h3>
+            <h3 className="text-white text-xl font-bold mb-6 uppercase tracking-wider">{t("open_application_page.resume_title")}</h3>
 
             <input
               ref={fileInputRef}
@@ -341,10 +346,10 @@ Availability: ${formData.availability}
                     className="text-white/20 transition-colors duration-300 group-hover:text-amber-400/60"
                   />
                   <span className="text-white/30 text-[14px] transition-colors duration-300 group-hover:text-white/50">
-                    Click to upload your Resume / CV
+                    {t("open_application_page.resume_upload")}
                   </span>
                   <span className="text-white/15 text-[12px]">
-                    PDF, DOC, DOCX (Max 5MB)
+                    {t("open_application_page.resume_formats")}
                   </span>
                 </div>
               )}
@@ -358,12 +363,12 @@ Availability: ${formData.availability}
             whileTap={{ scale: 0.98 }}
             className="w-full group relative px-8 py-5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold text-sm uppercase tracking-wider overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(251,191,36,0.4)] flex items-center justify-center gap-3"
           >
-            <span>Submit Application</span>
+            <span>{t("open_application_page.submit")}</span>
             <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
           </motion.button>
 
           <p className="text-center text-white/30 text-xs">
-            By submitting this form, you agree to our privacy policy and terms of service.
+            {t("open_application_page.disclaimer")}
           </p>
         </motion.form>
       </div>

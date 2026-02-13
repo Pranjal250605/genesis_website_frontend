@@ -21,83 +21,6 @@ interface ServiceCardData {
   footer: string;
 }
 
-const services: ServiceCardData[] = [
-  {
-    number: "01",
-    title: "Product & Software / Hardware Sales",
-    desc: "We connect innovative technology providers with high-potential markets through structured sales execution and strategic partnerships.",
-    list: [
-      "Enterprise SaaS & AI platforms",
-      "Cybersecurity & cloud solutions",
-      "Automation, IoT & emerging tech systems",
-      "Industrial and specialized hardware",
-    ],
-    footer: "Market entry strategy · Channel development · Enterprise sales enablement · Revenue acceleration",
-  },
-  {
-    number: "02",
-    title: "Reskilling & Content Solutions",
-    desc: "We design and distribute future-focused educational programs that prepare professionals and organizations for the evolving digital economy.",
-    list: [
-      "AI, Data & Cloud technologies",
-      "Blockchain & Web3 fundamentals",
-      "Cybersecurity & digital transformation",
-      "Corporate training & certification tracks",
-    ],
-    footer: "Structured learning · Industry relevance · Scalable impact",
-  },
-  {
-    number: "03",
-    title: "Crypto & Blockchain Technology",
-    desc: "We help organizations adopt decentralized technologies with clarity, security, and strategic alignment.",
-    list: [
-      "Blockchain strategy & advisory",
-      "Smart contract & dApp support",
-      "Tokenization frameworks",
-      "Compliance-aware implementation",
-    ],
-    footer: "Secure · Scalable · Forward-looking",
-  },
-  {
-    number: "04",
-    title: "Tech Project Outsourcing",
-    desc: "We deliver high-quality technical execution through dedicated teams in India serving international clients.",
-    list: [
-      "Custom software development",
-      "Enterprise system architecture",
-      "Embedded & hardware support",
-      "Dedicated remote engineering teams",
-    ],
-    footer: "Transparent processes · Agile delivery · Global standards",
-  },
-];
-
-const outsourcingSteps: { icon: LucideIcon; title: string; description: string }[] = [
-  {
-    icon: ClipboardCheck,
-    title: "Step 1. Project Intake & Vetting",
-    description:
-      "We consult with Japanese clients to define project scope, technical requirements, and vet the project through Edify Japan.",
-  },
-  {
-    icon: UsersRound,
-    title: "Step 2. Resource Allocation",
-    description:
-      "The project is routed to the Edify Bharat branch, where we match the requirements with specialized IIT researchers and engineers.",
-  },
-  {
-    icon: Workflow,
-    title: "Step 3. Execution & Management",
-    description:
-      "Our dedicated engineering teams execute the project with active coordination, offering time-and-materials or fixed-price development with regular progress reporting.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Step 4. QA & Delivery",
-    description:
-      "Final deliverables undergo ISO-inspired quality assurance and data security checks before handover and feedback collection.",
-  },
-];
 
 function HolographicCard({ card, index }: { card: ServiceCardData; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -204,6 +127,45 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
 
 export default function Services() {
   const { t } = useTranslation();
+
+  const services: ServiceCardData[] = [
+    {
+      number: t("services_page.cards.sales.number"),
+      title: t("services_page.cards.sales.title"),
+      desc: t("services_page.cards.sales.desc"),
+      list: t("services_page.cards.sales.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.sales.footer"),
+    },
+    {
+      number: t("services_page.cards.reskilling.number"),
+      title: t("services_page.cards.reskilling.title"),
+      desc: t("services_page.cards.reskilling.desc"),
+      list: t("services_page.cards.reskilling.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.reskilling.footer"),
+    },
+    {
+      number: t("services_page.cards.crypto.number"),
+      title: t("services_page.cards.crypto.title"),
+      desc: t("services_page.cards.crypto.desc"),
+      list: t("services_page.cards.crypto.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.crypto.footer"),
+    },
+    {
+      number: t("services_page.cards.outsourcing.number"),
+      title: t("services_page.cards.outsourcing.title"),
+      desc: t("services_page.cards.outsourcing.desc"),
+      list: t("services_page.cards.outsourcing.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.outsourcing.footer"),
+    },
+  ];
+
+  const outsourcingSteps: { icon: LucideIcon; title: string; description: string }[] = [
+    { icon: ClipboardCheck, title: t("services_page.steps.step1_title"), description: t("services_page.steps.step1_desc") },
+    { icon: UsersRound, title: t("services_page.steps.step2_title"), description: t("services_page.steps.step2_desc") },
+    { icon: Workflow, title: t("services_page.steps.step3_title"), description: t("services_page.steps.step3_desc") },
+    { icon: ShieldCheck, title: t("services_page.steps.step4_title"), description: t("services_page.steps.step4_desc") },
+  ];
+
   const gxContainerRef = useRef<HTMLDivElement>(null);
   const gxImageRef = useRef<HTMLImageElement>(null);
   const gxOverlayRef = useRef<HTMLDivElement>(null);
@@ -283,11 +245,16 @@ export default function Services() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <h2 className="text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none mb-4">
-            Our <span className="text-amber-400">Services</span>
-          </h2>
+          <h2
+            className="text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none mb-4"
+            dangerouslySetInnerHTML={{
+              __html: t("services_page.title")
+                .replace("<1>", '<span class="text-amber-400">')
+                .replace("</1>", "</span>"),
+            }}
+          />
           <p className="text-[18px] text-white/50 max-w-2xl leading-relaxed">
-            Integrated solutions across technology, education, and innovation — designed for scale.
+            {t("services_page.subtitle")}
           </p>
         </motion.div>
 
@@ -328,7 +295,7 @@ export default function Services() {
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
               className="text-[36px] sm:text-[52px] md:text-[64px] lg:text-[80px] xl:text-[96px] font-bold text-white uppercase tracking-tight text-center"
             >
-              Outsourcing
+              {t("services_page.outsourcing_banner")}
             </motion.h2>
           </div>
         </motion.div>
@@ -353,11 +320,16 @@ export default function Services() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mx-auto mb-6 sm:mb-8 h-px w-24 sm:w-32 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent origin-center"
           />
-          <h3 className="text-[32px] sm:text-[42px] md:text-[52px] lg:text-[64px] font-bold text-white uppercase tracking-tight leading-none">
-            How It <span className="text-amber-400">Works</span>
-          </h3>
+          <h3
+            className="text-[32px] sm:text-[42px] md:text-[52px] lg:text-[64px] font-bold text-white uppercase tracking-tight leading-none"
+            dangerouslySetInnerHTML={{
+              __html: t("services_page.how_it_works")
+                .replace("<1>", '<span class="text-amber-400">')
+                .replace("</1>", "</span>"),
+            }}
+          />
           <p className="mt-4 sm:mt-5 text-[14px] sm:text-[16px] lg:text-[18px] text-white/40 max-w-xl mx-auto leading-relaxed">
-            From intake to delivery — a streamlined, transparent process.
+            {t("services_page.how_it_works_sub")}
           </p>
           <motion.div
             initial={{ scaleX: 0 }}

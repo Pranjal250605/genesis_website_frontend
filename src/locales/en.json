@@ -276,7 +276,221 @@
   },
   "japanPortfolioSection": {
     "title": "Our Japan Portfolio",
-    "subtitle": "Innovative AI and Tech Solutions brought to Japan."
+    "subtitle": "Innovative AI and Tech Solutions brought to Japan.",
+    "brandOwner": "Brand Owner",
+    "channelPartner": "Channel Partner"
+  },
+  "aboutus_page": {
+    "hud_module": "Nav_Module // About Us",
+    "hud_version": "Genesis_Identity_v1.0",
+    "mask": "ABOUT US",
+    "pair1_title": "Bridging Innovation <br/>& <1>Execution</1>",
+    "pair1_text": "We connect markets, technology, and talent across regions to operate beyond geographical limitations.",
+    "pair2_title": "Strategy Into <br/><1>Measurable Outcomes</1>",
+    "pair2_text": "We enable growth through intelligent technology adoption, turning digital complexity into absolute clarity.",
+    "pair3_title": "Innovation With <br/><1>Tangible Impact</1>",
+    "pair3_text": "We prioritize execution excellence and sustainable growth to create long-term value for a global market."
+  },
+  "services_page": {
+    "title": "Our <1>Services</1>",
+    "subtitle": "Integrated solutions across technology, education, and innovation — designed for scale.",
+    "outsourcing_banner": "Outsourcing",
+    "how_it_works": "How It <1>Works</1>",
+    "how_it_works_sub": "From intake to delivery — a streamlined, transparent process.",
+    "cards": {
+      "sales": {
+        "number": "01",
+        "title": "Product & Software / Hardware Sales",
+        "desc": "We connect innovative technology providers with high-potential markets through structured sales execution and strategic partnerships.",
+        "list": [
+          "Enterprise SaaS & AI platforms",
+          "Cybersecurity & cloud solutions",
+          "Automation, IoT & emerging tech systems",
+          "Industrial and specialized hardware"
+        ],
+        "footer": "Market entry strategy · Channel development · Enterprise sales enablement · Revenue acceleration"
+      },
+      "reskilling": {
+        "number": "02",
+        "title": "Reskilling & Content Solutions",
+        "desc": "We design and distribute future-focused educational programs that prepare professionals and organizations for the evolving digital economy.",
+        "list": [
+          "AI, Data & Cloud technologies",
+          "Blockchain & Web3 fundamentals",
+          "Cybersecurity & digital transformation",
+          "Corporate training & certification tracks"
+        ],
+        "footer": "Structured learning · Industry relevance · Scalable impact"
+      },
+      "crypto": {
+        "number": "03",
+        "title": "Crypto & Blockchain Technology",
+        "desc": "We help organizations adopt decentralized technologies with clarity, security, and strategic alignment.",
+        "list": [
+          "Blockchain strategy & advisory",
+          "Smart contract & dApp support",
+          "Tokenization frameworks",
+          "Compliance-aware implementation"
+        ],
+        "footer": "Secure · Scalable · Forward-looking"
+      },
+      "outsourcing": {
+        "number": "04",
+        "title": "Tech Project Outsourcing",
+        "desc": "We deliver high-quality technical execution through dedicated teams in India serving international clients.",
+        "list": [
+          "Custom software development",
+          "Enterprise system architecture",
+          "Embedded & hardware support",
+          "Dedicated remote engineering teams"
+        ],
+        "footer": "Transparent processes · Agile delivery · Global standards"
+      }
+    },
+    "steps": {
+      "step1_title": "Step 1. Project Intake & Vetting",
+      "step1_desc": "We consult with Japanese clients to define project scope, technical requirements, and vet the project through Edify Japan.",
+      "step2_title": "Step 2. Resource Allocation",
+      "step2_desc": "The project is routed to the Edify Bharat branch, where we match the requirements with specialized IIT researchers and engineers.",
+      "step3_title": "Step 3. Execution & Management",
+      "step3_desc": "Our dedicated engineering teams execute the project with active coordination, offering time-and-materials or fixed-price development with regular progress reporting.",
+      "step4_title": "Step 4. QA & Delivery",
+      "step4_desc": "Final deliverables undergo ISO-inspired quality assurance and data security checks before handover and feedback collection."
+    }
+  },
+  "impact_page": {
+    "eyebrow": "Genesis Research Division",
+    "title": "Impact & <1>Innovation</1>",
+    "subtitle": "Bridging academia and industry to create scalable solutions that drive measurable progress across technology, defence, and sustainable development.",
+    "partners_eyebrow": "Partnerships",
+    "partners_title": "Academic & <1>Industry</1>",
+    "defence_eyebrow": "Classified Initiatives",
+    "defence_title": "Defence & <1>Consultancy</1>",
+    "defence_subtitle": "AI-focused initiatives within India's defence ecosystem — developing sovereign capabilities across intelligence, autonomy, and secure systems.",
+    "defence_tags": ["Advanced Analytics", "Intelligent Systems", "Sovereign Infrastructure"],
+    "defence_areas": {
+      "ai": {
+        "label": "AI / Machine Learning",
+        "code": "GEN-D01",
+        "description": "Neural architectures & predictive modeling for strategic decision systems"
+      },
+      "autonomous": {
+        "label": "Autonomous Systems",
+        "code": "GEN-D02",
+        "description": "Unmanned platforms with real-time situational awareness & response"
+      },
+      "data": {
+        "label": "Data Modeling & Simulation",
+        "code": "GEN-D03",
+        "description": "High-fidelity scenario modeling for operational readiness & planning"
+      },
+      "research": {
+        "label": "Applied Research",
+        "code": "GEN-D04",
+        "description": "Emerging defence technology R&D from concept to field deployment"
+      }
+    }
+  },
+  "signature_event_page": {
+    "eyebrow": "Signature Event",
+    "title": "Hackathon",
+    "subtitle": "International event series focused on top-tier talent in AI and Drone Technology — connecting global innovators with real-world challenges.",
+    "badge_season": "Season 2",
+    "badge_year": "2025",
+    "gallery_eyebrow": "Moments",
+    "gallery_title": "Event <1>Gallery</1>",
+    "gallery_alt": "Event photo",
+    "status": {
+      "completed": "Completed",
+      "active": "Active",
+      "upcoming": "Coming Soon"
+    }
+  },
+  "social_page": {
+    "hero_eyebrow": "Wellness and Purpose",
+    "hero_title": "Social <1>Initiatives</1>",
+    "hero_subtitle": "Balancing technological progress with human well-being.",
+    "focus_eyebrow": "Our Focus",
+    "focus_title": "Pillars of <1>Well-being</1>",
+    "focus_cards": {
+      "yoga": { "title": "Yoga", "description": "Traditional practices for physical harmony and strength." },
+      "mindfulness": { "title": "Mindfulness", "description": "Cultivating present-moment awareness in daily life." },
+      "balance": { "title": "Inner Balance", "description": "Techniques for emotional resilience and mental clarity." },
+      "community": { "title": "Community", "description": "Building networks of support, compassion, and growth." }
+    },
+    "free_badge": "Cross-Border Social Initiative by GENESIS Group",
+    "mission_eyebrow": "Mission and Impact",
+    "mission_title": "Cultivating a <1>Conscious</1> Society",
+    "mission_points": [
+      "Cultivating a conscious society through accessible wellness programs.",
+      "Bridging the gap between modern technology and ancient wisdom.",
+      "Empowering individuals regardless of socioeconomic background.",
+      "Building long-term community resilience through mindful practices."
+    ],
+    "zero_barriers": "Zero Economic Barriers",
+    "no_barriers": "No Barriers",
+    "featured_eyebrow": "Featured Initiative",
+    "featured_title": "Indo–Japan <1>Culture Center</1>",
+    "featured_desc1": "This initiative aims to provide a supportive environment for people from both countries to work effectively in each other's country, fostering deeper collaboration between India and Japan.",
+    "featured_desc2": "Through this mission, we are trying to overcome present drawbacks, encourage both societies to interact with each other, and grow together.",
+    "major_partners": "Major Partners",
+    "cta_title": "Join the <1>Mission</1>.",
+    "cta_button": "Join Us"
+  },
+  "open_application_page": {
+    "back": "Back to Careers",
+    "eyebrow": "Open Application",
+    "title": "Join Our <1>Team</1>",
+    "subtitle": "Don't see a role that fits? We're always looking for exceptional talent. Tell us about yourself and how you'd like to contribute to Genesis.",
+    "personal_info": "Personal Information",
+    "full_name": "Full Name",
+    "full_name_placeholder": "Your name",
+    "email": "Email",
+    "email_placeholder": "your@email.com",
+    "phone": "Phone",
+    "phone_placeholder": "+1 (555) 000-0000",
+    "location": "Location",
+    "location_placeholder": "City, Country",
+    "professional_bg": "Professional Background",
+    "linkedin": "LinkedIn Profile",
+    "linkedin_placeholder": "linkedin.com/in/yourprofile",
+    "portfolio": "Portfolio / Website",
+    "portfolio_placeholder": "yourportfolio.com",
+    "experience": "Years of Experience",
+    "select_experience": "Select experience",
+    "exp_0_1": "0-1 years",
+    "exp_1_3": "1-3 years",
+    "exp_3_5": "3-5 years",
+    "exp_5_10": "5-10 years",
+    "exp_10_plus": "10+ years",
+    "availability": "Availability",
+    "select_availability": "Select availability",
+    "avail_immediate": "Immediate",
+    "avail_2_weeks": "2 weeks notice",
+    "avail_1_month": "1 month notice",
+    "avail_flexible": "Flexible",
+    "expertise": "Area of Expertise",
+    "expertise_placeholder": "e.g., AI/ML, Blockchain, Full Stack Development",
+    "why_genesis": "Why Genesis?",
+    "why_genesis_placeholder": "Tell us why you want to join Genesis and what unique value you would bring to our team...",
+    "resume_title": "Resume / CV",
+    "resume_upload": "Click to upload your Resume / CV",
+    "resume_formats": "PDF, DOC, DOCX (Max 5MB)",
+    "submit": "Submit Application",
+    "disclaimer": "By submitting this form, you agree to our privacy policy and terms of service."
+  },
+  "contact_us_page": {
+    "back": "Back to Home",
+    "eyebrow": "Contact Us",
+    "title_1": "Let's",
+    "title_2": "Connect",
+    "subtitle": "For collaborations, partnerships, business enquiries, or any questions about our work — we'd love to hear from you.",
+    "email_label": "Email Us",
+    "email_desc": "Whether it's a collaboration proposal, partnership opportunity, technical enquiry, or general question — reach out and our team will get back to you.",
+    "hq_label": "Headquarters",
+    "hq_value": "Hiroshima, Japan",
+    "response_label": "Response Time",
+    "response_value": "We typically respond within 1–2 business days."
   },
   "gxSection": {
     "panel1Title": "Leading the Green Transformation",

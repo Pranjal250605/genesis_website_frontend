@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { MapPin, Calendar, CheckCircle2, Zap, Circle } from "lucide-react";
 import ZentejVideo from "@/components/images/zentejvid.mp4";
 import ZentejLogo from "@/components/images/Zentej_logo_only.png";
@@ -73,6 +74,7 @@ function AnimatedLine({ children, delay = 0 }: { children: React.ReactNode; dela
 /* ─── Component ─── */
 
 export default function SignatureEvent() {
+  const { t } = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -145,7 +147,7 @@ export default function SignatureEvent() {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-6 block"
               >
-                Signature Event
+                {t("signature_event_page.eyebrow")}
               </motion.span>
 
               {/* Logo + Hackathon — staggered scale-in */}
@@ -167,7 +169,7 @@ export default function SignatureEvent() {
                     transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     className="text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none"
                   >
-                    Hackathon
+                    {t("signature_event_page.title")}
                   </motion.h2>
                 </div>
               </div>
@@ -180,9 +182,7 @@ export default function SignatureEvent() {
                 transition={{ duration: 0.9, delay: 0.4 }}
                 className="text-[18px] lg:text-[20px] text-white/75 leading-relaxed max-w-2xl mb-8"
               >
-                International event series focused on top-tier talent in AI and
-                Drone Technology — connecting global innovators with real-world
-                challenges.
+                {t("signature_event_page.subtitle")}
               </motion.p>
 
               {/* Badges — staggered pop-in */}
@@ -202,7 +202,7 @@ export default function SignatureEvent() {
                   className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-amber-400 bg-amber-400/10 border border-amber-400/30 rounded-full px-5 py-2"
                 >
                   <Zap size={14} strokeWidth={2} />
-                  Season 2
+                  {t("signature_event_page.badge_season")}
                 </motion.span>
 
                 <motion.span
@@ -213,7 +213,7 @@ export default function SignatureEvent() {
                   className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-full px-5 py-2"
                 >
                   <Calendar size={13} strokeWidth={1.5} />
-                  2025
+                  {t("signature_event_page.badge_year")}
                 </motion.span>
               </div>
             </div>
@@ -284,13 +284,16 @@ export default function SignatureEvent() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-3 block"
             >
-              Moments
+              {t("signature_event_page.gallery_eyebrow")}
             </motion.span>
-            <h3 className="text-[32px] lg:text-[44px] font-bold text-white uppercase tracking-tight leading-none">
-              <AnimatedLine>
-                Event <span className="text-amber-400">Gallery</span>
-              </AnimatedLine>
-            </h3>
+            <h3
+              className="text-[32px] lg:text-[44px] font-bold text-white uppercase tracking-tight leading-none"
+              dangerouslySetInnerHTML={{
+                __html: t("signature_event_page.gallery_title")
+                  .replace("<1>", '<span class="text-amber-400">')
+                  .replace("</1>", "</span>"),
+              }}
+            />
           </div>
         </div>
 
@@ -334,6 +337,7 @@ export default function SignatureEvent() {
 ═══════════════════════════════════════════ */
 
 function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; index: number; isLast: boolean }) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const isActive = node.status === "active";
@@ -419,17 +423,17 @@ function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; inde
           >
             {isCompleted && (
               <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400/80 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
-                Completed
+                {t("signature_event_page.status.completed")}
               </span>
             )}
             {isActive && (
               <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400 bg-amber-400/10 border border-amber-400/30 rounded-full px-2.5 py-0.5">
-                Active
+                {t("signature_event_page.status.active")}
               </span>
             )}
             {isUpcoming && (
               <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/55 bg-white/[0.05] border border-white/15 rounded-full px-2.5 py-0.5">
-                Coming Soon
+                {t("signature_event_page.status.upcoming")}
               </span>
             )}
           </motion.div>
@@ -456,6 +460,7 @@ function TimelineNodeDesktop({ node, index, isLast }: { node: TimelineNode; inde
 }
 
 function TimelineNodeMobile({ node, index }: { node: TimelineNode; index: number }) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const isActive = node.status === "active";
@@ -541,17 +546,17 @@ function TimelineNodeMobile({ node, index }: { node: TimelineNode; index: number
         >
           {isCompleted && (
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400/80 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
-              Completed
+              {t("signature_event_page.status.completed")}
             </span>
           )}
           {isActive && (
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-400 bg-amber-400/10 border border-amber-400/30 rounded-full px-2.5 py-0.5">
-              Active
+              {t("signature_event_page.status.active")}
             </span>
           )}
           {isUpcoming && (
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/55 bg-white/[0.05] border border-white/15 rounded-full px-2.5 py-0.5">
-              Coming Soon
+              {t("signature_event_page.status.upcoming")}
             </span>
           )}
         </motion.div>

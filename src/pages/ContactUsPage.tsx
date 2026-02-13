@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -13,6 +14,8 @@ interface ContactUsPageProps {
 }
 
 export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
+  const { t } = useTranslation()
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -64,7 +67,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
           className="group flex items-center gap-2 mb-16 text-white/40 hover:text-amber-400 transition-colors duration-300"
         >
           <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
-          <span className="text-sm uppercase tracking-wider">Back to Home</span>
+          <span className="text-sm uppercase tracking-wider">{t("contact_us_page.back")}</span>
         </motion.button>
 
         {/* Header */}
@@ -80,18 +83,18 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-amber-400 text-[11px] font-bold uppercase tracking-[0.6em] mb-6 block"
           >
-            Contact Us
+            {t("contact_us_page.eyebrow")}
           </motion.span>
 
           <h1 className="text-[48px] lg:text-[72px] font-bold tracking-tight leading-[0.95] mb-8">
-            <span className="text-white">Let's </span>
+            <span className="text-white">{t("contact_us_page.title_1")} </span>
             <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
-              Connect
+              {t("contact_us_page.title_2")}
             </span>
           </h1>
 
           <p className="text-[18px] text-white/50 leading-relaxed max-w-2xl">
-            For collaborations, partnerships, business enquiries, or any questions about our work — we'd love to hear from you.
+            {t("contact_us_page.subtitle")}
           </p>
         </motion.div>
 
@@ -110,7 +113,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
 
             <div className="flex-1">
               <p className="text-white/40 text-xs font-medium uppercase tracking-[0.2em] mb-3">
-                Email Us
+                {t("contact_us_page.email_label")}
               </p>
               <p className="text-3xl lg:text-5xl font-bold tracking-tight mb-5 flex items-center gap-4">
                 <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
@@ -119,7 +122,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
                 <ArrowUpRight size={28} className="text-amber-400/40 group-hover:text-amber-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </p>
               <p className="text-white/50 text-[15px] leading-relaxed max-w-xl">
-                Whether it's a collaboration proposal, partnership opportunity, technical enquiry, or general question — reach out and our team will get back to you.
+                {t("contact_us_page.email_desc")}
               </p>
             </div>
           </div>
@@ -134,19 +137,19 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
         >
           <div className="rounded-[24px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8">
             <p className="text-amber-400/60 text-xs font-medium uppercase tracking-[0.2em] mb-3">
-              Headquarters
+              {t("contact_us_page.hq_label")}
             </p>
             <p className="text-white/70 text-sm leading-relaxed">
-              Hiroshima, Japan
+              {t("contact_us_page.hq_value")}
             </p>
           </div>
 
           <div className="rounded-[24px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8">
             <p className="text-amber-400/60 text-xs font-medium uppercase tracking-[0.2em] mb-3">
-              Response Time
+              {t("contact_us_page.response_label")}
             </p>
             <p className="text-white/70 text-sm leading-relaxed">
-              We typically respond within 1–2 business days.
+              {t("contact_us_page.response_value")}
             </p>
           </div>
         </motion.div>
