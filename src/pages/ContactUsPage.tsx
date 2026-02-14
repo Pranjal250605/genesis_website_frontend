@@ -1,11 +1,12 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { motion } from "framer-motion"
-import { Mail, ArrowUpRight, ArrowLeft } from "lucide-react"
+import { Mail, ArrowUpRight, ArrowLeft, Send, CheckCircle, AlertCircle } from "lucide-react"
 import Starry from "@/components/ui/Starry"
+import { supabase } from "@/lib/supabase"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,6 +16,8 @@ interface ContactUsPageProps {
 
 export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
   const { t } = useTranslation()
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -38,6 +41,29 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
       ScrollTrigger.getAll().forEach((st) => st.kill())
     }
   }, [])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("loading")
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    })
+
+    if (error) {
+      setStatus("error")
+    } else {
+      setStatus("success")
+      setFormData({ name: "", email: "", subject: "", message: "" })
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#050505] relative overflow-hidden">
@@ -152,6 +178,116 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
               {t("contact_us_page.response_value")}
             </p>
           </div>
+        </motion.div>
+
+        {/* Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="mt-16"
+        >
+          <h2 className="text-white text-2xl font-bold mb-8 uppercase tracking-wider">
+            {t("contact_us_page.form_title")}
+          </h2>
+
+          {status === "success" ? (
+            <div className="rounded-[32px] border border-green-400/20 bg-green-400/[0.04] backdrop-blur-xl p-10 text-center">
+              <CheckCircle size={48} className="text-green-400 mx-auto mb-4" />
+              <h3 className="text-white text-xl font-bold mb-2">{t("contact_us_page.form_success_title")}</h3>
+              <p className="text-white/50 text-[15px]">{t("contact_us_page.form_success_body")}</p>
+              <button
+                onClick={() => setStatus("idle")}
+                className="mt-6 text-amber-400 text-sm uppercase tracking-wider hover:text-amber-300 transition-colors"
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 lg:p-10 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">
+                      {t("contact_us_page.form_name")} <span className="text-amber-400">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
+                      placeholder={t("contact_us_page.form_name_placeholder")}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">
+                      {t("contact_us_page.form_email")} <span className="text-amber-400">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
+                      placeholder={t("contact_us_page.form_email_placeholder")}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">
+                    {t("contact_us_page.form_subject")} <span className="text-amber-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300"
+                    placeholder={t("contact_us_page.form_subject_placeholder")}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-white/60 text-sm uppercase tracking-wider mb-3">
+                    {t("contact_us_page.form_message")} <span className="text-amber-400">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/30 focus:border-amber-400/50 focus:outline-none transition-colors duration-300 resize-none"
+                    placeholder={t("contact_us_page.form_message_placeholder")}
+                  />
+                </div>
+              </div>
+
+              {status === "error" && (
+                <div className="flex items-center gap-3 rounded-xl border border-red-400/20 bg-red-400/[0.04] px-5 py-3">
+                  <AlertCircle size={18} className="text-red-400 shrink-0" />
+                  <p className="text-red-300 text-sm">{t("contact_us_page.form_error")}</p>
+                </div>
+              )}
+
+              <motion.button
+                type="submit"
+                disabled={status === "loading"}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full group relative px-8 py-5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold text-sm uppercase tracking-wider overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(251,191,36,0.4)] flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <span>{status === "loading" ? t("contact_us_page.form_submitting") : t("contact_us_page.form_submit")}</span>
+                <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </motion.button>
+            </form>
+          )}
         </motion.div>
       </div>
     </div>

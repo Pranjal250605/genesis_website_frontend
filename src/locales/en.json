@@ -197,6 +197,9 @@
     "subtitle": "Dispatches from the frontier — expansions, partnerships, and breakthroughs shaping the next era of human-machine synergy.",
     "transmissionId": "Genesis Transmission",
     "featured": "Featured",
+    "loading": "Loading transmissions...",
+    "error": "Failed to load updates. Please try again later.",
+    "no_updates": "No transmissions available at this time.",
     "news": {
       "tx001": {
         "id": "TX-001",
@@ -477,6 +480,11 @@
     "resume_upload": "Click to upload your Resume / CV",
     "resume_formats": "PDF, DOC, DOCX (Max 5MB)",
     "submit": "Submit Application",
+    "submitting": "Submitting...",
+    "success_title": "Application Submitted",
+    "success_body": "Thank you for your interest in Genesis. We'll review your application and reach out if there's a match.",
+    "error_upload": "Failed to upload CV. Please try again.",
+    "error_submit": "Something went wrong. Please try again or email us directly.",
     "disclaimer": "By submitting this form, you agree to our privacy policy and terms of service."
   },
   "contact_us_page": {
@@ -490,7 +498,21 @@
     "hq_label": "Headquarters",
     "hq_value": "Hiroshima, Japan",
     "response_label": "Response Time",
-    "response_value": "We typically respond within 1–2 business days."
+    "response_value": "We typically respond within 1–2 business days.",
+    "form_title": "Send Us a Message",
+    "form_name": "Your Name",
+    "form_name_placeholder": "Full name",
+    "form_email": "Email Address",
+    "form_email_placeholder": "you@example.com",
+    "form_subject": "Subject",
+    "form_subject_placeholder": "What is this regarding?",
+    "form_message": "Message",
+    "form_message_placeholder": "Tell us more about your enquiry...",
+    "form_submit": "Send Message",
+    "form_submitting": "Sending...",
+    "form_success_title": "Message Sent",
+    "form_success_body": "Thank you for reaching out. We'll get back to you within 1–2 business days.",
+    "form_error": "Something went wrong. Please try again or email us directly."
   },
   "gxSection": {
     "panel1Title": "Leading the Green Transformation",

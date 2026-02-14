@@ -9,8 +9,10 @@ import {
   Briefcase,
   FileText,
   ArrowUpRight,
+  AlertCircle,
 } from "lucide-react";
 import Starry from "@/components/ui/Starry";
+import { supabase } from "@/lib/supabase";
 
 /* ───────────────────── Types ───────────────────── */
 
@@ -48,6 +50,7 @@ export default function Careers(_props: CareersProps = {}) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   /* Hero parallax */
   const { scrollYProgress: heroProgress } = useScroll({
@@ -100,10 +103,46 @@ export default function Careers(_props: CareersProps = {}) {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate submission delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setSubmitError("");
+
+    // Step 1: Upload CV to private bucket
+    let cvPath: string | undefined;
+    if (formData.cv) {
+      const fileExt = formData.cv.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("cv-uploads")
+        .upload(fileName, formData.cv, {
+          contentType: formData.cv.type,
+        });
+
+      if (uploadError) {
+        setIsSubmitting(false);
+        setSubmitError(t("open_application_page.error_upload"));
+        return;
+      }
+
+      cvPath = fileName;
+    }
+
+    // Step 2: Insert into open_applications table
+    const { error } = await supabase.from("open_applications").insert({
+      full_name: formData.fullName,
+      email: formData.email,
+      expertise: formData.areaOfInterest,
+      cv_url: cvPath || null,
+    });
+
     setIsSubmitting(false);
-    setSubmitted(true);
+
+    if (error) {
+      setSubmitError(t("open_application_page.error_submit"));
+    } else {
+      setSubmitted(true);
+      setFormData({ fullName: "", email: "", areaOfInterest: "", cv: null });
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
   };
 
   /* ── File change ── */
@@ -391,6 +430,14 @@ export default function Careers(_props: CareersProps = {}) {
                       )}
                     </div>
                   </div>
+
+                  {/* Error feedback */}
+                  {submitError && (
+                    <div className="flex items-center gap-3 rounded-xl border border-red-400/20 bg-red-400/[0.04] px-5 py-3 mt-6">
+                      <AlertCircle size={18} className="text-red-400 shrink-0" />
+                      <p className="text-red-300 text-sm">{submitError}</p>
+                    </div>
+                  )}
 
                   {/* Submit button */}
                   <motion.button

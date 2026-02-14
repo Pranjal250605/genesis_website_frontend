@@ -587,6 +587,9 @@
     "subtitle": "フロンティアからの派遣 — 人間と機械の共生の次の時代を形作る拡大、パートナーシップ、ブレークスルー。",
     "transmissionId": "ジェネシス伝送",
     "featured": "特集",
+    "loading": "データを読み込み中...",
+    "error": "更新情報の読み込みに失敗しました。後でもう一度お試しください。",
+    "no_updates": "現在、利用可能な更新情報はありません。",
     "news": {
       "tx001": {
         "id": "TX-001",
@@ -966,6 +969,11 @@
     "resume_upload": "クリックして履歴書をアップロード",
     "resume_formats": "PDF, DOC, DOCX（最大5MB）",
     "submit": "応募する",
+    "submitting": "送信中...",
+    "success_title": "応募完了",
+    "success_body": "ジェネシスへのご関心ありがとうございます。応募内容を確認し、マッチする場合はご連絡いたします。",
+    "error_upload": "CVのアップロードに失敗しました。もう一度お試しください。",
+    "error_submit": "エラーが発生しました。もう一度お試しいただくか、直接メールでお問い合わせください。",
     "disclaimer": "このフォームを送信することにより、プライバシーポリシーと利用規約に同意するものとします。"
   },
   "contact_us_page": {
@@ -979,7 +987,21 @@
     "hq_label": "本社",
     "hq_value": "広島、日本",
     "response_label": "返答時間",
-    "response_value": "通常1〜2営業日以内にご返信いたします。"
+    "response_value": "通常1〜2営業日以内にご返信いたします。",
+    "form_title": "メッセージを送る",
+    "form_name": "お名前",
+    "form_name_placeholder": "氏名",
+    "form_email": "メールアドレス",
+    "form_email_placeholder": "you@example.com",
+    "form_subject": "件名",
+    "form_subject_placeholder": "お問い合わせの内容",
+    "form_message": "メッセージ",
+    "form_message_placeholder": "お問い合わせの詳細をお書きください...",
+    "form_submit": "メッセージを送信",
+    "form_submitting": "送信中...",
+    "form_success_title": "送信完了",
+    "form_success_body": "お問い合わせいただきありがとうございます。1〜2営業日以内にご返信いたします。",
+    "form_error": "エラーが発生しました。もう一度お試しいただくか、直接メールでお問い合わせください。"
   },
   "gxSection": {
     "panel1Title": "グリーントランスフォーメーションをリードする",

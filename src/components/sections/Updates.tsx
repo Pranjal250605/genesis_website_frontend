@@ -1,24 +1,21 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Clock, Signal } from "lucide-react";
 import Starry from "@/components/ui/Starry";
-
-/* ─── Data ─── */
-
-interface NewsItem {
-  key: string;
-  featured?: boolean;
-}
+import { supabase } from "@/lib/supabase";
+import type { UpdateRow } from "@/lib/types";
 
 /* ─── 3D Holographic Tilt Card ─── */
 
 function TiltCard({
   item,
   index,
+  lang,
 }: {
-  item: NewsItem;
+  item: UpdateRow;
   index: number;
+  lang: string;
 }) {
   const { t } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -50,6 +47,12 @@ function TiltCard({
     mouseY.set(0);
     setIsHovered(false);
   };
+
+  const isJa = lang === "ja";
+  const headline = isJa ? item.headline_ja : item.headline_en;
+  const summary = isJa ? item.summary_ja : item.summary_en;
+  const date = isJa ? item.date_ja : item.date_en;
+  const category = isJa ? item.category_ja : item.category_en;
 
   return (
     <motion.div
@@ -100,7 +103,7 @@ function TiltCard({
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-amber-400/60">
-                {t(`updatesSection.news.${item.key}.id`)}
+                {item.transmission_id}
               </span>
               <div className="h-px w-6 bg-gradient-to-r from-amber-400/30 to-transparent" />
               <div className="flex items-center gap-1.5">
@@ -110,7 +113,7 @@ function TiltCard({
                   strokeWidth={1.5}
                 />
                 <span className="text-[11px] text-white/30 uppercase tracking-wider">
-                  {t(`updatesSection.news.${item.key}.date`)}
+                  {date}
                 </span>
               </div>
             </div>
@@ -148,7 +151,7 @@ function TiltCard({
               }`}
             >
               <Signal size={10} strokeWidth={2} />
-              {t(`updatesSection.news.${item.key}.category`)}
+              {category}
             </span>
           </div>
 
@@ -160,12 +163,12 @@ function TiltCard({
                 : "text-[22px] lg:text-[26px]"
             }`}
           >
-            {t(`updatesSection.news.${item.key}.headline`)}
+            {headline}
           </h3>
 
           {/* Summary */}
           <p className="text-[15px] text-white/45 leading-relaxed flex-1">
-            {t(`updatesSection.news.${item.key}.summary`)}
+            {summary}
           </p>
 
           {/* Footer line */}
@@ -188,14 +191,54 @@ function TiltCard({
   );
 }
 
+/* ─── Loading Skeleton ─── */
+
+function SkeletonCard() {
+  return (
+    <div className="md:col-span-2 rounded-[28px] border border-white/10 bg-white/[0.03] p-8 lg:p-10 animate-pulse">
+      <div className="flex items-center gap-4 mb-6">
+        <div className="h-3 w-20 bg-white/10 rounded" />
+        <div className="h-3 w-16 bg-white/10 rounded" />
+      </div>
+      <div className="h-4 w-24 bg-white/10 rounded-full mb-5" />
+      <div className="h-8 w-3/4 bg-white/10 rounded mb-5" />
+      <div className="space-y-2">
+        <div className="h-4 w-full bg-white/10 rounded" />
+        <div className="h-4 w-5/6 bg-white/10 rounded" />
+        <div className="h-4 w-2/3 bg-white/10 rounded" />
+      </div>
+    </div>
+  );
+}
+
 /* ─── Page Component ─── */
 
 export default function Updates() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [updates, setUpdates] = useState<UpdateRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const news: NewsItem[] = [
-    { key: "tx001", featured: true },
-  ];
+  useEffect(() => {
+    async function fetchUpdates() {
+      setLoading(true);
+      setError(false);
+
+      const { data, error: fetchError } = await supabase
+        .from("updates")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (fetchError) {
+        setError(true);
+      } else {
+        setUpdates(data as UpdateRow[]);
+      }
+      setLoading(false);
+    }
+
+    fetchUpdates();
+  }, []);
 
   return (
     <section className="relative min-h-screen w-full bg-[#050505] overflow-hidden">
@@ -255,11 +298,26 @@ export default function Updates() {
           </motion.p>
         </motion.div>
 
-        {/* News Grid — featured card spans 2 cols */}
+        {/* News Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {news.map((item, i) => (
-            <TiltCard key={item.key} item={item} index={i} />
-          ))}
+          {loading ? (
+            <>
+              <SkeletonCard />
+              <SkeletonCard />
+            </>
+          ) : error ? (
+            <div className="md:col-span-2 text-center py-16">
+              <p className="text-white/40 text-lg">{t('updatesSection.error')}</p>
+            </div>
+          ) : updates.length === 0 ? (
+            <div className="md:col-span-2 text-center py-16">
+              <p className="text-white/40 text-lg">{t('updatesSection.no_updates')}</p>
+            </div>
+          ) : (
+            updates.map((item, i) => (
+              <TiltCard key={item.id} item={item} index={i} lang={i18n.language} />
+            ))
+          )}
         </div>
       </div>
     </section>

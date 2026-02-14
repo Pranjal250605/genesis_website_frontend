@@ -280,7 +280,7 @@ export default function JoinUs({ onNavigate }: JoinUsProps = {}) {
             {t('joinUsSection.bottomCta.text')}
           </p>
           <button
-            onClick={() => onNavigate?.("open-application")}
+            onClick={() => onNavigate?.("careers")}
             className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md transition-all duration-500 hover:border-amber-400/40 hover:bg-amber-400/[0.06]"
           >
             <span className="text-[13px] text-white/60 uppercase tracking-[0.2em] font-bold group-hover:text-white transition-colors duration-500">
