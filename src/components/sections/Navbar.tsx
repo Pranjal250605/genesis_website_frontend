@@ -5,10 +5,12 @@ import { Globe, Menu, X } from 'lucide-react';
 import MenuOverlay from '@/components/sections/MenuOverlay';
 
 interface NavbarProps {
+  currentPage: string;
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates" | "japan-portfolio") => void;
+  onHomeReset: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset }) => {
   const { t, i18n } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -19,7 +21,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
       <div className="flex h-20 w-full max-w-[1440px] items-center justify-between rounded-[40px] border border-white/10 bg-zinc-950/20 px-10 shadow-2xl backdrop-blur-xl">
 
         {/* Logo Section */}
-        <div className="flex items-center gap-4 cursor-pointer" onClick={() => { setMenuOpen(false); onNavigate("home"); }}>
+        <div className="flex items-center gap-4 cursor-pointer" onClick={() => {
+          setMenuOpen(false);
+          if (currentPage === "home") {
+            onHomeReset();
+          } else {
+            onNavigate("home");
+          }
+        }}>
             <img
                 src={Logo}
                 alt="Main Logo"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -43,55 +43,59 @@ type Page =
   | "japan-portfolio"
   | "contact-us"
 
+const urlMap: Record<Page, string> = {
+  home: "/",
+  "about-us": "/about-us",
+  services: "/services",
+  "impact-innovation": "/impact-innovation",
+  careers: "/careers",
+  "social-initiatives": "/social-initiatives",
+  "join-us": "/join-us",
+  updates: "/updates",
+  "open-application": "/open-application",
+  "japan-portfolio": "/japan-portfolio",
+  "contact-us": "/contact-us",
+}
+
+function cleanupScrollState() {
+  ScrollTrigger.getAll().forEach((st) => st.kill())
+  ScrollTrigger.clearScrollMemory()
+  window.scrollTo(0, 0)
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home")
+  const [homeKey, setHomeKey] = useState(0)
 
   const handleNavigate = (page: Page) => {
-    // Kill all existing ScrollTriggers
-    ScrollTrigger.getAll().forEach((st) => st.kill())
-
-    // Scroll to top
-    window.scrollTo(0, 0)
-
-    const urlMap: Record<Page, string> = {
-      home: "/",
-      "about-us": "/about-us",
-      services: "/services",
-      "impact-innovation": "/impact-innovation",
-      careers: "/careers",
-      "social-initiatives": "/social-initiatives",
-      "join-us": "/join-us", // New url map
-      updates: "/updates", // New url map
-      "open-application": "/open-application",
-      "japan-portfolio": "/japan-portfolio",
-      "contact-us": "/contact-us",
-    }
-
-    // Update browser history
+    cleanupScrollState()
     window.history.pushState({ page }, "", urlMap[page])
-
     setCurrentPage(page)
+  }
+
+  const handleHomeReset = () => {
+    cleanupScrollState()
+    setHomeKey((k) => k + 1)
   }
 
   // Handle browser back/forward
   useEffect(() => {
     const handlePop = (e: PopStateEvent) => {
       const page = (e.state?.page as Page) || "home"
-
-      ScrollTrigger.getAll().forEach((st) => st.kill())
-      window.scrollTo(0, 0)
-
+      cleanupScrollState()
       setCurrentPage(page)
     }
 
     window.addEventListener("popstate", handlePop)
-
-    return () => {
-      window.removeEventListener("popstate", handlePop)
-    }
+    return () => window.removeEventListener("popstate", handlePop)
   }, [])
 
-  // Enable Lenis smooth scroll only on Home
+  // Force scroll to 0 synchronously before children paint on every page change
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentPage])
+
+  // Enable Lenis smooth scroll only on Home + refresh ScrollTrigger
   useEffect(() => {
     if (currentPage !== "home") return
 
@@ -111,19 +115,26 @@ export default function App() {
     gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
 
+    // After Lenis is ready and children have mounted with their ScrollTriggers,
+    // recalculate all pin positions and scroll heights
+    const refreshId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true)
+    })
+
     return () => {
+      cancelAnimationFrame(refreshId)
       lenis.destroy()
       gsap.ticker.remove(update)
     }
-  }, [currentPage])
+  }, [currentPage, homeKey])
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <Navbar onNavigate={handleNavigate} />
+      <Navbar currentPage={currentPage} onNavigate={handleNavigate} onHomeReset={handleHomeReset} />
 
       <main>
         {currentPage === "home" && (
-          <>
+          <div key={homeKey}>
             <Hero />
             <About />
             <Core />
@@ -131,7 +142,7 @@ export default function App() {
             <Partners />
             <CeoVision />
             <Contact onNavigate={handleNavigate} />
-          </>
+          </div>
         )}
 
         {currentPage === "about-us" && (
