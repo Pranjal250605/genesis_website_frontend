@@ -95,16 +95,16 @@ export default function App() {
     window.scrollTo(0, 0)
   }, [currentPage])
 
-  // Enable Lenis smooth scroll only on Home + refresh ScrollTrigger
+  // Single Lenis instance for ALL pages — recreated on every page change / home reset
   useEffect(() => {
-    if (currentPage !== "home") return
-
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) =>
         Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
+
+    lenis.scrollTo(0, { immediate: true })
 
     lenis.on("scroll", ScrollTrigger.update)
 

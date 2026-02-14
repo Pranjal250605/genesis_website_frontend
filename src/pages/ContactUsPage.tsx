@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import Lenis from "lenis"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { motion } from "framer-motion"
 import { Mail, ArrowUpRight, ArrowLeft, Send, CheckCircle, AlertCircle } from "lucide-react"
 import Starry from "@/components/ui/Starry"
 import { supabase } from "@/lib/supabase"
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface ContactUsPageProps {
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "contact-us") => void
@@ -18,29 +13,6 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
   const { t } = useTranslation()
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    })
-
-    lenis.on("scroll", ScrollTrigger.update)
-
-    const update = (time: number) => {
-      lenis.raf(time * 1000)
-    }
-
-    gsap.ticker.add(update)
-    gsap.ticker.lagSmoothing(0)
-
-    return () => {
-      lenis.destroy()
-      gsap.ticker.remove(update)
-      ScrollTrigger.getAll().forEach((st) => st.kill())
-    }
-  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })

@@ -1,14 +1,9 @@
-import { useEffect, useRef, useState } from "react"
-import Lenis from "lenis"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { ArrowLeft, Upload, Send, FileText, X, CheckCircle, AlertCircle } from "lucide-react"
 import Starry from "@/components/ui/Starry"
 import { supabase } from "@/lib/supabase"
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface OpenApplicationPageProps {
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates") => void
@@ -32,29 +27,6 @@ export default function OpenApplicationPage({ onNavigate }: OpenApplicationPageP
     motivation: "",
     availability: "",
   })
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    })
-
-    lenis.on("scroll", ScrollTrigger.update)
-
-    const update = (time: number) => {
-      lenis.raf(time * 1000)
-    }
-
-    gsap.ticker.add(update)
-    gsap.ticker.lagSmoothing(0)
-
-    return () => {
-      lenis.destroy()
-      gsap.ticker.remove(update)
-      ScrollTrigger.getAll().forEach((st) => st.kill())
-    }
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
