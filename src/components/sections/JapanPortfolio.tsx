@@ -2,46 +2,59 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
+import homaImg from "@/components/images/homa.png";
+import reagvisImg from "@/components/images/reagvis.png";
+import vanrakshakImg from "@/components/images/vanrakshak.png";
+import biharHeritageImg from "@/components/images/bihar heritage.png";
+
 const japanPortfolio = [
   {
     productName: "Smart Non-Contact Condition Monitoring System (BI-NCM)",
     brandOwner: "Simhatel Pvt. Ltd. and CAIR, IIT Mandi",
     channelPartner: "GENESIS Edify Group",
+    image: null,
   },
   {
     productName: "adapID AI \u2013 Behavioral Biometrics Platform",
     brandOwner: "IIT Mandi (CAIR) & Industry Partners",
     channelPartner: "GENESIS Edify Group",
+    image: null,
   },
   {
     productName: "DenseSight - AI Video Intelligence Platform",
     brandOwner: "Simhatel Pvt. Ltd.",
     channelPartner: "GENESIS Edify Group",
+    image: null,
   },
   {
     productName: "HOMA 1.0 & 2.0 - Autonomous Aerial Firefighting Systems",
     brandOwner: "Simhatel Pvt. Ltd.",
     channelPartner: "GENESIS Edify Group",
+    image: homaImg,
   },
   {
     productName: "REAGVIS DeepTrust - AI Platform for Deepfake and Forgery Detection",
     brandOwner: "Reagvis Labs Pvt. Ltd.",
     channelPartner: "GENESIS Edify Group",
+    image: reagvisImg,
   },
   {
     productName: "Van Rakshak - AI-Powered Drone System",
     brandOwner: "Simhatel Pvt. Ltd.",
     channelPartner: "GENESIS Edify Group",
+    image: vanrakshakImg,
   },
   {
     productName: "Project Nayan - AI-AR Platform",
     brandOwner: "Simhatel Pvt. Ltd.",
     channelPartner: "GENESIS Edify Group",
+    image: null,
   },
   {
     productName: "Immersive Bihar Heritage - AR/VR Restoration and Drone Telepresence",
     brandOwner: "Simhatel Pvt. Ltd.",
     channelPartner: "GENESIS Edify Group",
+    image: biharHeritageImg,
   },
 ];
 
@@ -113,9 +126,9 @@ export default function JapanPortfolio() {
           </p>
         </motion.div>
 
-        {/* Cards — stacked full-width rows */}
+        {/* Cards — stacked full-width rows, images first */}
         <div className="max-w-5xl mx-auto flex flex-col gap-8">
-          {japanPortfolio.map((project, i) => (
+          {[...japanPortfolio].sort((a, b) => (a.image ? 0 : 1) - (b.image ? 0 : 1)).map((project, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
@@ -164,11 +177,19 @@ export default function JapanPortfolio() {
                 </div>
               </div>
 
-              {/* Right — Image placeholder */}
+              {/* Right — Image or placeholder */}
               <div className="md:w-[45%] lg:w-[40%] min-h-[220px] md:min-h-[280px] bg-white/[0.02] border-t md:border-t-0 md:border-l border-white/5 flex items-center justify-center">
-                <span className="text-white/20 text-sm font-mono tracking-wider">
-                  {String(i + 1).padStart(2, "0")} / IMAGE
-                </span>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.productName}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-white/20 text-sm font-mono tracking-wider">
+                    {String(i + 1).padStart(2, "0")} / IMAGE
+                  </span>
+                )}
               </div>
             </motion.div>
           ))}
