@@ -54,23 +54,6 @@ const timeline: TimelineNode[] = [
   },
 ];
 
-/* ─── Reusable animated text line ─── */
-
-function AnimatedLine({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  return (
-    <div className="overflow-hidden">
-      <motion.div
-        initial={{ y: "100%" }}
-        whileInView={{ y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-}
-
 /* ─── Component ─── */
 
 export default function SignatureEvent() {

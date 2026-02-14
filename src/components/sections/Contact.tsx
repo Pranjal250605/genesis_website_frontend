@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Starry from "@/components/ui/Starry";
 import { ArrowUpRight } from "lucide-react";

@@ -10,7 +10,7 @@ interface ServicesPageProps {
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
 }
 
-export default function ServicesPage({ onNavigate }: ServicesPageProps) {
+export default function ServicesPage({ onNavigate: _onNavigate }: ServicesPageProps) {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,

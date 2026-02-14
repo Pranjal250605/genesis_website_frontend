@@ -3,7 +3,6 @@ import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Careers from "@/components/sections/Careers"
-import { useTranslation } from "react-i18next"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,7 +11,6 @@ interface CareersPageProps {
 }
 
 export default function CareersPage({ onNavigate }: CareersPageProps) {
-  const { t } = useTranslation();
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,

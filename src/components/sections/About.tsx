@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';

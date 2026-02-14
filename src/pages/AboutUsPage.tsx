@@ -12,7 +12,7 @@ interface AboutUsPageProps {
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
 }
 
-export default function AboutUsPage({ onNavigate }: AboutUsPageProps) {
+export default function AboutUsPage({ onNavigate: _onNavigate }: AboutUsPageProps) {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,

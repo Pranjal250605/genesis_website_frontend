@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Vid from "@/components/images/japan.mp4";
 import JapanMap from "@/components/images/istockphoto-537287287-612x612.jpg";
