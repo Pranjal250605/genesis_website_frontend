@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import CeoImg from "@/components/images/ceo.jpg";
+import CeoImg from "@/components/images/ceo1.jpg";
 import Starry from "@/components/ui/Starry";
 
 export default function CeoVision() {
