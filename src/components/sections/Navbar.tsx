@@ -17,8 +17,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
   return (
     <>
     <MenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} onNavigate={(page) => { setMenuOpen(false); onNavigate(page); }} />
-    <nav className="fixed top-4 left-0 right-0 z-[1000] flex justify-center px-4">
-      <div className="flex h-20 w-full max-w-[1440px] items-center justify-between rounded-[40px] border border-white/10 bg-zinc-950/20 px-10 shadow-2xl backdrop-blur-xl">
+    <nav className="fixed top-4 left-0 right-0 z-[1000] flex justify-center px-2 sm:px-4">
+      <div className="flex h-14 sm:h-20 w-full max-w-[1440px] items-center justify-between rounded-[24px] sm:rounded-[40px] border border-white/10 bg-zinc-950/20 px-4 sm:px-10 shadow-2xl backdrop-blur-xl">
 
         {/* Logo Section */}
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => {
@@ -32,12 +32,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
             <img
                 src={Logo}
                 alt="Main Logo"
-                className="h-12 w-auto object-contain"
+                className="h-8 sm:h-12 w-auto object-contain"
             />
 
-            <div className="h-8 w-[2px] bg-amber-400/20" />
+            <div className="hidden sm:block h-8 w-[2px] bg-amber-400/20" />
 
-            <div className="flex flex-col justify-center">
+            <div className="hidden sm:flex flex-col justify-center">
                 <span className="text-[12px] font-medium uppercase tracking-wider text-amber-400/80">
                 {t('navbar.tagline')}
                 </span>
@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
         </div>
 
         {/* Navigation Actions */}
-        <div className="flex items-center gap-6 ">
+        <div className="flex items-center gap-3 sm:gap-6">
 
             {/* Language Selector */}
             <div
@@ -65,10 +65,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
                 </span>
             </div>
 
-            <div className="h-6 w-[2px] bg-white/10" />
+            <div className="hidden sm:block h-6 w-[2px] bg-white/10" />
 
             {/* JOIN US Button */}
             <button onClick={() => { setMenuOpen(false); onNavigate("join-us"); }} className="
+                hidden sm:block
                 px-5 py-2 rounded-full
                 bg-white/5 backdrop-blur-md
                 border border-white/20
@@ -83,6 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
 
             {/* UPDATES Button */}
             <button onClick={() => { setMenuOpen(false); onNavigate("updates"); }} className="
+                hidden sm:block
                 px-5 py-2 rounded-full
                 bg-white/5 backdrop-blur-md
                 border border-white/20
@@ -95,7 +97,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
                 {t('navbar.updates')}
             </button>
 
-            <div className="h-6 w-[2px] bg-white/10" />
+            <div className="hidden sm:block h-6 w-[2px] bg-white/10" />
 
             {/* MENU Button (Icon Only) */}
             <button onClick={() => setMenuOpen(!menuOpen)} className="flex items-center group cursor-pointer">

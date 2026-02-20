@@ -38,49 +38,49 @@ function Hero() {
       </div>
 
       {/* 3. Content Container */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-12 lg:px-24">
+      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-12 lg:px-24">
         <div>
           {/* Metadata Row */}
-          <div className="flex w-full items-end justify-between mb-8">
-  
+          <div className="flex w-full flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-0 mb-8">
+
             {/* LEFT GROUP */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 sm:gap-6">
               <div className="h-px w-12 bg-amber-400/60" />
 
               <div className="flex items-center gap-3">
-                <h2 className="text-amber-400 text-lg tracking-[0.2em] font-medium uppercase">
+                <h2 className="text-amber-400 text-sm sm:text-lg tracking-[0.2em] font-medium uppercase">
                   {t('hero.group')}
                 </h2>
                 <img
                   src={JapanMap}
                   alt="Japan Location"
-                  className="h-5 w-auto object-contain opacity-90 grayscale-[20%]"
+                  className="h-4 sm:h-5 w-auto object-contain opacity-90 grayscale-[20%]"
                 />
               </div>
             </div>
 
             {/* RIGHT GROUP: Coordinates (Text Updated) */}
-            <div className="flex flex-col text-right min-w-[220px]">
-              <h1 className="text-amber-400 text-xl tracking-wider tabular-nums">
+            <div className="flex flex-col text-left sm:text-right min-w-0 sm:min-w-[220px]">
+              <h1 className="text-amber-400 text-sm sm:text-xl tracking-wider tabular-nums">
                 35°41'{coords.lat}"N 139°41'{coords.lng}"E
               </h1>
-              <p className="text-[12px] uppercase tracking-widest text-white/40">
+              <p className="text-[10px] sm:text-[12px] uppercase tracking-widest text-white/40">
                 {t('hero.location')}
               </p>
             </div>
             
           </div>
           
-          <div className="w-full h-px bg-white/40 mt-6 mb-12" />
+          <div className="w-full h-px bg-white/40 mt-4 sm:mt-6 mb-6 sm:mb-12" />
 
-          <div className='ml-14'>
+          <div className='ml-0 sm:ml-14'>
             <h1
-              className="text-6xl md:text-7xl font-bold leading-[1.1] text-amber-400"
+              className="text-3xl sm:text-6xl md:text-7xl font-bold leading-[1.1] text-amber-400"
               dangerouslySetInnerHTML={{ __html: t('hero.title') }}
             />
 
             <p
-              className="mt-6 text-xl md:text-2xl font-normal leading-normal tracking-wide text-gray-100"
+              className="mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl font-normal leading-normal tracking-wide text-gray-100"
               dangerouslySetInnerHTML={{ __html: t('hero.subtitle') }}
             />
 
@@ -93,8 +93,8 @@ function Hero() {
                 group relative flex items-center justify-center gap-4 w-fit whitespace-nowrap
                 rounded-full border border-white/25
                 bg-[#556982] backdrop-blur-xl
-                px-10 py-5
-                text-lg sm:text-xl font-bold tracking-[0.15em] text-white uppercase
+                px-6 py-3 sm:px-10 sm:py-5
+                text-sm sm:text-lg md:text-xl font-bold tracking-[0.15em] text-white uppercase
                 transition-all duration-300 ease-out
                 hover:bg-[#60748e] hover:border-white/40 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(85,105,130,0.5)]
                 active:scale-95
@@ -102,7 +102,7 @@ function Hero() {
                 <img
                   src={EdifyLogo}
                   alt="Edify Logo"
-                  className="h-9 w-auto object-contain"
+                  className="h-6 sm:h-9 w-auto object-contain"
                 />
                 {t('hero.cta')}
                 <svg

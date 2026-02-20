@@ -67,7 +67,7 @@ export default function ImpactInnovation() {
         {/* ═══════════════════════════════════════════
             HERO — Parallax + line-reveal text
         ═══════════════════════════════════════════ */}
-        <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pt-44 pb-24 overflow-hidden">
+        <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pt-28 sm:pt-44 pb-16 sm:pb-24 overflow-hidden">
           <motion.div
             style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
             className="max-w-4xl"
@@ -85,7 +85,7 @@ export default function ImpactInnovation() {
 
             {/* Title — line-by-line reveal from below */}
             <h1
-              className="text-[56px] lg:text-[88px] font-bold text-white uppercase tracking-tight leading-[0.95] mb-8"
+              className="text-[32px] sm:text-[56px] lg:text-[88px] font-bold text-white uppercase tracking-tight leading-[0.95] mb-8"
               dangerouslySetInnerHTML={{
                 __html: t("impact_page.title")
                   .replace("<1>", '<span class="text-amber-400">')
@@ -120,7 +120,7 @@ export default function ImpactInnovation() {
         ═══════════════════════════════════════════ */}
         <section ref={partnerRef} className="relative pb-32 overflow-hidden">
           {/* Section heading */}
-          <div className="max-w-[1440px] mx-auto px-8 lg:px-16 mb-12">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 mb-12">
             <motion.span
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -131,7 +131,7 @@ export default function ImpactInnovation() {
               {t("impact_page.partners_eyebrow")}
             </motion.span>
             <h2
-              className="text-[40px] lg:text-[56px] font-bold text-white uppercase tracking-tight leading-none"
+              className="text-[26px] sm:text-[40px] lg:text-[56px] font-bold text-white uppercase tracking-tight leading-none"
               dangerouslySetInnerHTML={{
                 __html: t("impact_page.partners_title")
                   .replace("<1>", '<span class="text-amber-400">')
@@ -174,7 +174,7 @@ export default function ImpactInnovation() {
         {/* ═══════════════════════════════════════════
             DEFENCE & CONSULTANCY — Split-Screen + stagger
         ═══════════════════════════════════════════ */}
-        <section ref={defenceRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-32">
+        <section ref={defenceRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pb-20 sm:pb-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
 
             {/* Left column — editorial text (5 cols, sticky) */}
@@ -193,7 +193,7 @@ export default function ImpactInnovation() {
               </motion.span>
 
               <h2
-                className="text-[40px] lg:text-[52px] font-bold text-white uppercase tracking-tight leading-[1.05] mb-6"
+                className="text-[26px] sm:text-[40px] lg:text-[52px] font-bold text-white uppercase tracking-tight leading-[1.05] mb-6"
                 dangerouslySetInnerHTML={{
                   __html: t("impact_page.defence_title")
                     .replace("<1>", '<span class="text-amber-400">')

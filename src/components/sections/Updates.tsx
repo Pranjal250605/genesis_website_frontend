@@ -93,15 +93,15 @@ function TiltCard({
 
         {/* Content — lifts on hover */}
         <div
-          className="relative z-20 flex flex-col h-full p-8 lg:p-10 transition-transform duration-500 ease-out"
+          className="relative z-20 flex flex-col h-full p-5 sm:p-8 lg:p-10 transition-transform duration-500 ease-out"
           style={{
             transform: isHovered ? "translateZ(50px)" : "translateZ(0px)",
             transformStyle: "preserve-3d",
           }}
         >
           {/* Top row: transmission ID + date + arrow */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-4">
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-amber-400/60">
                 {item.transmission_id}
               </span>
@@ -259,7 +259,7 @@ export default function Updates() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-[1440px] px-8 lg:px-16 pt-44 pb-32">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-16 pt-28 sm:pt-44 pb-20 sm:pb-32">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -278,7 +278,7 @@ export default function Updates() {
             {t('updatesSection.eyebrow')}
           </motion.span>
 
-          <h1 className="text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-[0.95] mb-6">
+          <h1 className="text-[32px] sm:text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-[0.95] mb-6">
             <Trans
               i18nKey="updatesSection.title"
               components={{

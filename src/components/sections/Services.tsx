@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
 import Starry from "@/components/ui/Starry";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 import { ClipboardCheck, UsersRound, Workflow, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -87,13 +88,13 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
         />
 
         <div
-          className="relative z-20 flex flex-col h-full p-8 lg:p-10 transition-transform duration-500 ease-out"
-          style={{ 
+          className="relative z-20 flex flex-col h-full p-5 sm:p-8 lg:p-10 transition-transform duration-500 ease-out"
+          style={{
             transform: isHovered ? "translateZ(50px)" : "translateZ(0px)",
             transformStyle: "preserve-3d"
           }}
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-amber-400/60">{card.number}</span>
             <div className="flex-1 h-px bg-gradient-to-r from-amber-400/30 to-transparent" />
           </div>
@@ -127,6 +128,7 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
 
 export default function Services() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   const services: ServiceCardData[] = [
     {
@@ -171,6 +173,8 @@ export default function Services() {
   const gxOverlayRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -214,7 +218,7 @@ export default function Services() {
     }, gxContainerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     /* Changed bg-[#050505] to bg-transparent to allow Starry to show through */
@@ -236,7 +240,7 @@ export default function Services() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-8 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-16">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -246,14 +250,14 @@ export default function Services() {
           className="mb-16"
         >
           <h2
-            className="text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none mb-4"
+            className="text-[28px] sm:text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none mb-4"
             dangerouslySetInnerHTML={{
               __html: t("services_page.title")
                 .replace("<1>", '<span class="text-amber-400">')
                 .replace("</1>", "</span>"),
             }}
           />
-          <p className="text-[18px] text-white/50 max-w-2xl leading-relaxed">
+          <p className="text-[14px] sm:text-[18px] text-white/50 max-w-2xl leading-relaxed">
             {t("services_page.subtitle")}
           </p>
         </motion.div>
@@ -439,7 +443,7 @@ export default function Services() {
         </div>
 
         {/* Content layer */}
-        <div className="relative z-30 flex h-full w-full items-end justify-start p-8 md:p-16 lg:p-32">
+        <div className="relative z-30 flex h-full w-full items-end justify-start p-4 sm:p-8 md:p-16 lg:p-32">
 
           {/* Panel 1 */}
           <div className="gx-panel-1 absolute flex flex-col items-start text-left gap-4 sm:gap-6 max-w-5xl pb-16 opacity-0">
@@ -474,7 +478,7 @@ export default function Services() {
           </div>
 
           {/* Panel 3 + Card */}
-          <div className="gx-panel-3 absolute inset-0 z-30 flex flex-col lg:flex-row items-end lg:items-center justify-start lg:justify-between p-8 md:p-16 lg:p-32 pt-32 md:pt-40 pb-16 opacity-0">
+          <div className="gx-panel-3 absolute inset-0 z-30 flex flex-col lg:flex-row items-end lg:items-center justify-start lg:justify-between p-4 sm:p-8 md:p-16 lg:p-32 pt-24 sm:pt-32 md:pt-40 pb-16 opacity-0">
             {/* Left text */}
             <div className="flex flex-col items-start text-left gap-4 sm:gap-6 max-w-2xl">
               <h2 className="text-[36px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">

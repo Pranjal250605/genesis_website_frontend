@@ -102,7 +102,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         {/* ═══════════════════════════════════════════
             HERO — Soft & Welcoming
         ═══════════════════════════════════════════ */}
-        <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pt-44 pb-40">
+        <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pt-28 sm:pt-44 pb-20 sm:pb-40">
           <motion.div
             style={{ y: smoothHeroY, opacity: heroOpacity }}
             className="max-w-4xl mx-auto text-center"
@@ -122,7 +122,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.4, delay: 0.2, ease: "easeOut" }}
-              className="text-[52px] lg:text-[88px] font-extralight text-white uppercase tracking-tight leading-[1.05] mb-12"
+              className="text-[32px] sm:text-[52px] lg:text-[88px] font-extralight text-white uppercase tracking-tight leading-[1.05] mb-8 sm:mb-12"
               dangerouslySetInnerHTML={{ __html: t("social_page.hero_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }}
             />
 
@@ -131,7 +131,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.6, delay: 0.4 }}
-              className="text-[20px] font-light text-white/60 leading-loose max-w-2xl mx-auto"
+              className="text-[15px] sm:text-[20px] font-light text-white/60 leading-loose max-w-2xl mx-auto"
             >
               {t("social_page.hero_subtitle")}
             </motion.p>
@@ -149,7 +149,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         {/* ═══════════════════════════════════════════
             OUR FOCUS — Zen Grid with Breathing Icons
         ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+        <section className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pb-20 sm:pb-40">
           {/* Section heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -161,11 +161,11 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-5 block">
               {t("social_page.focus_eyebrow")}
             </span>
-            <h2 className="text-[40px] lg:text-[56px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.focus_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
+            <h2 className="text-[26px] sm:text-[40px] lg:text-[56px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.focus_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
           </motion.div>
 
           {/* Grid of focus cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8 mb-10 sm:mb-16">
             {focusAreas.map((focus, i) => (
               <FocusCard key={focus.title} focus={focus} index={i} />
             ))}
@@ -203,7 +203,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         {/* ═══════════════════════════════════════════
             MISSION & IMPACT — Split Screen with Ripples
         ═══════════════════════════════════════════ */}
-        <section ref={missionRef} className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+        <section ref={missionRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pb-20 sm:pb-40">
           <motion.div
             style={{ y: smoothMissionY }}
             initial={{ opacity: 0, y: 50 }}
@@ -213,18 +213,18 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             className="rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
           >
             {/* Section header */}
-            <div className="p-10 lg:p-14 border-b border-white/10">
+            <div className="p-5 sm:p-10 lg:p-14 border-b border-white/10">
               <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-5 block">
                 {t("social_page.mission_eyebrow")}
               </span>
-              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.mission_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
+              <h2 className="text-[24px] sm:text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.mission_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
             </div>
 
             {/* Split content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left: Mission points */}
-              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10">
-                <div className="space-y-8">
+              <div className="p-5 sm:p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10">
+                <div className="space-y-6 sm:space-y-8">
                   {missionPoints.map((point, i) => (
                     <motion.div
                       key={i}
@@ -271,7 +271,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               </div>
 
               {/* Right: Rippling zero cost visual */}
-              <div className="relative p-8 lg:p-12 flex items-center justify-center min-h-[400px]">
+              <div className="relative p-5 sm:p-8 lg:p-12 flex items-center justify-center min-h-[300px] sm:min-h-[400px]">
                 <ZeroCostVisual />
               </div>
             </div>
@@ -281,7 +281,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         {/* ═══════════════════════════════════════════
             INDO–JAPAN CULTURE CENTER
         ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40 flex flex-col items-center">
+        <section className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pb-20 sm:pb-40 flex flex-col items-center">
           {/* Background image */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -306,7 +306,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             className="relative mt-32 rounded-[32px] bg-white/10 backdrop-blur-lg border border-white/20 overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.05)]"
           >
             {/* Header */}
-            <div className="p-10 lg:p-14 border-b border-white/15">
+            <div className="p-5 sm:p-10 lg:p-14 border-b border-white/15">
               <div className="flex items-center gap-4 mb-5">
                 <motion.div
                   animate={{
@@ -326,13 +326,13 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
                   {t("social_page.featured_eyebrow")}
                 </span>
               </div>
-              <h2 className="text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.featured_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
+              <h2 className="text-[24px] sm:text-[32px] lg:text-[48px] font-extralight text-white uppercase tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: t("social_page.featured_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
             </div>
 
             {/* Content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left: Description */}
-              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/15">
+              <div className="p-5 sm:p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/15">
                 <div className="flex items-center gap-3 mb-8">
                   <span className="text-[28px]">🇮🇳</span>
                   <div className="w-8 h-px bg-gradient-to-r from-amber-400/40 to-transparent" />
@@ -358,7 +358,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               </div>
 
               {/* Right: Partners */}
-              <div className="p-10 lg:p-14">
+              <div className="p-5 sm:p-10 lg:p-14">
                 <span className="text-amber-400/70 text-[11px] font-light uppercase tracking-[0.5em] mb-8 block">
                   {t("social_page.major_partners")}
                 </span>
@@ -410,7 +410,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         {/* ═══════════════════════════════════════════
             CTA — Join the Mission
         ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[1440px] mx-auto px-8 lg:px-16 pb-40">
+        <section className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pb-20 sm:pb-40">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -418,7 +418,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
             transition={{ duration: 1.4, ease: "easeOut" }}
             className="text-center"
           >
-            <h2 className="text-[48px] lg:text-[72px] font-extralight text-white uppercase tracking-tight leading-snug mb-14" dangerouslySetInnerHTML={{ __html: t("social_page.cta_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
+            <h2 className="text-[28px] sm:text-[48px] lg:text-[72px] font-extralight text-white uppercase tracking-tight leading-snug mb-8 sm:mb-14" dangerouslySetInnerHTML={{ __html: t("social_page.cta_title").replace("<1>", '<span class="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">').replace("</1>", "</span>") }} />
 
             {/* CTA Button with fill animation */}
             <motion.button
@@ -427,7 +427,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
               onClick={() => onNavigate?.("join-us")}
-              className="group relative px-14 py-6 rounded-full border border-amber-400/30 text-white/80 font-light text-[15px] uppercase tracking-[0.35em] overflow-hidden transition-all duration-500 hover:text-white hover:border-amber-400/50 hover:shadow-[0_0_40px_rgba(251,191,36,0.15)] cursor-pointer"
+              className="group relative px-8 py-4 sm:px-14 sm:py-6 rounded-full border border-amber-400/30 text-white/80 font-light text-[13px] sm:text-[15px] uppercase tracking-[0.35em] overflow-hidden transition-all duration-500 hover:text-white hover:border-amber-400/50 hover:shadow-[0_0_40px_rgba(251,191,36,0.15)] cursor-pointer"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-amber-300/20"
@@ -457,7 +457,7 @@ function FocusCard({ focus, index }: { focus: FocusCard; index: number }) {
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 1.2, delay: index * 0.15, ease: "easeOut" }}
-      className="group relative rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 p-10 transition-all duration-700 hover:bg-white/[0.04] hover:border-amber-400/20 hover:shadow-[0_0_40px_rgba(251,191,36,0.08)]"
+      className="group relative rounded-[24px] sm:rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 p-6 sm:p-10 transition-all duration-700 hover:bg-white/[0.04] hover:border-amber-400/20 hover:shadow-[0_0_40px_rgba(251,191,36,0.08)]"
     >
       {/* Floating icon with breathing glow */}
       <div className="flex justify-center mb-10">

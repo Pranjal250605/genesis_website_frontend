@@ -188,7 +188,7 @@ export default function Careers(_props: CareersProps = {}) {
         ═══════════════════════════════════════════ */}
         <section
           ref={heroRef}
-          className="relative min-h-[70vh] flex flex-col items-center justify-center px-8 lg:px-16 text-center pt-32 pb-16"
+          className="relative min-h-[70vh] flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16 text-center pt-24 sm:pt-32 pb-16"
         >
           <motion.div
             style={{ y: smoothHeroY, opacity: heroOpacity, scale: heroScale }}
@@ -213,7 +213,7 @@ export default function Careers(_props: CareersProps = {}) {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[48px] lg:text-[80px] font-bold tracking-tight leading-[0.95] mb-8"
+              className="text-[32px] sm:text-[48px] lg:text-[80px] font-bold tracking-tight leading-[0.95] mb-8"
             >
               <span
                 className="text-white"
@@ -240,7 +240,7 @@ export default function Careers(_props: CareersProps = {}) {
         {/* ═══════════════════════════════════════════
             CV SUBMISSION FORM
         ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[720px] mx-auto px-8 lg:px-16 pb-40">
+        <section className="relative max-w-[720px] mx-auto px-4 sm:px-8 lg:px-16 pb-24 sm:pb-40">
           <AnimatePresence mode="wait">
             {submitted ? (
               /* ── Success Message ── */
@@ -287,7 +287,7 @@ export default function Careers(_props: CareersProps = {}) {
                 {/* Top glow */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-amber-400/[0.04] blur-[100px] rounded-full pointer-events-none" />
 
-                <form onSubmit={handleSubmit} className="relative z-10 p-8 lg:p-14">
+                <form onSubmit={handleSubmit} className="relative z-10 p-5 sm:p-8 lg:p-14">
                   <div className="space-y-8">
                     {/* Full Name */}
                     <div>

@@ -114,12 +114,12 @@ export default function SignatureEvent() {
         </motion.div>
 
         {/* Content Layer */}
-        <div ref={heroRef} className="relative z-10 flex flex-col justify-between min-h-screen max-w-[1440px] mx-auto px-8 lg:px-16">
+        <div ref={heroRef} className="relative z-10 flex flex-col justify-between min-h-screen max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16">
 
           {/* Top: Hero Content — parallax + fade out on scroll */}
           <motion.div
             style={{ y: heroContentY, opacity: heroContentOpacity }}
-            className="pt-36 lg:pt-44 flex-1 flex flex-col justify-center"
+            className="pt-24 sm:pt-36 lg:pt-44 flex-1 flex flex-col justify-center"
           >
             <div className="max-w-3xl">
               {/* Eyebrow — slides in from left */}
@@ -134,7 +134,7 @@ export default function SignatureEvent() {
               </motion.span>
 
               {/* Logo + Hackathon — staggered scale-in */}
-              <div className="flex items-end gap-6 mb-6">
+              <div className="flex items-end gap-4 sm:gap-6 mb-6">
                 <motion.img
                   src={ZentejLogo}
                   alt="ZenTej"
@@ -142,7 +142,7 @@ export default function SignatureEvent() {
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.1, type: "spring", stiffness: 150, damping: 15 }}
-                  className="h-20 lg:h-28 w-auto object-contain"
+                  className="h-12 sm:h-20 lg:h-28 w-auto object-contain"
                 />
                 <div className="overflow-hidden">
                   <motion.h2
@@ -150,7 +150,7 @@ export default function SignatureEvent() {
                     whileInView={{ y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none"
+                    className="text-[28px] sm:text-[48px] lg:text-[72px] font-bold text-white uppercase tracking-tight leading-none"
                   >
                     {t("signature_event_page.title")}
                   </motion.h2>
@@ -163,7 +163,7 @@ export default function SignatureEvent() {
                 whileInView={{ opacity: 1, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: 0.4 }}
-                className="text-[18px] lg:text-[20px] text-white/75 leading-relaxed max-w-2xl mb-8"
+                className="text-[14px] sm:text-[18px] lg:text-[20px] text-white/75 leading-relaxed max-w-2xl mb-8"
               >
                 {t("signature_event_page.subtitle")}
               </motion.p>
@@ -258,7 +258,7 @@ export default function SignatureEvent() {
         className="relative py-16 lg:py-24"
       >
         {/* Section label */}
-        <div className="max-w-[1440px] mx-auto px-8 lg:px-16 mb-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 mb-10">
           <div>
             <motion.span
               initial={{ opacity: 0, x: -30 }}
@@ -270,7 +270,7 @@ export default function SignatureEvent() {
               {t("signature_event_page.gallery_eyebrow")}
             </motion.span>
             <h3
-              className="text-[32px] lg:text-[44px] font-bold text-white uppercase tracking-tight leading-none"
+              className="text-[24px] sm:text-[32px] lg:text-[44px] font-bold text-white uppercase tracking-tight leading-none"
               dangerouslySetInnerHTML={{
                 __html: t("signature_event_page.gallery_title")
                   .replace("<1>", '<span class="text-amber-400">')

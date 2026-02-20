@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BackgroundImg from "@/components/images/unnamed.webp";
+import { useIsMobile } from '@/lib/useIsMobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,14 +14,17 @@ const About = () => {
   const maskRef = useRef(null);
   const imageRef = useRef(null);
   const overlayRef = useRef(null);
+  const isMobile = useIsMobile();
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=700%", // Longer scroll to fit all 3 pairs comfortably
+          end: "+=700%",
           pin: true,
           scrub: 1,
         }
@@ -46,10 +50,10 @@ const About = () => {
       
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050505]">
+    <section ref={containerRef} className={`relative w-full overflow-hidden bg-[#050505] ${isMobile ? 'h-auto' : 'h-screen'}`}>
       
       {/* RECTANGLE LAYER BLUR: Blends Earth Hero */}
       <div className="absolute top-0 left-0 w-full h-48 z-50 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none" />
@@ -76,11 +80,11 @@ const About = () => {
       </div>
 
       {/* CONTENT LAYER */}
-      <div className="relative z-30 flex h-full w-full items-end justify-start p-12 md:p-32">
-        
+      <div className={`relative z-30 flex w-full p-6 sm:p-12 md:p-32 ${isMobile ? 'flex-col gap-12 py-20' : 'h-full items-end justify-start'}`}>
+
         {/* Pair 1 */}
-        <div className="pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+        <div className={`pair-1 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-8 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+          <h2 className="text-[28px] sm:text-[50px] md:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
             <Trans
               i18nKey="aboutSection.pair1Title"
               components={{
@@ -90,16 +94,16 @@ const About = () => {
             />
           </h2>
           <div className="flex items-start">
-            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
-            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-4 sm:mr-8" />
+            <p className="text-[16px] sm:text-[22px] md:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
               {t('aboutSection.pair1Text')}
             </p>
           </div>
         </div>
 
         {/* Pair 2 */}
-        <div className="pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+        <div className={`pair-2 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-8 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+          <h2 className="text-[28px] sm:text-[50px] md:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
             <Trans
               i18nKey="aboutSection.pair2Title"
               components={{
@@ -109,16 +113,16 @@ const About = () => {
             />
           </h2>
           <div className="flex items-start">
-            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
-            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-4 sm:mr-8" />
+            <p className="text-[16px] sm:text-[22px] md:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
               {t('aboutSection.pair2Text')}
             </p>
           </div>
         </div>
 
         {/* Pair 3 */}
-        <div className="pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+        <div className={`pair-3 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-8 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+          <h2 className="text-[28px] sm:text-[50px] md:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
             <Trans
               i18nKey="aboutSection.pair3Title"
               components={{
@@ -128,8 +132,8 @@ const About = () => {
             />
           </h2>
           <div className="flex items-start">
-            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
-            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-4 sm:mr-8" />
+            <p className="text-[16px] sm:text-[22px] md:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
               {t('aboutSection.pair3Text')}
             </p>
           </div>

@@ -101,7 +101,7 @@ export default function MenuOverlay({
           <div className="absolute inset-0 backdrop-blur-xl" />
 
           {/* Layer 5: Content */}
-          <div className="relative z-10 h-full flex flex-col px-12 lg:px-20 pt-32">
+          <div className="relative z-10 h-full flex flex-col px-6 sm:px-12 lg:px-20 pt-24 sm:pt-32">
             {/* Menu links */}
             <div className="flex-1 flex flex-col justify-center gap-5">
               {menuItemKeys.map((key, i) => (
@@ -114,7 +114,7 @@ export default function MenuOverlay({
                     delay: 0.15 + i * 0.08,
                     ease: "easeOut",
                   }}
-                  className="text-white/90 text-3xl lg:text-5xl font-bold tracking-tight hover:text-amber-400 transition-colors duration-300 w-fit cursor-pointer"
+                  className="text-white/90 text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight hover:text-amber-400 transition-colors duration-300 w-fit cursor-pointer"
                   onClick={() => handleClick(i)}
                 >
                   {t(`menu.${key}`)}
@@ -133,7 +133,7 @@ export default function MenuOverlay({
                   delay: 0.15 + menuItemKeys.length * 0.08,
                   ease: "easeOut",
                 }}
-                className="text-[#4ade80] text-3xl lg:text-5xl font-bold tracking-tight hover:text-[#86efac] transition-colors duration-300 w-fit cursor-pointer mt-2"
+                className="text-[#4ade80] text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight hover:text-[#86efac] transition-colors duration-300 w-fit cursor-pointer mt-2"
               >
                 {t('menu.edify')}
               </motion.a>

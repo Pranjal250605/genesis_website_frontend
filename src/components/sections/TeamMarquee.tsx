@@ -33,10 +33,10 @@ function PersonCircle({ member, index }: { member: TeamMember; index: number }) 
   const gradient = gradients[index % gradients.length];
 
   return (
-    <div className="flex flex-col items-center gap-5 flex-shrink-0 w-72 group">
+    <div className="flex flex-col items-center gap-3 sm:gap-5 flex-shrink-0 w-40 sm:w-72 group">
       {/* Circle avatar */}
       <div
-        className={`w-44 h-44 rounded-full ${member.image ? "" : `bg-gradient-to-br ${gradient}`} border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/40 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] overflow-hidden`}
+        className={`w-28 h-28 sm:w-44 sm:h-44 rounded-full ${member.image ? "" : `bg-gradient-to-br ${gradient}`} border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/40 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] overflow-hidden`}
       >
         {member.image ? (
           <img
@@ -72,7 +72,7 @@ function MarqueeRow({
 
   return (
     <div className="overflow-hidden">
-      <div className={`flex gap-20 w-max ${animClass} hover:[animation-play-state:paused]`}>
+      <div className={`flex gap-8 sm:gap-20 w-max ${animClass} hover:[animation-play-state:paused]`}>
         {doubled.map((member, i) => (
           <PersonCircle key={`${member.initials}-${i}`} member={member} index={i % members.length} />
         ))}
@@ -151,7 +151,7 @@ export default function TeamMarquee() {
             <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.6em] mb-3 block">
               {t('teamSection.eyebrow')}
             </span>
-            <h2 className="text-white text-5xl lg:text-6xl font-bold tracking-tight">
+            <h2 className="text-white text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               <Trans
                 i18nKey="teamSection.leadershipTitle"
                 components={{
@@ -172,7 +172,7 @@ export default function TeamMarquee() {
           transition={{ duration: 0.7, delay: 0.15 }}
         >
           <div className="text-center mb-12">
-            <h2 className="text-white text-5xl lg:text-6xl font-bold tracking-tight">
+            <h2 className="text-white text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               <Trans
                 i18nKey="teamSection.mentorsTitle"
                 components={{

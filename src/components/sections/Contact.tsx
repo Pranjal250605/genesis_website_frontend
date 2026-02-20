@@ -11,11 +11,11 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
   const { t } = useTranslation();
 
   return (
-    <div className="relative min-h-screen bg-[#050505] pt-32 pb-10 px-6 lg:px-20 overflow-hidden flex flex-col">
+    <div className="relative min-h-screen bg-[#050505] pt-24 sm:pt-32 pb-10 px-4 sm:px-6 lg:px-20 overflow-hidden flex flex-col">
       <Starry />
 
       {/* 1. CALL TO ACTION SECTION */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto text-center mb-32">
+      <div className="relative z-10 w-full max-w-6xl mx-auto text-center mb-16 sm:mb-32">
         <span className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-4 block font-['Montserrat']">
           {t('contactSection.eyebrow')}
         </span>
@@ -24,17 +24,17 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
           className="group cursor-pointer relative w-full py-5 px-6 rounded-[73px] bg-white/5 border border-white/10 hover:bg-white/10 transition-all overflow-hidden block"
         >
           <div className="flex items-center justify-center gap-4">
-            <h2 className="text-white text-4xl lg:text-6xl font-bold font-['Inter']">
+            <h2 className="text-white text-2xl sm:text-4xl lg:text-6xl font-bold font-['Inter']">
               {t('contactSection.cta')}
             </h2>
-            <ArrowUpRight className="text-white w-10 h-10 lg:w-14 lg:h-14 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <ArrowUpRight className="text-white w-6 h-6 sm:w-10 sm:h-10 lg:w-14 lg:h-14 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </div>
         </button>
       </div>
 
     <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col">
        {/* 2. MAIN FOOTER LINKS GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20 border-t border-white/20 pt-16 justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-20 border-t border-white/20 pt-10 sm:pt-16 justify-items-center">
           {/* COMPANY */}
           <div className="flex flex-col gap-6 w-fit items-start text-left">
             <h4 className="text-white text-sm font-bold tracking-widest font-['Montserrat']">
@@ -113,7 +113,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
         </div>
 
         {/* 4. BOTTOM BAR */}
-        <div className="mt-auto pt-8 border-t border-white/10 flex flex-wrap justify-center lg:justify-end gap-25">
+        <div className="mt-auto pt-8 border-t border-white/10 flex flex-wrap justify-center lg:justify-end gap-4 sm:gap-8">
           <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">{t('contactSection.legal.privacy')}</a>
           <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">{t('contactSection.legal.legal')}</a>
           <a href="#" className="text-white/40 text-xs hover:text-white transition-colors">{t('contactSection.legal.cookies')}</a>

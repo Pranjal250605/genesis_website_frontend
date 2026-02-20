@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Starry from "@/components/ui/Starry";
+import { useIsMobile } from '@/lib/useIsMobile';
 import MapImg from "@/components/images/publicFrame 76-topaz-enhance.png";
 import JapanImg from "@/components/images/hiroshima.jpg";
 import IndiaImg from "@/components/images/New-Delhi-India-War-Memorial-arch-Sir.webp";
@@ -13,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Global() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
+  const isMobile = useIsMobile();
 
   const stamps = [
     {
@@ -37,6 +39,8 @@ export default function Global() {
   ];
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -54,7 +58,7 @@ export default function Global() {
           `.stamp-card-${i}`,
           { opacity: 0, y: 40, scale: 0.85 },
           { opacity: 1, y: 0, scale: 1, duration: 1, ease: "back.out(1.4)" },
-          i * 1.0 
+          i * 1.0
         );
       });
 
@@ -62,7 +66,7 @@ export default function Global() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section
@@ -71,14 +75,14 @@ export default function Global() {
     >
       <Starry />
 
-      <div className="relative z-10 h-full flex flex-col px-6">
-        
+      <div className="relative z-10 h-full flex flex-col px-4 sm:px-6">
+
         {/* 1. HEADER: Optimal padding to clear navbar but save space */}
-        <div className="text-center pt-32 pb-2 shrink-0">
-          <h2 className="text-white text-5xl lg:text-6xl font-bold font-['Inter'] mb-3">
+        <div className="text-center pt-24 sm:pt-32 pb-2 shrink-0">
+          <h2 className="text-white text-3xl sm:text-5xl lg:text-6xl font-bold font-['Inter'] mb-3">
             {t('globalSection.title')}
           </h2>
-          <p className="text-white/70 text-lg leading-7 mx-auto max-w-2xl">
+          <p className="text-white/70 text-sm sm:text-lg leading-7 mx-auto max-w-2xl">
             {t('globalSection.subtitle')}
           </p>
         </div>
@@ -97,14 +101,14 @@ export default function Global() {
             {stamps.map((stamp, i) => (
               <div
                 key={stamp.key}
-                className={`stamp-card-${i} absolute w-36 opacity-0 bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl hover:border-amber-400/30 transition-colors duration-500`}
+                className={`stamp-card-${i} absolute w-20 sm:w-36 ${isMobile ? 'opacity-100' : 'opacity-0'} bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden shadow-2xl hover:border-amber-400/30 transition-colors duration-500`}
                 style={{
                   top: stamp.top,
                   left: stamp.left,
                   transform: "translateX(-50%)",
                 }}
               >
-                <div className="relative h-20 w-full overflow-hidden border-b border-white/5">
+                <div className="relative h-12 sm:h-20 w-full overflow-hidden border-b border-white/5">
                   <img
                     src={stamp.img}
                     alt={t(`globalSection.locations.${stamp.key}.name`)}
@@ -113,11 +117,11 @@ export default function Global() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/50 to-transparent" />
                 </div>
 
-                <div className="p-2.5">
-                  <h3 className="text-white text-xs font-bold tracking-tight">
+                <div className="p-1.5 sm:p-2.5">
+                  <h3 className="text-white text-[9px] sm:text-xs font-bold tracking-tight">
                     {t(`globalSection.locations.${stamp.key}.name`)}
                   </h3>
-                  <span className="text-amber-400/60 text-[8px] font-bold uppercase tracking-widest">
+                  <span className="text-amber-400/60 text-[6px] sm:text-[8px] font-bold uppercase tracking-widest">
                     {t(`globalSection.locations.${stamp.key}.subtitle`)}
                   </span>
                   {stamp.badge && (
