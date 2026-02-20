@@ -18,7 +18,9 @@
     "careersUpper": "採用情報",
     "socialInitiativesUpper": "社会的取り組み",
     "impactInnovationUpper": "インパクト＆イノベーション",
-    "japanPortfolioUpper": "日本ポートフォリオ"
+    "japanPortfolioUpper": "日本ポートフォリオ",
+    "updatesUpper": "最新情報",
+    "joinUsUpper": "採用応募"
   },
   "socials": {
     "instagram": "インスタグラム",
@@ -630,16 +632,16 @@
     "contact": {
       "title": "連絡先",
       "ctaButton": "お問い合わせページ",
-      "phone": "電話番号",
-      "phoneValue": "email@genesis.org",
+      "phone": "メールアドレス",
+      "phoneValue": "enquiry@edify.jp",
       "address": "住所",
-      "addressValue": "郵便番号、国"
+      "addressValue": "© 2026 ジェネシスグループジャパン（エディファイ株式会社）\n〒732-0042 広島県広島市東区矢賀4-6-4"
     },
     "legal": {
       "privacy": "プライバシーポリシー",
       "legal": "法的通知",
       "cookies": "クッキー",
-      "copyright": "著作権 ジェネシス 2026"
+      "copyright": "© 2026 ジェネシスグループジャパン（エディファイ株式会社）"
     }
   },
   "careers_page": {

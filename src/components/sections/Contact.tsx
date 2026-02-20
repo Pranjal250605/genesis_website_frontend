@@ -106,7 +106,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
               </div>
               <div className="flex flex-col gap-1">
                 <p className="text-white/40 text-xs uppercase font-['Inter']">{t('contactSection.contact.address')}</p>
-                <p className="text-white/60 text-sm font-['Inter']">{t('contactSection.contact.addressValue')}</p>
+                <p className="text-white/60 text-sm font-['Inter'] whitespace-pre-line">{t('contactSection.contact.addressValue')}</p>
               </div>
             </div>
           </div>

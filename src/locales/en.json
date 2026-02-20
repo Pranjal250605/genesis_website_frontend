@@ -18,7 +18,9 @@
     "careersUpper": "CAREERS",
     "socialInitiativesUpper": "SOCIAL INITIATIVES",
     "impactInnovationUpper": "IMPACT AND INNOVATION",
-    "japanPortfolioUpper": "OUR JAPAN PORTFOLIO"
+    "japanPortfolioUpper": "OUR JAPAN PORTFOLIO",
+    "updatesUpper": "UPDATES",
+    "joinUsUpper": "JOIN US"
   },
   "hero": {
     "group": "Genesis Group",
@@ -240,16 +242,16 @@
     "contact": {
       "title": "CONTACT",
       "ctaButton": "Contact Us Page",
-      "phone": "Phone No.",
-      "phoneValue": "email@genesis.org",
-      "address": "Address Line No.1",
-      "addressValue": "Pincode, Country"
+      "phone": "Email",
+      "phoneValue": "enquiry@edify.jp",
+      "address": "Address",
+      "addressValue": "© 2026 Genesis Group Japan (Edify Inc.)\n4-6-4 Yaga, Higashi-ku, Hiroshima-shi, Hiroshima 732-0042"
     },
     "legal": {
       "privacy": "Privacy Policy",
       "legal": "Legal Notice",
       "cookies": "Cookies",
-      "copyright": "Copyright Genesis 2026"
+      "copyright": "© 2026 Genesis Group Japan (Edify Inc.)"
     }
   },
   "careers_page": {

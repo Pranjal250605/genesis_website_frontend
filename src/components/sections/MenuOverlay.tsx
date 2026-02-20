@@ -166,6 +166,27 @@ export default function MenuOverlay({
               >
                 {t('menu.edify')}
               </motion.a>
+
+              {/* Mobile-only: Updates + Join Us pills */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 + (menuItemKeys.length + 1) * 0.08, ease: "easeOut" }}
+                className="sm:hidden flex gap-3 mt-4"
+              >
+                <button
+                  onClick={() => { onNavigate("updates"); onClose(); }}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/[0.04] text-white/70 text-sm font-semibold tracking-widest uppercase hover:border-white/40 hover:text-white active:scale-95 transition-all duration-300"
+                >
+                  {t('menu.updatesUpper')}
+                </button>
+                <button
+                  onClick={() => { onNavigate("join-us"); onClose(); }}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-400/40 bg-amber-400/[0.06] text-amber-400 text-sm font-semibold tracking-widest uppercase hover:border-amber-400/70 hover:bg-amber-400/[0.12] active:scale-95 transition-all duration-300"
+                >
+                  {t('menu.joinUsUpper')}
+                </button>
+              </motion.div>
             </div>
 
             {/* Footer */}
