@@ -66,7 +66,21 @@ export default function MenuOverlay({
           {/* Layer 1: Dark gradient base */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-[#1a1200]" />
 
-          {/* Layer 2: Earth-like radial glow */}
+          {/* Layer 2: Earth-like radial glow — mobile */}
+          <div
+            className="absolute pointer-events-none sm:hidden"
+            style={{
+              bottom: "-15%",
+              right: "-40%",
+              width: "90vw",
+              height: "90vw",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle at 40% 40%, #D6BC97 0%, #b39a72 15%, #7a6845 30%, #4a3f28 50%, #1a1400 70%, transparent 85%)",
+              opacity: 0.7,
+            }}
+          />
+          {/* Layer 2: Earth-like radial glow — desktop */}
           <div
             className="absolute pointer-events-none hidden sm:block"
             style={{
@@ -81,7 +95,22 @@ export default function MenuOverlay({
             }}
           />
 
-          {/* Layer 3: Map texture */}
+          {/* Layer 3: Map texture — mobile */}
+          <img
+            src={MapTexture}
+            alt=""
+            className="absolute pointer-events-none sm:hidden"
+            style={{
+              bottom: "-15%",
+              right: "-40%",
+              width: "90vw",
+              height: "90vw",
+              borderRadius: "50%",
+              objectFit: "cover",
+              opacity: 1,
+            }}
+          />
+          {/* Layer 3: Map texture — desktop */}
           <img
             src={MapTexture}
             alt=""

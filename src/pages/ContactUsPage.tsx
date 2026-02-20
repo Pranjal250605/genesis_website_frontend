@@ -55,7 +55,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
         className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-amber-400/10 blur-[120px] pointer-events-none"
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-8 pt-32 pb-24">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 pt-32 pb-24">
         {/* Back button */}
         <motion.button
           initial={{ opacity: 0, x: -20 }}
@@ -84,7 +84,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
             {t("contact_us_page.eyebrow")}
           </motion.span>
 
-          <h1 className="text-[48px] lg:text-[72px] font-bold tracking-tight leading-[0.95] mb-8">
+          <h1 className="text-[30px] sm:text-[48px] lg:text-[72px] font-bold tracking-tight leading-[0.95] mb-8">
             <span className="text-white">{t("contact_us_page.title_1")} </span>
             <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
               {t("contact_us_page.title_2")}
@@ -102,7 +102,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="group block rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-10 lg:p-14 hover:border-amber-400/30 hover:bg-white/[0.04] transition-all duration-500"
+          className="group block rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-5 sm:p-10 lg:p-14 hover:border-amber-400/30 hover:bg-white/[0.04] transition-all duration-500"
         >
           <div className="flex items-start gap-6">
             <div className="w-16 h-16 rounded-2xl border border-amber-400/20 bg-amber-400/[0.06] flex items-center justify-center shrink-0 group-hover:bg-amber-400/[0.12] transition-colors duration-500">
@@ -113,7 +113,7 @@ export default function ContactUsPage({ onNavigate }: ContactUsPageProps) {
               <p className="text-white/40 text-xs font-medium uppercase tracking-[0.2em] mb-3">
                 {t("contact_us_page.email_label")}
               </p>
-              <p className="text-3xl lg:text-5xl font-bold tracking-tight mb-5 flex items-center gap-4">
+              <p className="text-lg sm:text-3xl lg:text-5xl font-bold tracking-tight mb-5 flex items-center gap-4">
                 <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
                   enquiry@edify.jp
                 </span>

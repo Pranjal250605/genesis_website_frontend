@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Vid from "@/components/images/japan.mp4";
+import MobileHeroImg from "@/components/images/mobilereal.png";
 import JapanMap from "@/components/images/istockphoto-537287287-612x612.jpg";
 import EdifyLogo from "@/components/images/[TP]Edify_logo_white_JAPAN 1.png";
+import { useIsMobile } from '@/lib/useIsMobile';
 
 function Hero() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const [coords, setCoords] = useState({ lat: '22.00', lng: '30.00' });
 
   useEffect(() => {
@@ -20,16 +23,24 @@ function Hero() {
 
   return (
     <div className="relative flex min-h-screen items-center overflow-hidden bg-[#050505]">
-      {/* 1. Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 z-0 h-full w-full object-cover"
-      >
-        <source src={Vid} type="video/mp4" />
-      </video>
+      {/* 1. Background: image on mobile, video on desktop */}
+      {isMobile ? (
+        <img
+          src={MobileHeroImg}
+          alt=""
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+        />
+      ) : (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+        >
+          <source src={Vid} type="video/mp4" />
+        </video>
+      )}
       
       {/* 2. Overlays */}
       <div className="absolute inset-0 z-10 overflow-hidden">

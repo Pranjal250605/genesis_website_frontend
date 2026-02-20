@@ -497,11 +497,65 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Right card */}
-            <div className={`gx-card mt-6 lg:mt-24 lg:ml-12 w-full sm:w-[380px] lg:w-[400px] shrink-0 ${isMobile ? 'opacity-100' : 'opacity-0'}`}>
+            {/* Right card — desktop only; on mobile rendered below all panels */}
+            {!isMobile && (
+              <div className="gx-card mt-6 lg:mt-24 lg:ml-12 w-full sm:w-[380px] lg:w-[400px] shrink-0 opacity-0">
+                <div className="rounded-[24px] bg-white/[0.06] backdrop-blur-2xl border border-white/15 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.4)]">
+                  {/* Image */}
+                  <div className="relative h-72 sm:h-80 overflow-hidden">
+                    <img
+                      src={takakoImg}
+                      alt={t("gxSection.card.name")}
+                      className="w-full h-full object-cover object-[center_15%]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+                    {/* Company badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-400 bg-black/60 backdrop-blur-md border border-amber-400/25 rounded-full px-3 py-1">
+                        {t("gxSection.card.company")}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Info */}
+                  <div className="p-6 sm:p-7">
+                    <h4 className="text-[17px] sm:text-[19px] font-bold text-white leading-tight mb-1">
+                      {t("gxSection.card.name")}
+                    </h4>
+                    <p className="text-[13px] text-amber-400/80 font-semibold uppercase tracking-wide mb-5">
+                      {t("gxSection.card.subtitle")}
+                    </p>
+
+                    <div className="h-px w-full bg-gradient-to-r from-white/10 via-amber-400/20 to-white/10 mb-5" />
+
+                    <p className="text-[12px] text-white/50 font-bold uppercase tracking-[0.15em] mb-3">
+                      {t("gxSection.card.heading")}
+                    </p>
+                    <ul className="flex flex-col gap-2.5">
+                      <li className="flex items-start gap-2.5">
+                        <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400/50" />
+                        <span className="text-[13px] text-white/65 leading-snug">
+                          {t("gxSection.card.affiliation1")}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400/50" />
+                        <span className="text-[13px] text-white/65 leading-snug">
+                          {t("gxSection.card.affiliation2")}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* Profile card — mobile only, rendered after all text panels with section gap */}
+          {isMobile && (
+            <div className="w-full">
               <div className="rounded-[24px] bg-white/[0.06] backdrop-blur-2xl border border-white/15 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.4)]">
                 {/* Image */}
-                <div className="relative h-72 sm:h-80 overflow-hidden">
+                <div className="relative h-72 overflow-hidden">
                   <img
                     src={takakoImg}
                     alt={t("gxSection.card.name")}
@@ -517,8 +571,8 @@ export default function Services() {
                 </div>
 
                 {/* Info */}
-                <div className="p-6 sm:p-7">
-                  <h4 className="text-[17px] sm:text-[19px] font-bold text-white leading-tight mb-1">
+                <div className="p-6">
+                  <h4 className="text-[17px] font-bold text-white leading-tight mb-1">
                     {t("gxSection.card.name")}
                   </h4>
                   <p className="text-[13px] text-amber-400/80 font-semibold uppercase tracking-wide mb-5">
@@ -547,7 +601,7 @@ export default function Services() {
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Bottom gradient blend */}
