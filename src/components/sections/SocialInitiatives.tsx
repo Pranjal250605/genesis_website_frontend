@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Flower2, Sparkles, Sun, Users, HeartHandshake, Landmark, GraduationCap, Building2, BookOpen } from "lucide-react";
 import Starry from "@/components/ui/Starry";
+import { useIsMobile } from "@/lib/useIsMobile";
 import indiaJapanBg from "@/components/images/indiajapan1.png";
 
 /* ─── Data ─── */
@@ -49,6 +50,7 @@ interface SocialInitiativesProps {
 
 export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps = {}) {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
 
@@ -84,19 +86,21 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
       <Starry />
 
       {/* Ambient pulsing light */}
-      <motion.div
-        animate={{
-          opacity: [0.15, 0.3, 0.15],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-amber-400/20 blur-[120px] pointer-events-none"
-        style={{ zIndex: 1 }}
-      />
+      {!isMobile && (
+        <motion.div
+          animate={{
+            opacity: [0.15, 0.3, 0.15],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-amber-400/20 blur-[120px] pointer-events-none"
+          style={{ zIndex: 1 }}
+        />
+      )}
 
       <div className="relative z-10">
         {/* ═══════════════════════════════════════════
@@ -104,7 +108,7 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         ═══════════════════════════════════════════ */}
         <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pt-28 sm:pt-44 pb-20 sm:pb-40">
           <motion.div
-            style={{ y: smoothHeroY, opacity: heroOpacity }}
+            style={isMobile ? undefined : { y: smoothHeroY, opacity: heroOpacity }}
             className="max-w-4xl mx-auto text-center"
           >
             {/* Eyebrow */}
@@ -205,12 +209,12 @@ export default function SocialInitiatives({ onNavigate }: SocialInitiativesProps
         ═══════════════════════════════════════════ */}
         <section ref={missionRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pb-20 sm:pb-40">
           <motion.div
-            style={{ y: smoothMissionY }}
+            style={isMobile ? undefined : { y: smoothMissionY }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.4, ease: "easeOut" }}
-            className="rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
+            className="rounded-[20px] sm:rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden"
           >
             {/* Section header */}
             <div className="p-5 sm:p-10 lg:p-14 border-b border-white/10">
@@ -460,7 +464,7 @@ function FocusCard({ focus, index }: { focus: FocusCard; index: number }) {
       className="group relative rounded-[24px] sm:rounded-[32px] bg-white/[0.02] backdrop-blur-xl border border-white/10 p-6 sm:p-10 transition-all duration-700 hover:bg-white/[0.04] hover:border-amber-400/20 hover:shadow-[0_0_40px_rgba(251,191,36,0.08)]"
     >
       {/* Floating icon with breathing glow */}
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-center mb-6 sm:mb-10">
         <motion.div
           variants={breathingVariants}
           animate="animate"
@@ -490,7 +494,7 @@ function FocusCard({ focus, index }: { focus: FocusCard; index: number }) {
       </div>
 
       {/* Title */}
-      <h3 className="text-[22px] font-light text-white/90 text-center mb-5 tracking-wide">
+      <h3 className="text-[18px] sm:text-[22px] font-light text-white/90 text-center mb-4 sm:mb-5 tracking-wide">
         {focus.title}
       </h3>
 

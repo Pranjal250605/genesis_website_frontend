@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Starry from "@/components/ui/Starry";
 import { supabase } from "@/lib/supabase";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 /* ───────────────────── Types ───────────────────── */
 
@@ -38,6 +39,7 @@ interface CareersProps {
 
 export default function Careers(_props: CareersProps = {}) {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -168,19 +170,21 @@ export default function Careers(_props: CareersProps = {}) {
       <Starry />
 
       {/* Ambient light */}
-      <motion.div
-        animate={{
-          opacity: [0.08, 0.15, 0.08],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-amber-400/10 blur-[120px] pointer-events-none"
-        style={{ zIndex: 1 }}
-      />
+      {!isMobile && (
+        <motion.div
+          animate={{
+            opacity: [0.08, 0.15, 0.08],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-amber-400/10 blur-[120px] pointer-events-none"
+          style={{ zIndex: 1 }}
+        />
+      )}
 
       <div className="relative z-10">
         {/* ═══════════════════════════════════════════
@@ -191,7 +195,7 @@ export default function Careers(_props: CareersProps = {}) {
           className="relative min-h-[70vh] flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16 text-center pt-24 sm:pt-32 pb-16"
         >
           <motion.div
-            style={{ y: smoothHeroY, opacity: heroOpacity, scale: heroScale }}
+            style={isMobile ? undefined : { y: smoothHeroY, opacity: heroOpacity, scale: heroScale }}
             className="max-w-4xl"
           >
             {/* Eyebrow */}
@@ -240,7 +244,7 @@ export default function Careers(_props: CareersProps = {}) {
         {/* ═══════════════════════════════════════════
             CV SUBMISSION FORM
         ═══════════════════════════════════════════ */}
-        <section className="relative max-w-[720px] mx-auto px-4 sm:px-8 lg:px-16 pb-24 sm:pb-40">
+        <section className="relative max-w-[720px] mx-auto px-5 sm:px-8 lg:px-16 pb-24 sm:pb-40">
           <AnimatePresence mode="wait">
             {submitted ? (
               /* ── Success Message ── */

@@ -71,7 +71,7 @@ export default function Global() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full bg-[#050505]"
+      className={`relative w-full bg-[#050505] ${isMobile ? 'min-h-0 py-20 px-4' : 'min-h-screen'}`}
     >
       <Starry />
 
@@ -88,8 +88,7 @@ export default function Global() {
         </div>
 
         {/* 2. MAP CONTAINER: Constrained Width & Centered */}
-        {/* max-w-6xl ensures it doesn't get too tall and go off-screen */}
-        <div className="flex-1 flex items-start justify-center min-h-0 mt-8">
+        <div className="flex-1 flex items-start justify-center min-h-0 mt-6 sm:mt-8">
           <div className="relative w-full max-w-6xl">
             <img
               src={MapImg}
@@ -97,18 +96,18 @@ export default function Global() {
               className="w-full h-auto object-contain opacity-90"
             />
 
-            {/* Cards */}
-            {stamps.map((stamp, i) => (
+            {/* Cards — absolute on desktop, hidden on mobile (shown below) */}
+            {!isMobile && stamps.map((stamp, i) => (
               <div
                 key={stamp.key}
-                className={`stamp-card-${i} absolute w-20 sm:w-36 ${isMobile ? 'opacity-100' : 'opacity-0'} bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden shadow-2xl hover:border-amber-400/30 transition-colors duration-500`}
+                className={`stamp-card-${i} absolute w-36 opacity-0 bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl hover:border-amber-400/30 transition-colors duration-500`}
                 style={{
                   top: stamp.top,
                   left: stamp.left,
                   transform: "translateX(-50%)",
                 }}
               >
-                <div className="relative h-12 sm:h-20 w-full overflow-hidden border-b border-white/5">
+                <div className="relative h-20 w-full overflow-hidden border-b border-white/5">
                   <img
                     src={stamp.img}
                     alt={t(`globalSection.locations.${stamp.key}.name`)}
@@ -117,11 +116,11 @@ export default function Global() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/50 to-transparent" />
                 </div>
 
-                <div className="p-1.5 sm:p-2.5">
-                  <h3 className="text-white text-[9px] sm:text-xs font-bold tracking-tight">
+                <div className="p-2.5">
+                  <h3 className="text-white text-xs font-bold tracking-tight">
                     {t(`globalSection.locations.${stamp.key}.name`)}
                   </h3>
-                  <span className="text-amber-400/60 text-[6px] sm:text-[8px] font-bold uppercase tracking-widest">
+                  <span className="text-amber-400/60 text-[8px] font-bold uppercase tracking-widest">
                     {t(`globalSection.locations.${stamp.key}.subtitle`)}
                   </span>
                   {stamp.badge && (
@@ -134,6 +133,41 @@ export default function Global() {
             ))}
           </div>
         </div>
+
+        {/* Mobile-only: Location cards in horizontal scroll-snap */}
+        {isMobile && (
+          <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 mt-6 -mx-1 px-1 scrollbar-hide">
+            {stamps.map((stamp) => (
+              <div
+                key={stamp.key}
+                className="snap-start shrink-0 w-[200px] bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-xl border border-white/10 overflow-hidden shadow-2xl"
+              >
+                <div className="relative h-28 w-full overflow-hidden border-b border-white/5">
+                  <img
+                    src={stamp.img}
+                    alt={t(`globalSection.locations.${stamp.key}.name`)}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/50 to-transparent" />
+                </div>
+
+                <div className="p-3">
+                  <h3 className="text-white text-sm font-bold tracking-tight">
+                    {t(`globalSection.locations.${stamp.key}.name`)}
+                  </h3>
+                  <span className="text-amber-400/60 text-[9px] font-bold uppercase tracking-widest">
+                    {t(`globalSection.locations.${stamp.key}.subtitle`)}
+                  </span>
+                  {stamp.badge && (
+                    <span className="mt-2 block text-[9px] font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5 w-fit">
+                      {t(`globalSection.locations.${stamp.key}.badge`)}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

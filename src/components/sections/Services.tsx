@@ -23,7 +23,7 @@ interface ServiceCardData {
 }
 
 
-function HolographicCard({ card, index }: { card: ServiceCardData; index: number }) {
+function HolographicCard({ card, index, isMobile }: { card: ServiceCardData; index: number; isMobile: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -40,7 +40,7 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isMobile || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -60,36 +60,38 @@ function HolographicCard({ card, index }: { card: ServiceCardData; index: number
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
-      style={{ perspective: 1000 }}
+      style={isMobile ? undefined : { perspective: 1000 }}
     >
       <motion.div
         ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        style={{ 
-          rotateX, 
-          rotateY, 
+        onMouseMove={isMobile ? undefined : handleMouseMove}
+        onMouseEnter={isMobile ? undefined : () => setIsHovered(true)}
+        onMouseLeave={isMobile ? undefined : handleMouseLeave}
+        style={isMobile ? undefined : {
+          rotateX,
+          rotateY,
           transformStyle: "preserve-3d",
           borderColor: isHovered ? "rgba(251,191,36,0.5)" : "rgba(255,255,255,0.1)",
           boxShadow: isHovered
             ? "0 0 40px rgba(251,191,36,0.12), 0 0 80px rgba(251,191,36,0.06), inset 0 0 60px rgba(251,191,36,0.03)"
             : "none",
         }}
-        className="relative flex flex-col rounded-[28px] border bg-white/[0.02] backdrop-blur-xl overflow-hidden transition-[border-color,box-shadow] duration-500 h-full cursor-pointer"
+        className="relative flex flex-col rounded-[20px] sm:rounded-[28px] border border-white/10 bg-white/[0.02] backdrop-blur-xl overflow-hidden transition-[border-color,box-shadow] duration-500 h-full cursor-pointer"
       >
-        <div
-          className="pointer-events-none absolute inset-0 z-10 rounded-[28px] transition-opacity duration-500"
-          style={{
-            opacity: isHovered ? 0.08 : 0,
-            background:
-              "linear-gradient(105deg, transparent 30%, rgba(251,191,36,0.3) 45%, rgba(255,255,255,0.15) 50%, rgba(251,191,36,0.3) 55%, transparent 70%)",
-          }}
-        />
+        {!isMobile && (
+          <div
+            className="pointer-events-none absolute inset-0 z-10 rounded-[28px] transition-opacity duration-500"
+            style={{
+              opacity: isHovered ? 0.08 : 0,
+              background:
+                "linear-gradient(105deg, transparent 30%, rgba(251,191,36,0.3) 45%, rgba(255,255,255,0.15) 50%, rgba(251,191,36,0.3) 55%, transparent 70%)",
+            }}
+          />
+        )}
 
         <div
           className="relative z-20 flex flex-col h-full p-5 sm:p-8 lg:p-10 transition-transform duration-500 ease-out"
-          style={{
+          style={isMobile ? undefined : {
             transform: isHovered ? "translateZ(50px)" : "translateZ(0px)",
             transformStyle: "preserve-3d"
           }}
@@ -222,7 +224,7 @@ export default function Services() {
 
   return (
     /* Changed bg-[#050505] to bg-transparent to allow Starry to show through */
-    <section className="relative min-h-screen w-full bg-transparent overflow-hidden py-32">
+    <section className="relative min-h-screen w-full bg-transparent overflow-hidden py-20 sm:py-32">
       
       {/* Background Layer: Stars explicitly placed at z-0 */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -265,7 +267,7 @@ export default function Services() {
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
           {services.map((card, i) => (
-            <HolographicCard key={card.number} card={card} index={i} />
+            <HolographicCard key={card.number} card={card} index={i} isMobile={isMobile} />
           ))}
         </div>
       </div>
@@ -431,7 +433,7 @@ export default function Services() {
       {/* ═══════════════════════════════════════════
           GX — GREEN TRANSFORMATION (Scroll Hijack)
       ═══════════════════════════════════════════ */}
-      <div ref={gxContainerRef} className="relative h-screen w-full overflow-hidden">
+      <div ref={gxContainerRef} className={`relative w-full overflow-hidden ${isMobile ? 'h-auto' : 'h-screen'}`}>
         {/* Top gradient blend */}
         <div className="absolute top-0 left-0 w-full h-48 z-50 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none" />
 
@@ -443,60 +445,60 @@ export default function Services() {
         </div>
 
         {/* Content layer */}
-        <div className="relative z-30 flex h-full w-full items-end justify-start p-4 sm:p-8 md:p-16 lg:p-32">
+        <div className={`relative z-30 flex w-full ${isMobile ? 'flex-col gap-10 px-5 py-28' : 'h-full items-end justify-start p-4 sm:p-8 md:p-16 lg:p-32'}`}>
 
           {/* Panel 1 */}
-          <div className="gx-panel-1 absolute flex flex-col items-start text-left gap-4 sm:gap-6 max-w-5xl pb-16 opacity-0">
-            <h2 className="text-[36px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+          <div className={`gx-panel-1 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-4 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+            <h2 className="text-[26px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
               {t("gxSection.panel1Title").split(" ").slice(0, -2).join(" ")}{" "}
               <span className="text-amber-400">
                 {t("gxSection.panel1Title").split(" ").slice(-2).join(" ")}
               </span>
             </h2>
             <div className="flex items-start">
-              <div className="w-px h-12 sm:h-16 bg-amber-400/30 mr-6 sm:mr-8 shrink-0" />
-              <p className="text-[18px] sm:text-[24px] lg:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+              <div className="w-px h-12 sm:h-16 bg-amber-400/30 mr-4 sm:mr-8 shrink-0" />
+              <p className="text-[15px] sm:text-[24px] lg:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
                 {t("gxSection.panel1Sub")}
               </p>
             </div>
           </div>
 
           {/* Panel 2 */}
-          <div className="gx-panel-2 absolute flex flex-col items-start text-left gap-4 sm:gap-6 max-w-5xl pb-16 opacity-0">
-            <h2 className="text-[36px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+          <div className={`gx-panel-2 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-4 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+            <h2 className="text-[26px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
               {t("gxSection.panel2Title").split(" ").slice(0, -3).join(" ")}{" "}
               <span className="text-amber-400">
                 {t("gxSection.panel2Title").split(" ").slice(-3).join(" ")}
               </span>
             </h2>
             <div className="flex items-start">
-              <div className="w-px h-12 sm:h-16 bg-amber-400/30 mr-6 sm:mr-8 shrink-0" />
-              <p className="text-[18px] sm:text-[24px] lg:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+              <div className="w-px h-12 sm:h-16 bg-amber-400/30 mr-4 sm:mr-8 shrink-0" />
+              <p className="text-[15px] sm:text-[24px] lg:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
                 {t("gxSection.panel2Sub")}
               </p>
             </div>
           </div>
 
           {/* Panel 3 + Card */}
-          <div className="gx-panel-3 absolute inset-0 z-30 flex flex-col lg:flex-row items-end lg:items-center justify-start lg:justify-between p-4 sm:p-8 md:p-16 lg:p-32 pt-24 sm:pt-32 md:pt-40 pb-16 opacity-0">
+          <div className={`gx-panel-3 z-30 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between ${isMobile ? 'relative opacity-100 gap-6 pb-4' : 'absolute inset-0 p-4 sm:p-8 md:p-16 lg:p-32 pt-24 sm:pt-32 md:pt-40 pb-16 opacity-0 items-end'}`}>
             {/* Left text */}
-            <div className="flex flex-col items-start text-left gap-4 sm:gap-6 max-w-2xl">
-              <h2 className="text-[36px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
+            <div className="flex flex-col items-start text-left gap-3 sm:gap-6 max-w-2xl">
+              <h2 className="text-[26px] sm:text-[50px] lg:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl">
                 {t("gxSection.panel3Title").split(" ").slice(0, -2).join(" ")}{" "}
                 <span className="text-amber-400">
                   {t("gxSection.panel3Title").split(" ").slice(-2).join(" ")}
                 </span>
               </h2>
               <div className="flex items-start">
-                <div className="w-px h-12 sm:h-16 bg-amber-400/30 mr-6 sm:mr-8 shrink-0" />
-                <p className="text-[18px] sm:text-[24px] lg:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+                <div className="w-px h-12 sm:h-16 bg-amber-400/30 mr-4 sm:mr-8 shrink-0" />
+                <p className="text-[15px] sm:text-[24px] lg:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
                   {t("gxSection.panel3Sub")}
                 </p>
               </div>
             </div>
 
             {/* Right card */}
-            <div className="gx-card opacity-0 mt-8 lg:mt-24 lg:ml-12 w-full sm:w-[380px] lg:w-[400px] shrink-0">
+            <div className={`gx-card mt-6 lg:mt-24 lg:ml-12 w-full sm:w-[380px] lg:w-[400px] shrink-0 ${isMobile ? 'opacity-100' : 'opacity-0'}`}>
               <div className="rounded-[24px] bg-white/[0.06] backdrop-blur-2xl border border-white/15 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.4)]">
                 {/* Image */}
                 <div className="relative h-72 sm:h-80 overflow-hidden">

@@ -33,10 +33,10 @@ function PersonCircle({ member, index }: { member: TeamMember; index: number }) 
   const gradient = gradients[index % gradients.length];
 
   return (
-    <div className="flex flex-col items-center gap-3 sm:gap-5 flex-shrink-0 w-40 sm:w-72 group">
+    <div className="flex flex-col items-center gap-2 sm:gap-5 flex-shrink-0 w-28 sm:w-72 group">
       {/* Circle avatar */}
       <div
-        className={`w-28 h-28 sm:w-44 sm:h-44 rounded-full ${member.image ? "" : `bg-gradient-to-br ${gradient}`} border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/40 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] overflow-hidden`}
+        className={`w-20 h-20 sm:w-44 sm:h-44 rounded-full ${member.image ? "" : `bg-gradient-to-br ${gradient}`} border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-amber-400/40 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] overflow-hidden`}
       >
         {member.image ? (
           <img
@@ -53,8 +53,8 @@ function PersonCircle({ member, index }: { member: TeamMember; index: number }) 
 
       {/* Name tag */}
       <div className="text-center">
-        <p className="text-[13px] font-bold text-white/90 leading-tight">{member.name}</p>
-        <p className="text-[10px] text-amber-400/60 uppercase tracking-wider mt-0.5">{member.role}</p>
+        <p className="text-[10px] sm:text-[13px] font-bold text-white/90 leading-tight">{member.name}</p>
+        <p className="text-[8px] sm:text-[10px] text-amber-400/60 uppercase tracking-wider mt-0.5">{member.role}</p>
       </div>
     </div>
   );
@@ -72,7 +72,7 @@ function MarqueeRow({
 
   return (
     <div className="overflow-hidden">
-      <div className={`flex gap-8 sm:gap-20 w-max ${animClass} hover:[animation-play-state:paused]`}>
+      <div className={`flex gap-4 sm:gap-20 w-max ${animClass} hover:[animation-play-state:paused]`}>
         {doubled.map((member, i) => (
           <PersonCircle key={`${member.initials}-${i}`} member={member} index={i % members.length} />
         ))}
@@ -114,7 +114,7 @@ export default function TeamMarquee() {
   }));
 
   return (
-    <section className="relative w-full py-28 overflow-hidden bg-[#050505]">
+    <section className="relative w-full py-16 sm:py-28 overflow-hidden bg-[#050505]">
 
       {/* ⭐ Background Layer (same pattern as CeoVision) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -145,7 +145,7 @@ export default function TeamMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7 }}
-          className="mb-20"
+          className="mb-12 sm:mb-20"
         >
           <div className="text-center mb-12">
             <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.6em] mb-3 block">

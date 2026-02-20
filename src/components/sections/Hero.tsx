@@ -60,8 +60,8 @@ function Hero() {
             </div>
 
             {/* RIGHT GROUP: Coordinates (Text Updated) */}
-            <div className="flex flex-col text-left sm:text-right min-w-0 sm:min-w-[220px]">
-              <h1 className="text-amber-400 text-sm sm:text-xl tracking-wider tabular-nums">
+            <div className="flex flex-col text-left sm:text-right">
+              <h1 className="text-amber-400 text-xs sm:text-xl tracking-wider tabular-nums">
                 35°41'{coords.lat}"N 139°41'{coords.lng}"E
               </h1>
               <p className="text-[10px] sm:text-[12px] uppercase tracking-widest text-white/40">

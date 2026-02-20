@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { MapPin, Calendar, CheckCircle2, Zap, Circle } from "lucide-react";
+import { useIsMobile } from "@/lib/useIsMobile";
 import ZentejVideo from "@/components/images/zentejvid.mp4";
 import ZentejLogo from "@/components/images/Zentej_logo_only.png";
 
@@ -58,6 +59,7 @@ const timeline: TimelineNode[] = [
 
 export default function SignatureEvent() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -98,7 +100,7 @@ export default function SignatureEvent() {
 
         {/* Video Background — parallax */}
         <motion.div
-          style={{ y: videoY, scale: videoScale }}
+          style={isMobile ? undefined : { y: videoY, scale: videoScale }}
           className="absolute inset-0 z-0"
         >
           <video
@@ -118,7 +120,7 @@ export default function SignatureEvent() {
 
           {/* Top: Hero Content — parallax + fade out on scroll */}
           <motion.div
-            style={{ y: heroContentY, opacity: heroContentOpacity }}
+            style={isMobile ? undefined : { y: heroContentY, opacity: heroContentOpacity }}
             className="pt-24 sm:pt-36 lg:pt-44 flex-1 flex flex-col justify-center"
           >
             <div className="max-w-3xl">
@@ -254,7 +256,7 @@ export default function SignatureEvent() {
       ══════════════════════════════════════ */}
       <motion.div
         ref={galleryRef}
-        style={{ y: smoothGalleryY, scale: smoothGalleryScale }}
+        style={isMobile ? undefined : { y: smoothGalleryY, scale: smoothGalleryScale }}
         className="relative py-16 lg:py-24"
       >
         {/* Section label */}
@@ -297,7 +299,7 @@ export default function SignatureEvent() {
             {[...galleryImages, ...galleryImages].map((src, i) => (
               <div
                 key={i}
-                className="group relative w-72 h-48 lg:w-96 lg:h-64 rounded-2xl overflow-hidden border border-white/10 shrink-0 cursor-pointer transition-all duration-500 hover:border-amber-400/30 hover:shadow-[0_0_30px_rgba(251,191,36,0.08)]"
+                className="group relative w-48 h-32 sm:w-72 sm:h-48 lg:w-96 lg:h-64 rounded-2xl overflow-hidden border border-white/10 shrink-0 cursor-pointer transition-all duration-500 hover:border-amber-400/30 hover:shadow-[0_0_30px_rgba(251,191,36,0.08)]"
               >
                 <img
                   src={src}

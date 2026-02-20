@@ -68,7 +68,7 @@ export default function MenuOverlay({
 
           {/* Layer 2: Earth-like radial glow */}
           <div
-            className="absolute pointer-events-none"
+            className="absolute pointer-events-none hidden sm:block"
             style={{
               bottom: "-30%",
               right: "-10%",
@@ -85,7 +85,7 @@ export default function MenuOverlay({
           <img
             src={MapTexture}
             alt=""
-            className="absolute pointer-events-none"
+            className="absolute pointer-events-none hidden sm:block"
             style={{
               bottom: "-30%",
               right: "-10%",

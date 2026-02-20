@@ -5,6 +5,7 @@ import { ArrowUpRight, Clock, Signal } from "lucide-react";
 import Starry from "@/components/ui/Starry";
 import { supabase } from "@/lib/supabase";
 import type { UpdateRow } from "@/lib/types";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 /* ─── 3D Holographic Tilt Card ─── */
 
@@ -12,10 +13,12 @@ function TiltCard({
   item,
   index,
   lang,
+  isMobile,
 }: {
   item: UpdateRow;
   index: number;
   lang: string;
+  isMobile: boolean;
 }) {
   const { t } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -34,7 +37,7 @@ function TiltCard({
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isMobile || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -60,15 +63,15 @@ function TiltCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
-      style={{ perspective: 1000 }}
+      style={isMobile ? undefined : { perspective: 1000 }}
       className={item.featured ? "md:col-span-2" : ""}
     >
       <motion.div
         ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        style={{
+        onMouseMove={isMobile ? undefined : handleMouseMove}
+        onMouseEnter={isMobile ? undefined : () => setIsHovered(true)}
+        onMouseLeave={isMobile ? undefined : handleMouseLeave}
+        style={isMobile ? undefined : {
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
@@ -79,22 +82,24 @@ function TiltCard({
             ? "0 0 40px rgba(251,191,36,0.12), 0 0 80px rgba(251,191,36,0.06), inset 0 0 60px rgba(251,191,36,0.03)"
             : "none",
         }}
-        className="relative flex flex-col rounded-[28px] border bg-white/[0.03] backdrop-blur-xl overflow-hidden transition-[border-color,box-shadow] duration-500 h-full cursor-pointer"
+        className="relative flex flex-col rounded-[28px] border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden transition-[border-color,box-shadow] duration-500 h-full cursor-pointer"
       >
         {/* Holographic sheen */}
-        <div
-          className="pointer-events-none absolute inset-0 z-10 rounded-[28px] transition-opacity duration-500"
-          style={{
-            opacity: isHovered ? 0.08 : 0,
-            background:
-              "linear-gradient(105deg, transparent 30%, rgba(251,191,36,0.3) 45%, rgba(255,255,255,0.15) 50%, rgba(251,191,36,0.3) 55%, transparent 70%)",
-          }}
-        />
+        {!isMobile && (
+          <div
+            className="pointer-events-none absolute inset-0 z-10 rounded-[28px] transition-opacity duration-500"
+            style={{
+              opacity: isHovered ? 0.08 : 0,
+              background:
+                "linear-gradient(105deg, transparent 30%, rgba(251,191,36,0.3) 45%, rgba(255,255,255,0.15) 50%, rgba(251,191,36,0.3) 55%, transparent 70%)",
+            }}
+          />
+        )}
 
         {/* Content — lifts on hover */}
         <div
           className="relative z-20 flex flex-col h-full p-5 sm:p-8 lg:p-10 transition-transform duration-500 ease-out"
-          style={{
+          style={isMobile ? undefined : {
             transform: isHovered ? "translateZ(50px)" : "translateZ(0px)",
             transformStyle: "preserve-3d",
           }}
@@ -215,6 +220,7 @@ function SkeletonCard() {
 
 export default function Updates() {
   const { t, i18n } = useTranslation();
+  const isMobile = useIsMobile();
   const [updates, setUpdates] = useState<UpdateRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -315,7 +321,7 @@ export default function Updates() {
             </div>
           ) : (
             updates.map((item, i) => (
-              <TiltCard key={item.id} item={item} index={i} lang={i18n.language} />
+              <TiltCard key={item.id} item={item} index={i} lang={i18n.language} isMobile={isMobile} />
             ))
           )}
         </div>

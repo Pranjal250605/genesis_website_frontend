@@ -8,6 +8,7 @@ import {
   FlaskConical,
 } from "lucide-react";
 import Starry from "@/components/ui/Starry";
+import { useIsMobile } from "@/lib/useIsMobile";
 import IitMandiImg from "@/components/images/IIT_Mandi_Logo_High_Resolution (1).jpg";
 import IitRoparImg from "@/components/images/iit-ropar-01.jpeg";
 import StateHealth from "@/components/images/State-Health-Society-Bihar-Vacancy (1).jpg";
@@ -30,6 +31,7 @@ interface DefenceArea {
 
 export default function ImpactInnovation() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLElement>(null);
   const partnerRef = useRef<HTMLElement>(null);
   const defenceRef = useRef<HTMLElement>(null);
@@ -69,7 +71,7 @@ export default function ImpactInnovation() {
         ═══════════════════════════════════════════ */}
         <section ref={heroRef} className="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 pt-28 sm:pt-44 pb-16 sm:pb-24 overflow-hidden">
           <motion.div
-            style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+            style={isMobile ? undefined : { y: heroY, opacity: heroOpacity, scale: heroScale }}
             className="max-w-4xl"
           >
             {/* Eyebrow — slides in from left */}
@@ -99,7 +101,7 @@ export default function ImpactInnovation() {
               whileInView={{ opacity: 1, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.4 }}
-              className="flex items-start gap-8"
+              className="flex items-start gap-4 sm:gap-8"
             >
               <motion.div
                 initial={{ scaleY: 0 }}
@@ -108,7 +110,7 @@ export default function ImpactInnovation() {
                 transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="w-px h-20 bg-gradient-to-b from-amber-400/60 to-transparent shrink-0 mt-1 origin-top"
               />
-              <p className="text-[19px] text-white/50 max-w-2xl leading-relaxed">
+              <p className="text-[15px] sm:text-[19px] text-white/50 max-w-2xl leading-relaxed">
                 {t("impact_page.subtitle")}
               </p>
             </motion.div>
@@ -156,7 +158,7 @@ export default function ImpactInnovation() {
               {[...academicPartners, ...academicPartners].map((src, i) => (
                 <div
                   key={i}
-                  className="group relative flex-shrink-0 w-72 h-48 bg-white/[0.03] backdrop-blur-3xl rounded-[32px] border border-white/10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 shadow-2xl flex items-center justify-center p-4"
+                  className="group relative flex-shrink-0 w-48 h-32 sm:w-72 sm:h-48 bg-white/[0.03] backdrop-blur-3xl rounded-[20px] sm:rounded-[32px] border border-white/10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 shadow-2xl flex items-center justify-center p-2 sm:p-4"
                 >
                   <div className="flex items-center justify-center w-full h-full bg-white rounded-2xl p-4">
                     <img
@@ -179,7 +181,7 @@ export default function ImpactInnovation() {
 
             {/* Left column — editorial text (5 cols, sticky) */}
             <motion.div
-              style={{ y: smoothDefenceTextY }}
+              style={isMobile ? undefined : { y: smoothDefenceTextY }}
               className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start"
             >
               <motion.span

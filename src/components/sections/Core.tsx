@@ -125,7 +125,7 @@ export default function Core() {
                 {/* TRANSPARENT GLASS CARDS */}
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6 flex-1 items-start">
                     {capabilities.map((item, index) => (
-                        <div key={index} className="core-card opacity-0 group relative bg-white/[0.03] backdrop-blur-3xl rounded-[32px] border border-white/10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 flex flex-col shadow-2xl">
+                        <div key={index} className={`core-card ${isMobile ? 'opacity-100' : 'opacity-0'} group relative bg-white/[0.03] backdrop-blur-3xl rounded-[20px] sm:rounded-[32px] border border-white/10 overflow-hidden transition-all duration-500 hover:border-amber-400/30 flex flex-col shadow-2xl`}>
 
                             {/* IMAGE SECTION */}
                             <div className="relative h-24 sm:h-44 w-full overflow-hidden border-b border-white/5">

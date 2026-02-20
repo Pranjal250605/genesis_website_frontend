@@ -11,7 +11,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
   const { t } = useTranslation();
 
   return (
-    <div className="relative min-h-screen bg-[#050505] pt-24 sm:pt-32 pb-10 px-4 sm:px-6 lg:px-20 overflow-hidden flex flex-col">
+    <div className="relative min-h-screen bg-[#050505] pt-24 sm:pt-32 pb-10 px-5 sm:px-6 lg:px-20 overflow-hidden flex flex-col">
       <Starry />
 
       {/* 1. CALL TO ACTION SECTION */}
@@ -89,7 +89,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
           {/* Logo Placeholder */}
           <div className="flex items-center justify-start h-full">
             <div className="text-white text-5xl font-bold tracking-tighter italic">
-               <img src={Logo} /> 
+               <img src={Logo} className="max-w-[200px] sm:max-w-none w-auto h-auto" />
             </div>
           </div>
 
@@ -99,7 +99,7 @@ export default function Contact({ onNavigate }: ContactProps = {}) {
               <h4 className="text-white text-lg font-bold font-['Montserrat']">{t('contactSection.contact.title')}</h4>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
               <div className="flex flex-col gap-1">
                 <p className="text-white/40 text-xs uppercase font-['Inter']">{t('contactSection.contact.phone')}</p>
                 <p className="text-white/60 text-sm font-['Inter']">{t('contactSection.contact.phoneValue')}</p>

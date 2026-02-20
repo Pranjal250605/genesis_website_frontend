@@ -139,7 +139,7 @@ export default function JapanPortfolio() {
                 delay: 0.08 * (i % 3),
                 ease: "easeOut",
               }}
-              className="group bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[28px] overflow-hidden hover:border-amber-500/30 hover:bg-white/[0.05] transition-all duration-500 flex flex-col md:flex-row"
+              className="group bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[20px] sm:rounded-[28px] overflow-hidden hover:border-amber-500/30 hover:bg-white/[0.05] transition-all duration-500 flex flex-col md:flex-row"
             >
               {/* Left — Info */}
               <div className="flex-1 p-7 md:p-9 flex flex-col justify-center">
@@ -178,7 +178,7 @@ export default function JapanPortfolio() {
               </div>
 
               {/* Right — Image or placeholder */}
-              <div className="md:w-[45%] lg:w-[40%] min-h-[220px] md:min-h-[280px] bg-white/[0.02] border-t md:border-t-0 md:border-l border-white/5 flex items-center justify-center">
+              <div className="md:w-[45%] lg:w-[40%] min-h-[160px] md:min-h-[280px] bg-white/[0.02] border-t md:border-t-0 md:border-l border-white/5 flex items-center justify-center">
                 {project.image ? (
                   <img
                     src={project.image}

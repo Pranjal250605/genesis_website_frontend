@@ -53,7 +53,7 @@ export default function CeoVision() {
 
         {/* Right Column — CEO Image */}
         <div className="flex justify-center lg:justify-end relative z-10">
-          <div className="w-full max-w-md lg:max-w-lg overflow-hidden rounded-[32px] border border-white/10 shadow-2xl bg-[#050505]">
+          <div className="w-full max-w-md lg:max-w-lg overflow-hidden rounded-[20px] sm:rounded-[32px] border border-white/10 shadow-2xl bg-[#050505]">
             <img
               src={CeoImg}
               alt={t('ceoSection.altCeo')}

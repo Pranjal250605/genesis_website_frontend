@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BackgroundImg from "@/components/images/unnamed (10).webp";
+import { useIsMobile } from '@/lib/useIsMobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,8 +14,11 @@ const AboutUs = () => {
   const maskRef = useRef<HTMLHeadingElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -46,10 +50,10 @@ const AboutUs = () => {
 
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050505]">
+    <section ref={containerRef} className={`relative w-full overflow-hidden bg-[#050505] ${isMobile ? 'h-auto' : 'h-screen'}`}>
 
       {/* TOP GRADIENT BLEND */}
       <div className="absolute top-0 left-0 w-full h-48 z-50 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none" />
@@ -59,7 +63,7 @@ const AboutUs = () => {
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute top-12 left-12 z-50 flex flex-col gap-1 pointer-events-none"
+        className="absolute top-12 left-4 sm:left-12 z-50 flex flex-col gap-1 pointer-events-none"
       >
         <div className="flex items-center gap-2">
           <motion.span animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2 }} className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
@@ -69,7 +73,7 @@ const AboutUs = () => {
       </motion.div>
 
       {/* BRAND MASK */}
-      <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
+      <div className={`absolute inset-0 z-40 flex items-center justify-center pointer-events-none ${isMobile ? 'hidden' : ''}`}>
         <h1 ref={maskRef} className="text-[15vw] font-bold text-white uppercase tracking-[-0.02em] leading-none drop-shadow-xl">{t("aboutus_page.mask")}</h1>
       </div>
 
@@ -81,36 +85,36 @@ const AboutUs = () => {
       </div>
 
       {/* CONTENT LAYER */}
-      <div className="relative z-30 flex h-full w-full items-end justify-start p-12 md:p-32">
+      <div className={`relative z-30 flex w-full ${isMobile ? 'flex-col gap-10 px-5 py-28' : 'h-full items-end justify-start p-12 md:p-32'}`}>
 
         {/* Pair 1 */}
-        <div className="aboutus-pair-1 absolute flex flex-col items-start text-left gap-6 max-w-5xl pb-16 opacity-0">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair1_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
+        <div className={`aboutus-pair-1 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-4 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+          <h2 className="text-[28px] sm:text-[50px] md:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair1_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
           <div className="flex items-start">
-            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
-            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-4 sm:mr-8" />
+            <p className="text-[15px] sm:text-[22px] md:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
               {t("aboutus_page.pair1_text")}
             </p>
           </div>
         </div>
 
         {/* Pair 2 */}
-        <div className="aboutus-pair-2 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair2_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
+        <div className={`aboutus-pair-2 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-4 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+          <h2 className="text-[28px] sm:text-[50px] md:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair2_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
           <div className="flex items-start">
-            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
-            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-4 sm:mr-8" />
+            <p className="text-[15px] sm:text-[22px] md:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
               {t("aboutus_page.pair2_text")}
             </p>
           </div>
         </div>
 
         {/* Pair 3 */}
-        <div className="aboutus-pair-3 absolute flex flex-col items-start text-left gap-6 max-w-5xl opacity-0 pb-16">
-          <h2 className="text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair3_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
+        <div className={`aboutus-pair-3 flex flex-col items-start text-left gap-3 sm:gap-6 max-w-5xl pb-4 sm:pb-16 ${isMobile ? 'relative opacity-100' : 'absolute opacity-0'}`}>
+          <h2 className="text-[28px] sm:text-[50px] md:text-[70px] font-medium text-white leading-[1.05] uppercase tracking-tight drop-shadow-2xl" dangerouslySetInnerHTML={{ __html: t("aboutus_page.pair3_title").replace("<1>", '<span class="text-amber-400">').replace("</1>", "</span>").replace("<br/>", "<br/>") }} />
           <div className="flex items-start">
-            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-8" />
-            <p className="text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
+            <motion.div initial={{ height: 0 }} whileInView={{ height: '100%' }} transition={{ duration: 1 }} className="w-px bg-amber-400/30 mr-4 sm:mr-8" />
+            <p className="text-[15px] sm:text-[22px] md:text-[30px] font-medium text-white/60 leading-snug max-w-3xl">
               {t("aboutus_page.pair3_text")}
             </p>
           </div>
