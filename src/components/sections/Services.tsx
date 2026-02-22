@@ -61,6 +61,7 @@ function HolographicCard({ card, index, isMobile }: { card: ServiceCardData; ind
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
       style={isMobile ? undefined : { perspective: 1000 }}
+      className="h-full"
     >
       <motion.div
         ref={cardRef}
@@ -160,6 +161,27 @@ export default function Services() {
       desc: t("services_page.cards.outsourcing.desc"),
       list: t("services_page.cards.outsourcing.list", { returnObjects: true }) as string[],
       footer: t("services_page.cards.outsourcing.footer"),
+    },
+    {
+      number: t("services_page.cards.faxAI.number"),
+      title: t("services_page.cards.faxAI.title"),
+      desc: t("services_page.cards.faxAI.desc"),
+      list: t("services_page.cards.faxAI.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.faxAI.footer"),
+    },
+    {
+      number: t("services_page.cards.ragAI.number"),
+      title: t("services_page.cards.ragAI.title"),
+      desc: t("services_page.cards.ragAI.desc"),
+      list: t("services_page.cards.ragAI.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.ragAI.footer"),
+    },
+    {
+      number: t("services_page.cards.kintoneBot.number"),
+      title: t("services_page.cards.kintoneBot.title"),
+      desc: t("services_page.cards.kintoneBot.desc"),
+      list: t("services_page.cards.kintoneBot.list", { returnObjects: true }) as string[],
+      footer: t("services_page.cards.kintoneBot.footer"),
     },
   ];
 
@@ -264,10 +286,12 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+        {/* Cards — horizontal scroll */}
+        <div className="flex gap-5 overflow-x-auto pt-10 pb-6 -mx-4 sm:-mx-8 lg:-mx-16 px-4 sm:px-8 lg:px-16 snap-x snap-mandatory [&::-webkit-scrollbar]:h-[3px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-amber-400/30 [&::-webkit-scrollbar-track]:bg-transparent">
           {services.map((card, i) => (
-            <HolographicCard key={card.number} card={card} index={i} isMobile={isMobile} />
+            <div key={card.number} className="snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] h-[520px]">
+              <HolographicCard card={card} index={i} isMobile={isMobile} />
+            </div>
           ))}
         </div>
       </div>

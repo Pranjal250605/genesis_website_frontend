@@ -350,6 +350,42 @@
           "Dedicated remote engineering teams"
         ],
         "footer": "Transparent processes · Agile delivery · Global standards"
+      },
+      "faxAI": {
+        "number": "05",
+        "title": "FAX (PDF) Transcription AI",
+        "desc": "AI-OCR combined with LLM-based context correction and formatting for accurate digitization of handwritten and printed documents.",
+        "list": [
+          "AI-OCR with handwriting recognition support",
+          "LLM-based context correction & formatting",
+          "Structured data extraction",
+          "Integration with DB / kintone & business systems"
+        ],
+        "footer": "Accuracy · Automation · Business Integration"
+      },
+      "ragAI": {
+        "number": "06",
+        "title": "Executive RAG AI",
+        "desc": "Internal knowledge search and decision support — builds a RAG knowledge base over internal documents so executives can query in natural language.",
+        "list": [
+          "RAG knowledge base over internal documents & data",
+          "Natural language Q&A for decision-makers",
+          "Evidence-based summarization & answers",
+          "Secure internal knowledge management"
+        ],
+        "footer": "Knowledge · Intelligence · Decision Support"
+      },
+      "kintoneBot": {
+        "number": "07",
+        "title": "LLM Chatbot on kintone",
+        "desc": "A kintone-integrated chatbot that automates app creation and modifications through natural-language instructions via LLM API and kintone REST API.",
+        "list": [
+          "Natural language app creation & modification",
+          "LLM API + kintone REST API integration",
+          "JS customization support",
+          "Streamlined workflow automation"
+        ],
+        "footer": "Automation · Integration · Efficiency"
       }
     },
     "steps": {

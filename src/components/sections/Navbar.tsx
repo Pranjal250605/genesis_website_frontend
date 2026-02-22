@@ -50,8 +50,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
         {/* Navigation Actions */}
         <div className="flex items-center gap-3 sm:gap-6">
 
-            {/* Language Selector */}
-            <div
+            {/* Language Selector — toggle disabled temporarily, EN translations preserved */}
+            {/* <div
                 className="flex items-center gap-2 cursor-pointer group"
                 onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'ja' : 'en')}
             >
@@ -63,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset })
                 <span className="text-sm font-medium text-white/50 group-hover:text-white transition-colors">
                 {i18n.language === 'en' ? 'JP' : 'EN'}
                 </span>
-            </div>
+            </div> */}
 
             <div className="hidden sm:block h-6 w-[2px] bg-white/10" />
 
