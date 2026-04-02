@@ -548,9 +548,9 @@ export default function Services({ onNavigate }: ServicesProps) {
               </button>
             </div>
 
-            {/* Right column — desktop only: Fujiwara card + reskillinggx image below */}
+            {/* Right column — desktop only: scrollable stack */}
             {!isMobile && (
-              <div className="gx-card mt-6 lg:mt-24 lg:ml-12 flex flex-col gap-4 w-full sm:w-[380px] lg:w-[400px] shrink-0 opacity-0">
+              <div className="gx-card mt-6 lg:mt-24 lg:ml-12 flex flex-col gap-4 w-full sm:w-[380px] lg:w-[400px] shrink-0 opacity-0 max-h-[85vh] overflow-y-auto [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#4ade80]/30 [&::-webkit-scrollbar-track]:bg-transparent pr-1">
                 <div className="rounded-[24px] bg-white/[0.06] backdrop-blur-2xl border border-white/15 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.4)]">
                   {/* Image */}
                   <div className="relative h-72 sm:h-80 overflow-hidden">
@@ -599,42 +599,35 @@ export default function Services({ onNavigate }: ServicesProps) {
                   </div>
                 </div>
 
-              {/* Reskilling GX document — button left, image right */}
-              <div className="flex flex-row items-stretch gap-3">
+              {/* Reskilling GX document — stacked: button then poster */}
+              <div className="flex flex-col gap-3">
 
-                {/* Prominent brochure CTA — left strip */}
+                {/* Prominent brochure CTA — full width */}
                 <button
                   onClick={() => onNavigate?.("gx-brochure")}
-                  className="group relative flex flex-col items-center justify-center gap-4 px-3 py-5 w-16 shrink-0 rounded-[14px] border-2 border-[#4ade80]/50 bg-[#4ade80]/[0.10] hover:bg-[#4ade80]/[0.20] hover:border-[#4ade80]/80 active:scale-[0.97] transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="group relative w-full flex items-center justify-center gap-3 py-3.5 px-5 rounded-[14px] border-2 border-[#4ade80]/50 bg-[#4ade80]/[0.10] hover:bg-[#4ade80]/[0.20] hover:border-[#4ade80]/80 active:scale-[0.97] transition-all duration-300 cursor-pointer overflow-hidden"
                 >
-                  {/* Glow */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(74,222,128,0.22) 0%, transparent 70%)" }}
                   />
-                  {/* Rotated label — top */}
-                  <span
-                    className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4ade80] group-hover:text-white transition-colors duration-300 leading-none"
-                    style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                  >
-                    Click to read
-                  </span>
-                  {/* Ping beacon */}
                   <span className="relative flex h-2.5 w-2.5 shrink-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-70" />
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#4ade80]" />
                   </span>
-                  {/* Arrow pointing right */}
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#4ade80] group-hover:text-white transition-colors duration-300">
+                    Click to read the full brochure
+                  </span>
                   <svg
                     width="12" height="12" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" strokeWidth="2.5"
-                    className="text-[#4ade80]/70 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 rotate-[-90deg]"
+                    className="text-[#4ade80]/70 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                   >
                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </button>
 
-                {/* Image */}
-                <div className="flex-1 rounded-[16px] overflow-hidden border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+                {/* Poster image */}
+                <div className="rounded-[16px] overflow-hidden border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
                   <img
                     src={reskillinggxImg}
                     alt="GX Reskilling Support Course"
