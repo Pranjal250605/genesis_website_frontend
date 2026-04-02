@@ -32,22 +32,70 @@
     "title": "経営陣",
     "mentorsTitle": "メンター＆アドバイザー",
     "members": {
-      "koheiYoshida": { "name": "吉田 宏平", "role": "GENESIS CEO" },
-      "nickNakatani": { "name": "中谷 (Nick) 英峰", "role": "Edify COO" },
-      "toshiakiMiyake": { "name": "宮武俊明", "role": "GENESIS CTO" },
-      "rahulRai": { "name": "ラフル・ライ", "role": "インド統括 CTO" },
-      "takakoFujiwara": { "name": "藤原 貴子", "role": "最高研究責任者 CRO" },
-      "kotaSudo": { "name": "須藤 光太", "role": "最高戦略責任者 CSO" },
-      "reshuBansal": { "name": "レシュ・バンサル", "role": "CAIO" },
-      "shushiMatsui": { "name": "松井 秀之", "role": "事業統括本部長" },
-      "kotaroAbe": { "name": "阿部 孝太郎", "role": "北海道 CEO" },
-      "ayakaAbe": { "name": "阿部 綾華", "role": "北海道 COO" },
-      "andrewChapman": { "name": "アンドリュー・チャップマン", "role": "サポーター" },
-      "prafulHambarde": { "name": "プラフル・ハンバルデ", "role": "アドバイザリーメンバー" },
-      "makotoOda": { "name": "小田 誠", "role": "社外取締役" },
-      "koshimizu": { "name": "越水弁護士", "role": "顧問弁護士" },
-      "ueno": { "name": "上野顧問", "role": "財務顧問" },
-      "matsuda": { "name": "松田税理士", "role": "顧問税理士" }
+      "koheiYoshida": {
+        "name": "吉田 宏平",
+        "role": "GENESIS CEO"
+      },
+      "nickNakatani": {
+        "name": "中谷 (Nick) 英峰",
+        "role": "Edify COO"
+      },
+      "toshiakiMiyake": {
+        "name": "宮武俊明",
+        "role": "GENESIS CTO"
+      },
+      "rahulRai": {
+        "name": "ラフル・ライ",
+        "role": "インド統括 CTO"
+      },
+      "takakoFujiwara": {
+        "name": "藤原 貴子",
+        "role": "最高研究責任者 CRO"
+      },
+      "kotaSudo": {
+        "name": "須藤 光太",
+        "role": "最高戦略責任者 CSO"
+      },
+      "reshuBansal": {
+        "name": "レシュ・バンサル",
+        "role": "CAIO"
+      },
+      "shushiMatsui": {
+        "name": "松井 秀之",
+        "role": "事業統括本部長"
+      },
+      "kotaroAbe": {
+        "name": "阿部 孝太郎",
+        "role": "北海道 CEO"
+      },
+      "ayakaAbe": {
+        "name": "阿部 綾華",
+        "role": "北海道 COO"
+      },
+      "andrewChapman": {
+        "name": "アンドリュー・チャップマン",
+        "role": "サポーター"
+      },
+      "prafulHambarde": {
+        "name": "プラフル・ハンバルデ",
+        "role": "アドバイザリーメンバー"
+      },
+      "makotoOda": {
+        "name": "小田 誠",
+        "role": "社外取締役"
+      },
+      "koshimizu": {
+        "name": "越水弁護士",
+        "role": "顧問弁護士"
+      },
+      "ueno": {
+        "name": "上野顧問",
+        "role": "財務顧問"
+      },
+      "matsuda": {
+        "name": "松田税理士",
+        "role": "顧問税理士"
+      }
     }
   },
   "hero": {
@@ -56,7 +104,7 @@
     "title": "テクノロジーの <br/> 未来を切り拓く",
     "subtitle": "イノベーションを繋ぐ：<br/>日本から世界へ。",
     "cta": "Edifyのサイトへ",
-    "coordinates": "35°41'{{lat}}\"N 139°41'{{lng}}\"E"
+    "coordinates": "35°41'{{lat}}\\\"N 139°41'{{lng}}\\\"E"
   },
   "about": {
     "mask": "ジェネシス",
@@ -99,8 +147,8 @@
       }
     },
     "stats": {
-        "clients": "顧客",
-        "projects": "プロジェクト"
+      "clients": "顧客",
+      "projects": "プロジェクト"
     }
   },
   "global": {
@@ -236,7 +284,56 @@
           "専任リモートエンジニアリングチーム"
         ],
         "footer": "透明なプロセス · アジャイルな提供 · グローバルスタンダード"
+      },
+      "faxAI": {
+        "number": "05",
+        "title": "FAX（PDF）文字起こしAI",
+        "desc": "手書き対応AI-OCRとLLMによる文脈補正・整形を組み合わせ、印刷・手書き文書を高精度でデジタル化します。",
+        "list": [
+          "手書き認識対応AI-OCR",
+          "LLMによる文脈補正・整形",
+          "構造化データ抽出",
+          "DB・kintoneなどの業務システムと連携"
+        ],
+        "footer": "精度 · 自動化 · 業務統合"
+      },
+      "ragAI": {
+        "number": "06",
+        "title": "エグゼクティブRAG AI",
+        "desc": "社内文書・データをRAGナレッジベース化し、経営幹部が自然言語で問い合わせできる社内知識検索・意思決定支援ツールです。",
+        "list": [
+          "社内文書・データのRAGナレッジベース構築",
+          "経営幹部向け自然言語Q&A",
+          "根拠付き要約・回答生成",
+          "安全な社内ナレッジ管理"
+        ],
+        "footer": "ナレッジ · インテリジェンス · 意思決定支援"
+      },
+      "kintoneBot": {
+        "number": "07",
+        "title": "kintone向けLLMチャットボット",
+        "desc": "LLM APIとkintone REST APIを活用し、自然言語の指示でkintoneアプリの作成・変更を自動化するチャットボットです。",
+        "list": [
+          "自然言語によるアプリ作成・変更",
+          "LLM API + kintone REST API 連携",
+          "JSカスタマイズ対応",
+          "業務フローの自動化"
+        ],
+        "footer": "自動化 · 連携 · 効率化"
       }
+    },
+    "outsourcing_banner": "アウトソーシング",
+    "how_it_works": "仕組み<1>について</1>",
+    "how_it_works_sub": "受付から納品まで — 合理化された透明なプロセス。",
+    "steps": {
+      "step1_title": "ステップ1. プロジェクト受付 & 審査",
+      "step1_desc": "日本のクライアントと相談し、プロジェクトの範囲、技術要件を定義し、Edify Japanを通じてプロジェクトを審査します。",
+      "step2_title": "ステップ2. リソース配分",
+      "step2_desc": "プロジェクトはEdify Bharat支社にルーティングされ、要件に合った専門のIIT研究者とエンジニアをマッチングします。",
+      "step3_title": "ステップ3. 実行 & 管理",
+      "step3_desc": "専任のエンジニアリングチームが、タイム・アンド・マテリアルまたは固定価格開発で、定期的な進捗報告とともにプロジェクトを実行します。",
+      "step4_title": "ステップ4. QA & 納品",
+      "step4_desc": "最終成果物はISO準拠の品質保証とデータセキュリティチェックを受け、引き渡しとフィードバック収集を行います。"
     }
   },
   "impact_page": {
@@ -258,7 +355,11 @@
     "defence_eyebrow": "機密イニシアティブ",
     "defence_title": "防衛 & <1>コンサルティング</1>",
     "defence_subtitle": "インドの防衛エコシステム内でのAIに焦点を当てたイニシアティブ — インテリジェンス、自律性、およびセキュアなシステムにわたる国家主権能力を開発します。",
-    "defence_tags": ["高度な分析", "インテリジェントシステム", "主権インフラストラクチャ"],
+    "defence_tags": [
+      "高度な分析",
+      "インテリジェントシステム",
+      "主権インフラストラクチャ"
+    ],
     "defence_areas": {
       "ai": {
         "label": "AI / 機械学習",
@@ -284,7 +385,7 @@
   },
   "careers_page": {
     "hero_eyebrow": "ジェネシスでのキャリア",
-    "hero_title": "<span class=\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\">タレントネットワーク</span>に参加",
+    "hero_title": "<span class=\\\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\\\">タレントネットワーク</span>に参加",
     "hero_subtitle": "現在、特定のポジションの募集は行っておりませんが、優秀な技術人材との繋がりを常に求めています。CVをお送りいただければ、適切なポジションが開いた際にご連絡いたします。",
     "confirmation_message": "ありがとうございます！プロフィールを正常に受信しました。マッチする機会が見つかり次第、ご連絡いたします。",
     "form": {
@@ -305,7 +406,85 @@
       "area_required": "関心分野は必須です",
       "cv_required": "CVをアップロードしてください",
       "cv_format": "PDF、DOC、DOCXファイルのみ受け付けています"
-    }
+    },
+    "cta_view_roles": "募集中の職種を見る",
+    "cta_philosophy": "私たちの哲学",
+    "scroll_indicator": "スクロール",
+    "team_eyebrow": "私たちのチーム",
+    "team_title": "ジェネシスの頭脳",
+    "team_cards": {
+      "academic": {
+        "title": "学術的な深さ",
+        "description": "トップIITからの強力な基盤。"
+      },
+      "global": {
+        "title": "グローバルな視点",
+        "description": "研究エコシステム全体での国際的な露出。"
+      },
+      "frontier": {
+        "title": "フロンティア技術",
+        "description": "AI、ブロックチェーン、大規模システムでの経験。"
+      },
+      "precision": {
+        "title": "精密さの文化",
+        "description": "知的な厳密さへの共通のコミットメント。"
+      }
+    },
+    "hiring_eyebrow": "採用哲学",
+    "hiring_title": "私たちは単に役割のために<br />採用するのではありません。<span class=\\\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\\\">インパクトのために採用します。</span>",
+    "hiring_subtitle": "ジェネシスのすべての人は、彼らが何を知っているかだけでなく、彼らが誰であり、何になれる可能性があるかで選ばれます。",
+    "hiring_traits": [
+      "好奇心と研究主導の思考",
+      "誠実さとオーナーシップ",
+      "協調的な問題解決",
+      "フロンティアでの構築への情熱",
+      "完璧さより行動への偏り"
+    ],
+    "opportunities_eyebrow": "募集中の機会",
+    "opportunities_title": "あなたの役割を見つける",
+    "roles_header": {
+      "role": "役割",
+      "team": "チーム",
+      "location": "場所",
+      "type": "タイプ"
+    },
+    "roles": {
+      "ai_ml": {
+        "title": "AI & MLエンジニアリング",
+        "team": "研究・エンジニアリング",
+        "location": "リモート / ベンガルール",
+        "type": "正社員"
+      },
+      "blockchain": {
+        "title": "ブロックチェーン & Web3",
+        "team": "分散システム",
+        "location": "リモート / シンガポール",
+        "type": "正社員"
+      },
+      "fullstack": {
+        "title": "フルスタック開発",
+        "team": "製品エンジニアリング",
+        "location": "リモート / デリーNCR",
+        "type": "正社員"
+      },
+      "design": {
+        "title": "製品デザイン",
+        "team": "デザイン & UX",
+        "location": "リモート",
+        "type": "正社員 / 契約"
+      },
+      "devops": {
+        "title": "DevOps & インフラストラクチャ",
+        "team": "プラットフォームエンジニアリング",
+        "location": "リモート / ベンガルール",
+        "type": "正社員"
+      }
+    },
+    "apply_now": "今すぐ応募",
+    "cta_unlisted_role_eyebrow": "あなたの役割が見つかりませんか？",
+    "cta_unlisted_role_title": "あなたの<span class=\\\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\\\">足跡</span>を残す準備はできましたか？",
+    "cta_unlisted_role_subtitle": "あなたのプロフィールを送って、どのようにインパクトを与えたいか教えてください。適切な人材は常にジェネシスで場所を見つけます。",
+    "cta_unlisted_role_button": "メールで応募"
   },
   "social_page": {
     "hero_eyebrow": "ウェルネスと目的",
@@ -342,7 +521,13 @@
     ],
     "zero_barriers": "経済的障壁ゼロ",
     "cta_title": "<1>使命</1>に参加する。",
-    "cta_button": "参加する"
+    "cta_button": "参加する",
+    "no_barriers": "障壁なし",
+    "featured_eyebrow": "特集イニシアチブ",
+    "featured_title": "インド・日本<1>文化センター</1>",
+    "featured_desc1": "このイニシアチブは、両国の人々がお互いの国で効果的に働けるサポート環境を提供し、インドと日本のより深い協力を促進することを目指しています。",
+    "featured_desc2": "この使命を通じて、現在の課題を克服し、両社会が互いに交流し、共に成長することを奨励しています。",
+    "major_partners": "主要パートナー"
   },
   "updates_page": {
     "eyebrow": "プレス & インテリジェンス",
@@ -394,7 +579,12 @@
         "location": "インド / リモート",
         "type": "正社員",
         "description": "生産グレードのAIシステム全体で信頼性、安全性、公平性を確保するための敵対的テストフレームワークを設計・実装します。",
-        "tags": ["PyTorch", "レッドチーミング", "MLOps", "責任あるAI"]
+        "tags": [
+          "PyTorch",
+          "レッドチーミング",
+          "MLOps",
+          "責任あるAI"
+        ]
       },
       "cardano_architect": {
         "id": "GEN-R02",
@@ -403,7 +593,12 @@
         "location": "東京 / 広島",
         "type": "正社員",
         "description": "カルダノエコシステム上でスマートコントラクトとdAppsを設計・展開し、エンタープライズのユースケースと分散インフラを橋渡しします。",
-        "tags": ["Haskell", "Plutus", "Cardano", "スマートコントラクト"]
+        "tags": [
+          "Haskell",
+          "Plutus",
+          "Cardano",
+          "スマートコントラクト"
+        ]
       },
       "drone_dev": {
         "id": "GEN-R03",
@@ -412,7 +607,12 @@
         "location": "広島",
         "type": "正社員",
         "description": "複雑な環境で動作する自律UAVプラットフォームのための飛行制御ソフトウェアとリアルタイム知覚パイプラインを開発します。",
-        "tags": ["ROS2", "コンピュータビジョン", "C++", "PX4"]
+        "tags": [
+          "ROS2",
+          "コンピュータビジョン",
+          "C++",
+          "PX4"
+        ]
       },
       "research_intern": {
         "id": "GEN-R04",
@@ -421,7 +621,12 @@
         "location": "博多",
         "type": "インターンシップ",
         "description": "シニアメンターの下で、AI、防衛技術、次世代コンピューティングの交差点での応用研究イニシアチブに貢献します。",
-        "tags": ["研究", "Python", "データサイエンス", "出版"]
+        "tags": [
+          "研究",
+          "Python",
+          "データサイエンス",
+          "出版"
+        ]
       }
     }
   },
@@ -509,31 +714,123 @@
     "leadershipTitle": "リーダーシップ<1>チーム</1>",
     "mentorsTitle": "業界＆学術<1>メンター</1>",
     "leadership": {
-      "ky": { "name": "吉田 宏平", "role": "GENESIS CEO / Edify CEO", "initials": "KY" },
-      "nn": { "name": "ニック・中谷", "role": "Edify COO / 経営戦略", "initials": "NN" },
-      "tm": { "name": "宮武 俊明", "role": "GENESIS CTO / Edify CMO", "initials": "TM" },
-      "sm": { "name": "松井 秀始", "role": "事業部長", "initials": "SM" },
-      "yy": { "name": "山本 豊", "role": "建設部門長", "initials": "YY" },
-      "rr": { "name": "ラフル・ライ", "role": "Edify CTO / インド統括", "initials": "RR" },
-      "ym": { "name": "村上 遊真", "role": "プロダクト開発責任者", "initials": "YM" },
-      "ks": { "name": "須藤 航太", "role": "Edify 最高戦略責任者", "initials": "KS" },
-      "ka": { "name": "阿部 虎太郎", "role": "Edify 北海道 CEO", "initials": "KA" },
-      "aa": { "name": "阿部 彩花", "role": "Edify 北海道 COO", "initials": "AA" },
-      "tf": { "name": "藤原 貴子", "role": "最高研究責任者 / 執行役員", "initials": "TF" },
-      "rb": { "name": "レシュ・バンサル", "role": "Edify CAIO / エンジニア", "initials": "RB" },
-      "ky2": { "name": "山本 薫", "role": "経営企画", "initials": "KY" },
-      "mn": { "name": "西舘 みどり", "role": "経営企画", "initials": "MN" },
-      "mo": { "name": "モエナ", "role": "Edify インド採用アドバイザー", "initials": "MO" },
-      "tk": { "name": "近藤 大輝", "role": "GENESIS 不動産部門マネージャー", "initials": "TK" },
-      "km": { "name": "宮本 海翔", "role": "チームメンバー", "initials": "KM" },
-      "ni": { "name": "西口", "role": "インターン", "initials": "NI" }
+      "ky": {
+        "name": "吉田 宏平",
+        "role": "GENESIS CEO / Edify CEO",
+        "initials": "KY"
+      },
+      "nn": {
+        "name": "ニック・中谷",
+        "role": "Edify COO / 経営戦略",
+        "initials": "NN"
+      },
+      "tm": {
+        "name": "宮武 俊明",
+        "role": "GENESIS CTO / Edify CMO",
+        "initials": "TM"
+      },
+      "sm": {
+        "name": "松井 秀始",
+        "role": "事業部長",
+        "initials": "SM"
+      },
+      "yy": {
+        "name": "山本 豊",
+        "role": "建設部門長",
+        "initials": "YY"
+      },
+      "rr": {
+        "name": "ラフル・ライ",
+        "role": "Edify CTO / インド統括",
+        "initials": "RR"
+      },
+      "ym": {
+        "name": "村上 遊真",
+        "role": "プロダクト開発責任者",
+        "initials": "YM"
+      },
+      "ks": {
+        "name": "須藤 航太",
+        "role": "Edify 最高戦略責任者",
+        "initials": "KS"
+      },
+      "ka": {
+        "name": "阿部 虎太郎",
+        "role": "Edify 北海道 CEO",
+        "initials": "KA"
+      },
+      "aa": {
+        "name": "阿部 彩花",
+        "role": "Edify 北海道 COO",
+        "initials": "AA"
+      },
+      "tf": {
+        "name": "藤原 貴子",
+        "role": "最高研究責任者 / 執行役員",
+        "initials": "TF"
+      },
+      "rb": {
+        "name": "レシュ・バンサル",
+        "role": "Edify CAIO / エンジニア",
+        "initials": "RB"
+      },
+      "ky2": {
+        "name": "山本 薫",
+        "role": "経営企画",
+        "initials": "KY"
+      },
+      "mn": {
+        "name": "西舘 みどり",
+        "role": "経営企画",
+        "initials": "MN"
+      },
+      "mo": {
+        "name": "モエナ",
+        "role": "Edify インド採用アドバイザー",
+        "initials": "MO"
+      },
+      "tk": {
+        "name": "近藤 大輝",
+        "role": "GENESIS 不動産部門マネージャー",
+        "initials": "TK"
+      },
+      "km": {
+        "name": "宮本 海翔",
+        "role": "チームメンバー",
+        "initials": "KM"
+      },
+      "ni": {
+        "name": "西口",
+        "role": "インターン",
+        "initials": "NI"
+      }
     },
     "mentors": {
-      "ph": { "name": "プラフル・ハンバルデ", "role": "アドバイザリーメンバー / IITマンディ助教", "initials": "PH" },
-      "mo2": { "name": "小田 誠", "role": "社外取締役 / 弁護士", "initials": "MO" },
-      "ko": { "name": "小清水", "role": "顧問弁護士", "initials": "KO" },
-      "ue": { "name": "上野", "role": "財務アドバイザー", "initials": "UE" },
-      "ma": { "name": "松田", "role": "顧問税理士", "initials": "MA" }
+      "ph": {
+        "name": "プラフル・ハンバルデ",
+        "role": "アドバイザリーメンバー / IITマンディ助教",
+        "initials": "PH"
+      },
+      "mo2": {
+        "name": "小田 誠",
+        "role": "社外取締役 / 弁護士",
+        "initials": "MO"
+      },
+      "ko": {
+        "name": "小清水",
+        "role": "顧問弁護士",
+        "initials": "KO"
+      },
+      "ue": {
+        "name": "上野",
+        "role": "財務アドバイザー",
+        "initials": "UE"
+      },
+      "ma": {
+        "name": "松田",
+        "role": "顧問税理士",
+        "initials": "MA"
+      }
     }
   },
   "joinUsSection": {
@@ -548,7 +845,12 @@
         "location": "インド / リモート",
         "type": "正社員",
         "description": "生産グレードのAIシステム全体で信頼性、安全性、公平性を確保するための敵対的テストフレームワークを設計・実装します。",
-        "tags": ["PyTorch", "レッドチーミング", "MLOps", "責任あるAI"]
+        "tags": [
+          "PyTorch",
+          "レッドチーミング",
+          "MLOps",
+          "責任あるAI"
+        ]
       },
       "genR02": {
         "id": "GEN-R02",
@@ -557,7 +859,12 @@
         "location": "東京 / 広島",
         "type": "正社員",
         "description": "カルダノエコシステム上でスマートコントラクトとdAppsを設計・展開し、エンタープライズのユースケースと分散インフラを橋渡しします。",
-        "tags": ["Haskell", "Plutus", "Cardano", "スマートコントラクト"]
+        "tags": [
+          "Haskell",
+          "Plutus",
+          "Cardano",
+          "スマートコントラクト"
+        ]
       },
       "genR03": {
         "id": "GEN-R03",
@@ -566,7 +873,12 @@
         "location": "広島",
         "type": "正社員",
         "description": "複雑な環境で動作する自律UAVプラットフォームのための飛行制御ソフトウェアとリアルタイム知覚パイプラインを開発します。",
-        "tags": ["ROS2", "コンピュータビジョン", "C++", "PX4"]
+        "tags": [
+          "ROS2",
+          "コンピュータビジョン",
+          "C++",
+          "PX4"
+        ]
       },
       "genR04": {
         "id": "GEN-R04",
@@ -575,7 +887,12 @@
         "location": "博多",
         "type": "インターンシップ",
         "description": "シニアメンターの下で、AI、防衛技術、次世代コンピューティングの交差点での応用研究イニシアチブに貢献します。",
-        "tags": ["研究", "Python", "データサイエンス", "出版"]
+        "tags": [
+          "研究",
+          "Python",
+          "データサイエンス",
+          "出版"
+        ]
       }
     },
     "bottomCta": {
@@ -635,7 +952,7 @@
       "phone": "メールアドレス",
       "phoneValue": "enquiry@edify.jp",
       "address": "住所",
-      "addressValue": "© 2026 ジェネシスグループジャパン（エディファイ株式会社）\n〒732-0042 広島県広島市東区矢賀4-6-4"
+      "addressValue": "© 2026 ジェネシスグループジャパン（エディファイ株式会社）\\n〒732-0042 広島県広島市東区矢賀4-6-4"
     },
     "legal": {
       "privacy": "プライバシーポリシー",
@@ -643,89 +960,6 @@
       "cookies": "クッキー",
       "copyright": "© 2026 ジェネシスグループジャパン（エディファイ株式会社）"
     }
-  },
-  "careers_page": {
-    "hero_eyebrow": "ジェネシスでのキャリア",
-    "hero_title": "<span class=\"bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent\">未来</span>を築く。",
-    "hero_subtitle": "国際的な経験と強力な学術的基盤を組み合わせています。",
-    "cta_view_roles": "募集中の職種を見る",
-    "cta_philosophy": "私たちの哲学",
-    "scroll_indicator": "スクロール",
-    "team_eyebrow": "私たちのチーム",
-    "team_title": "ジェネシスの頭脳",
-    "team_cards": {
-      "academic": {
-        "title": "学術的な深さ",
-        "description": "トップIITからの強力な基盤。"
-      },
-      "global": {
-        "title": "グローバルな視点",
-        "description": "研究エコシステム全体での国際的な露出。"
-      },
-      "frontier": {
-        "title": "フロンティア技術",
-        "description": "AI、ブロックチェーン、大規模システムでの経験。"
-      },
-      "precision": {
-        "title": "精密さの文化",
-        "description": "知的な厳密さへの共通のコミットメント。"
-      }
-    },
-    "hiring_eyebrow": "採用哲学",
-    "hiring_title": "私たちは単に役割のために<br />採用するのではありません。<span class=\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\">インパクトのために採用します。</span>",
-    "hiring_subtitle": "ジェネシスのすべての人は、彼らが何を知っているかだけでなく、彼らが誰であり、何になれる可能性があるかで選ばれます。",
-    "hiring_traits": [
-      "好奇心と研究主導の思考",
-      "誠実さとオーナーシップ",
-      "協調的な問題解決",
-      "フロンティアでの構築への情熱",
-      "完璧さより行動への偏り"
-    ],
-    "opportunities_eyebrow": "募集中の機会",
-    "opportunities_title": "あなたの役割を見つける",
-    "roles_header": {
-      "role": "役割",
-      "team": "チーム",
-      "location": "場所",
-      "type": "タイプ"
-    },
-    "roles": {
-      "ai_ml": {
-        "title": "AI & MLエンジニアリング",
-        "team": "研究・エンジニアリング",
-        "location": "リモート / ベンガルール",
-        "type": "正社員"
-      },
-      "blockchain": {
-        "title": "ブロックチェーン & Web3",
-        "team": "分散システム",
-        "location": "リモート / シンガポール",
-        "type": "正社員"
-      },
-      "fullstack": {
-        "title": "フルスタック開発",
-        "team": "製品エンジニアリング",
-        "location": "リモート / デリーNCR",
-        "type": "正社員"
-      },
-      "design": {
-        "title": "製品デザイン",
-        "team": "デザイン & UX",
-        "location": "リモート",
-        "type": "正社員 / 契約"
-      },
-      "devops": {
-        "title": "DevOps & インフラストラクチャ",
-        "team": "プラットフォームエンジニアリング",
-        "location": "リモート / ベンガルール",
-        "type": "正社員"
-      }
-    },
-    "apply_now": "今すぐ応募",
-    "cta_unlisted_role_eyebrow": "あなたの役割が見つかりませんか？",
-    "cta_unlisted_role_title": "あなたの<span class=\"bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent\">足跡</span>を残す準備はできましたか？",
-    "cta_unlisted_role_subtitle": "あなたのプロフィールを送って、どのようにインパクトを与えたいか教えてください。適切な人材は常にジェネシスで場所を見つけます。",
-    "cta_unlisted_role_button": "メールで応募"
   },
   "signature_event_page": {
     "eyebrow": "シグネチャーイベント",
@@ -773,199 +1007,6 @@
     "subtitle": "日本に届ける革新的なAI・テクノロジーソリューション。",
     "brandOwner": "ブランドオーナー",
     "channelPartner": "チャネルパートナー"
-  },
-  "aboutus_page": {
-    "hud_module": "ナビゲーションモジュール // 会社概要",
-    "hud_version": "ジェネシス・アイデンティティ_v1.0",
-    "mask": "会社概要",
-    "pair1_title": "イノベーションと<br/>& <1>実行</1>の架け橋",
-    "pair1_text": "地域を超えて市場、技術、人材を結びつけ、地理的な制約を超えて事業を展開します。",
-    "pair2_title": "戦略を<br/><1>測定可能な成果</1>へ",
-    "pair2_text": "インテリジェントな技術導入を通じて成長を可能にし、デジタルの複雑さを絶対的な明確さに変えます。",
-    "pair3_title": "<1>具体的な影響</1>を<br/>伴うイノベーション",
-    "pair3_text": "実行の卓越性と持続可能な成長を優先し、グローバル市場向けの長期的な価値を創造します。"
-  },
-  "services_page": {
-    "title": "私たちの<1>サービス</1>",
-    "subtitle": "テクノロジー、教育、イノベーションにわたる統合ソリューション — スケールを見据えて設計されています。",
-    "outsourcing_banner": "アウトソーシング",
-    "how_it_works": "仕組み<1>について</1>",
-    "how_it_works_sub": "受付から納品まで — 合理化された透明なプロセス。",
-    "cards": {
-      "sales": {
-        "number": "01",
-        "title": "製品・ソフトウェア/ハードウェア販売",
-        "desc": "体系的な営業実行と戦略的パートナーシップを通じて、革新的なテクノロジープロバイダーを潜在力の高い市場と結びつけます。",
-        "list": [
-          "エンタープライズSaaS & AIプラットフォーム",
-          "サイバーセキュリティ & クラウドソリューション",
-          "自動化、IoT & 新興技術システム",
-          "産業用および特殊ハードウェア"
-        ],
-        "footer": "市場参入戦略 · チャネル開発 · エンタープライズセールスイネーブルメント · 収益加速"
-      },
-      "reskilling": {
-        "number": "02",
-        "title": "リスキリング & コンテンツソリューション",
-        "desc": "進化するデジタル経済に向けて、専門家や組織を準備させる未来志向の教育プログラムを設計・提供します。",
-        "list": [
-          "AI、データ & クラウド技術",
-          "ブロックチェーン & Web3の基礎",
-          "サイバーセキュリティ & デジタルトランスフォーメーション",
-          "企業研修 & 認定トラック"
-        ],
-        "footer": "体系的な学習 · 業界との関連性 · スケーラブルなインパクト"
-      },
-      "crypto": {
-        "number": "03",
-        "title": "暗号通貨 & ブロックチェーン技術",
-        "desc": "組織が明確さ、セキュリティ、戦略的整合性をもって分散型技術を導入できるよう支援します。",
-        "list": [
-          "ブロックチェーン戦略 & アドバイザリー",
-          "スマートコントラクト & dAppサポート",
-          "トークン化フレームワーク",
-          "コンプライアンスを意識した実装"
-        ],
-        "footer": "安全 · スケーラブル · 未来志向"
-      },
-      "outsourcing": {
-        "number": "04",
-        "title": "技術プロジェクトアウトソーシング",
-        "desc": "インドの専任チームを通じて、国際的なクライアントに高品質な技術実行を提供します。",
-        "list": [
-          "カスタムソフトウェア開発",
-          "エンタープライズシステムアーキテクチャ",
-          "組込み & ハードウェアサポート",
-          "専任リモートエンジニアリングチーム"
-        ],
-        "footer": "透明なプロセス · アジャイルな提供 · グローバルスタンダード"
-      },
-      "faxAI": {
-        "number": "05",
-        "title": "FAX（PDF）文字起こしAI",
-        "desc": "手書き対応AI-OCRとLLMによる文脈補正・整形を組み合わせ、印刷・手書き文書を高精度でデジタル化します。",
-        "list": [
-          "手書き認識対応AI-OCR",
-          "LLMによる文脈補正・整形",
-          "構造化データ抽出",
-          "DB・kintoneなどの業務システムと連携"
-        ],
-        "footer": "精度 · 自動化 · 業務統合"
-      },
-      "ragAI": {
-        "number": "06",
-        "title": "エグゼクティブRAG AI",
-        "desc": "社内文書・データをRAGナレッジベース化し、経営幹部が自然言語で問い合わせできる社内知識検索・意思決定支援ツールです。",
-        "list": [
-          "社内文書・データのRAGナレッジベース構築",
-          "経営幹部向け自然言語Q&A",
-          "根拠付き要約・回答生成",
-          "安全な社内ナレッジ管理"
-        ],
-        "footer": "ナレッジ · インテリジェンス · 意思決定支援"
-      },
-      "kintoneBot": {
-        "number": "07",
-        "title": "kintone向けLLMチャットボット",
-        "desc": "LLM APIとkintone REST APIを活用し、自然言語の指示でkintoneアプリの作成・変更を自動化するチャットボットです。",
-        "list": [
-          "自然言語によるアプリ作成・変更",
-          "LLM API + kintone REST API 連携",
-          "JSカスタマイズ対応",
-          "業務フローの自動化"
-        ],
-        "footer": "自動化 · 連携 · 効率化"
-      }
-    },
-    "steps": {
-      "step1_title": "ステップ1. プロジェクト受付 & 審査",
-      "step1_desc": "日本のクライアントと相談し、プロジェクトの範囲、技術要件を定義し、Edify Japanを通じてプロジェクトを審査します。",
-      "step2_title": "ステップ2. リソース配分",
-      "step2_desc": "プロジェクトはEdify Bharat支社にルーティングされ、要件に合った専門のIIT研究者とエンジニアをマッチングします。",
-      "step3_title": "ステップ3. 実行 & 管理",
-      "step3_desc": "専任のエンジニアリングチームが、タイム・アンド・マテリアルまたは固定価格開発で、定期的な進捗報告とともにプロジェクトを実行します。",
-      "step4_title": "ステップ4. QA & 納品",
-      "step4_desc": "最終成果物はISO準拠の品質保証とデータセキュリティチェックを受け、引き渡しとフィードバック収集を行います。"
-    }
-  },
-  "impact_page": {
-    "eyebrow": "ジェネシス研究部門",
-    "title": "インパクト & <1>イノベーション</1>",
-    "subtitle": "学術界と産業界を繋ぎ、テクノロジー、防衛、持続可能な開発にわたる測定可能な進歩を推進するスケーラブルなソリューションを創造します。",
-    "partners_eyebrow": "パートナーシップ",
-    "partners_title": "学術 & <1>産業</1>",
-    "defence_eyebrow": "機密イニシアティブ",
-    "defence_title": "防衛 & <1>コンサルティング</1>",
-    "defence_subtitle": "インドの防衛エコシステム内でのAIに焦点を当てたイニシアティブ — インテリジェンス、自律性、およびセキュアなシステムにわたる国家主権能力を開発します。",
-    "defence_tags": ["高度な分析", "インテリジェントシステム", "主権インフラストラクチャ"],
-    "defence_areas": {
-      "ai": {
-        "label": "AI / 機械学習",
-        "code": "GEN-D01",
-        "description": "戦略的意思決定システムのためのニューラルアーキテクチャと予測モデリング"
-      },
-      "autonomous": {
-        "label": "自律システム",
-        "code": "GEN-D02",
-        "description": "リアルタイムの状況認識と対応能力を持つ無人プラットフォーム"
-      },
-      "data": {
-        "label": "データモデリング & シミュレーション",
-        "code": "GEN-D03",
-        "description": "運用準備と計画のための高忠実度シナリオモデリング"
-      },
-      "research": {
-        "label": "応用研究",
-        "code": "GEN-D04",
-        "description": "コンセプトから実戦配備までの新興防衛技術の研究開発"
-      }
-    }
-  },
-  "signature_event_page": {
-    "eyebrow": "シグネチャーイベント",
-    "title": "ハッカソン",
-    "subtitle": "AIとドローン技術のトップタレントに焦点を当てた国際的なイベントシリーズ — グローバルなイノベーターを現実世界の課題と結びつけます。",
-    "badge_season": "シーズン2",
-    "badge_year": "2025年",
-    "gallery_eyebrow": "モーメント",
-    "gallery_title": "イベント<1>ギャラリー</1>",
-    "gallery_alt": "イベント写真",
-    "status": {
-      "completed": "完了",
-      "active": "開催中",
-      "upcoming": "近日開催"
-    }
-  },
-  "social_page": {
-    "hero_eyebrow": "ウェルネスと目的",
-    "hero_title": "社会的<1>イニシアチブ</1>",
-    "hero_subtitle": "技術の進歩と人間の幸福のバランスをとる。",
-    "focus_eyebrow": "私たちの焦点",
-    "focus_title": "幸福の<1>柱</1>",
-    "focus_cards": {
-      "yoga": { "title": "ヨガ", "description": "身体の調和と強さのための伝統的な実践。" },
-      "mindfulness": { "title": "マインドフルネス", "description": "日常生活における現在の瞬間の意識を養う。" },
-      "balance": { "title": "内なるバランス", "description": "感情的な回復力と精神的な明晰さのためのテクニック。" },
-      "community": { "title": "コミュニティ", "description": "支援、思いやり、成長のネットワークを構築する。" }
-    },
-    "free_badge": "GENESISグループによるクロスボーダー社会イニシアチブ",
-    "mission_eyebrow": "使命とインパクト",
-    "mission_title": "<1>意識的な</1>社会を育む",
-    "mission_points": [
-      "アクセスしやすいウェルネスプログラムを通じて意識的な社会を育む。",
-      "現代技術と古代の知恵の間のギャップを埋める。",
-      "社会経済的背景に関係なく個人を力づける。",
-      "マインドフルな実践を通じて長期的なコミュニティの回復力を構築する。"
-    ],
-    "zero_barriers": "経済的障壁ゼロ",
-    "no_barriers": "障壁なし",
-    "featured_eyebrow": "特集イニシアチブ",
-    "featured_title": "インド・日本<1>文化センター</1>",
-    "featured_desc1": "このイニシアチブは、両国の人々がお互いの国で効果的に働けるサポート環境を提供し、インドと日本のより深い協力を促進することを目指しています。",
-    "featured_desc2": "この使命を通じて、現在の課題を克服し、両社会が互いに交流し、共に成長することを奨励しています。",
-    "major_partners": "主要パートナー",
-    "cta_title": "<1>使命</1>に参加する。",
-    "cta_button": "参加する"
   },
   "open_application_page": {
     "back": "採用情報に戻る",
@@ -1055,6 +1096,55 @@
       "heading": "【所属】",
       "affiliation1": "京都大学エネルギー科学研究科 エネルギー社会・環境 エネルギー経済博士課程",
       "affiliation2": "九州大学 GX研究室 I²CNER (カーボンニュートラル・エネルギー国際研究所: 2019-2025)"
-    }
+    },
+    "cta": "GX研修プログラムを詳しく見る"
+  },
+  "gx_training_page": {
+    "back": "事業内容に戻る",
+    "badge": "事業展開等リスキリング支援コース",
+    "subsidy_badge": "最大75%助成",
+    "eyebrow": "GX研修",
+    "title": "GX研修 — <1>グリーントランスフォーメーション</1>対応研修",
+    "subtitle": "未来志向の人材育成プログラム——10時間で貴社のGX推進を加速します（40万円/人・税別）。",
+    "overview_eyebrow": "プログラム概要",
+    "overview_title": "なぜ<1>GXリスキリング</1>なのか",
+    "overview_body": "GX（グリーントランスフォーメーション）は、企業の競争力向上と持続的成長を実現するための重要テーマです。本研修では、最新のGX政策・国際知識・新ビジネスモデルなどを網羅的に学習し、今後のGX業界を牽引する人材を育成します。助成申請のサポートも含まれます。",
+    "stat_hours": "10",
+    "stat_hours_label": "研修時間",
+    "stat_cost": "40万円",
+    "stat_cost_label": "／人（税別）",
+    "stat_subsidy": "75%",
+    "stat_subsidy_label": "最大助成率",
+    "curriculum_eyebrow": "研修内容",
+    "curriculum_title": "10時間<1>プログラム構成</1>",
+    "curriculum_subtitle": "Eラーニング・事業外訓練 · GXの基礎から最新研究まで体系的に学ぶ",
+    "modules": [
+      { "num": "01", "title": "GXとは何か：基礎概念と世界潮流", "desc": "グリーントランスフォーメーションの核心概念と、世界の主要な動向・政策方向性・制度的勢いを体系的に解説します。" },
+      { "num": "02", "title": "応用展開とGX政策モデル", "desc": "経済産業省・環境省の実践的なGX政策モデルと規制フレームワークを現場視点で学びます。" },
+      { "num": "03", "title": "グリーンファイナンス・気候変動", "desc": "グリーンエコノミーのための気候変動対応・カーボン市場・資金調達戦略の最新動向を解説します。" },
+      { "num": "04", "title": "米国GX政策・制度の比較", "desc": "米国・EU・日本の制度的枠組み、優遇策、政策の違いを比較しながら学びます。" },
+      { "num": "05", "title": "企業のGX動向と競争戦略", "desc": "先進企業がGXを競争戦略と組織文化にどう統合しているか、豊富な事例とともに解説します。" },
+      { "num": "06", "title": "社内GX課題と解決アプローチ", "desc": "自社内のGX関連課題を特定し、体系的に解決するための実践的フレームワークを習得します。" },
+      { "num": "07", "title": "GXエネルギー安全保障", "desc": "脱炭素社会への移行における需給バランス・安定供給・エネルギー戦略の要点を解説します。" },
+      { "num": "08", "title": "サーキュラーエコノミー", "desc": "循環型経済モデルの構築に向けたフレームワーク・事例・産業横断的な実装方法を学びます。" },
+      { "num": "09", "title": "カーボンクレジットの実務", "desc": "カーボンクレジットの制度・市場・企業活用の実務について、コンプライアンスと戦略の両面から解説します。" },
+      { "num": "10", "title": "GXの最新研究：2030〜2050年展望", "desc": "カーボンニュートラル移行を見据えた未来洞察と長期的な戦略的フォーサイトを学びます。" }
+    ],
+    "subsidy_eyebrow": "助成金活用メリット",
+    "subsidy_title": "投資効果を<1>最大化</1>する",
+    "subsidies": [
+      { "title": "最大75%助成", "desc": "事業展開等リスキリング支援制度により、中小企業は研修費用の最大75%が助成されます。" },
+      { "title": "1時間1,000円の補助金", "desc": "研修時間中、受講者1人につき1時間あたり1,000円の補助金が支給されます。" },
+      { "title": "研修費・DX費用の合算", "desc": "研修費とDX関連費用を合算して申請でき、助成効果を最大限に活用できます。" },
+      { "title": "複数名受講対応", "desc": "受講者を追加するほど一人当たりコストが大幅に削減され、組織全体での展開に最適です。" }
+    ],
+    "outcomes_eyebrow": "受講メリット",
+    "outcomes_title": "習得できる<1>スキルと成果</1>",
+    "outcomes": [
+      "GX推進・脱炭素化イニシアティブを牽引できる強い人材の育成。",
+      "経営戦略と意思決定に直結する知識を短期間で習得。",
+      "国際的なGX政策比較に基づく「判断力」と「先見性」の獲得。",
+      "自社の次なる事業展開に直結する実践的なリスキリング。"
+    ]
   }
 }

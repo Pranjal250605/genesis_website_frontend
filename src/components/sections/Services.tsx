@@ -11,6 +11,7 @@ import type { LucideIcon } from "lucide-react";
 import outsourcingBg from "@/components/images/outsourcing.webp";
 import gxBg from "@/components/images/gx.webp";
 import takakoImg from "@/components/images/takako1.png";
+import reskillinggxImg from "@/components/images/reskillinggx.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,7 +130,11 @@ function HolographicCard({ card, index, isMobile }: { card: ServiceCardData; ind
   );
 }
 
-export default function Services() {
+interface ServicesProps {
+  onNavigate?: (page: "gx-training" | "gx-brochure" | "contact-us") => void
+}
+
+export default function Services({ onNavigate }: ServicesProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
 
@@ -519,11 +524,33 @@ export default function Services() {
                   {t("gxSection.panel3Sub")}
                 </p>
               </div>
+              {/* GX Training CTA */}
+              <button
+                onClick={() => onNavigate?.("gx-training")}
+                className="
+                  group flex items-center gap-3
+                  mt-2 px-6 py-3 sm:px-8 sm:py-4
+                  rounded-full border border-[#4ade80]/35 bg-[#4ade80]/[0.07]
+                  backdrop-blur-md
+                  text-[12px] sm:text-[14px] font-bold uppercase tracking-[0.15em] text-[#4ade80]/80
+                  hover:bg-[#4ade80]/[0.14] hover:border-[#4ade80]/55 hover:text-[#4ade80]
+                  active:scale-95 transition-all duration-300
+                "
+              >
+                {t("gxSection.cta")}
+                <svg
+                  width="13" height="13" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2.5"
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </button>
             </div>
 
-            {/* Right card — desktop only; on mobile rendered below all panels */}
+            {/* Right column — desktop only: Fujiwara card + reskillinggx image below */}
             {!isMobile && (
-              <div className="gx-card mt-6 lg:mt-24 lg:ml-12 w-full sm:w-[380px] lg:w-[400px] shrink-0 opacity-0">
+              <div className="gx-card mt-6 lg:mt-24 lg:ml-12 flex flex-col gap-4 w-full sm:w-[380px] lg:w-[400px] shrink-0 opacity-0">
                 <div className="rounded-[24px] bg-white/[0.06] backdrop-blur-2xl border border-white/15 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.4)]">
                   {/* Image */}
                   <div className="relative h-72 sm:h-80 overflow-hidden">
@@ -571,6 +598,51 @@ export default function Services() {
                     </ul>
                   </div>
                 </div>
+
+              {/* Reskilling GX document — button left, image right */}
+              <div className="flex flex-row items-stretch gap-3">
+
+                {/* Prominent brochure CTA — left strip */}
+                <button
+                  onClick={() => onNavigate?.("gx-brochure")}
+                  className="group relative flex flex-col items-center justify-center gap-4 px-3 py-5 w-16 shrink-0 rounded-[14px] border-2 border-[#4ade80]/50 bg-[#4ade80]/[0.10] hover:bg-[#4ade80]/[0.20] hover:border-[#4ade80]/80 active:scale-[0.97] transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  {/* Glow */}
+                  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(74,222,128,0.22) 0%, transparent 70%)" }}
+                  />
+                  {/* Rotated label — top */}
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4ade80] group-hover:text-white transition-colors duration-300 leading-none"
+                    style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                  >
+                    Click to read
+                  </span>
+                  {/* Ping beacon */}
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-70" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#4ade80]" />
+                  </span>
+                  {/* Arrow pointing right */}
+                  <svg
+                    width="12" height="12" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" strokeWidth="2.5"
+                    className="text-[#4ade80]/70 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 rotate-[-90deg]"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </button>
+
+                {/* Image */}
+                <div className="flex-1 rounded-[16px] overflow-hidden border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+                  <img
+                    src={reskillinggxImg}
+                    alt="GX Reskilling Support Course"
+                    className="w-full h-auto object-contain block"
+                  />
+                </div>
+              </div>
+
               </div>
             )}
           </div>
@@ -624,6 +696,47 @@ export default function Services() {
                   </ul>
                 </div>
               </div>
+
+              {/* Reskilling GX document — mobile: button left, image right */}
+              <div className="mt-4 flex flex-row items-stretch gap-3">
+
+                {/* Prominent brochure CTA — left strip */}
+                <button
+                  onClick={() => onNavigate?.("gx-brochure")}
+                  className="group relative flex flex-col items-center justify-center gap-4 px-3 py-5 w-16 shrink-0 rounded-[14px] border-2 border-[#4ade80]/50 bg-[#4ade80]/[0.10] active:scale-[0.97] transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  <div className="pointer-events-none absolute inset-0"
+                    style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(74,222,128,0.12) 0%, transparent 70%)" }}
+                  />
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-70" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#4ade80]" />
+                  </span>
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4ade80] leading-none"
+                    style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                  >
+                    Tap to read
+                  </span>
+                  <svg
+                    width="12" height="12" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" strokeWidth="2.5"
+                    className="text-[#4ade80]/70 rotate-[-90deg]"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </button>
+
+                {/* Image */}
+                <div className="flex-1 rounded-[16px] overflow-hidden border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+                  <img
+                    src={reskillinggxImg}
+                    alt="GX Reskilling Support Course"
+                    className="w-full h-auto object-contain block"
+                  />
+                </div>
+              </div>
+
             </div>
           )}
         </div>

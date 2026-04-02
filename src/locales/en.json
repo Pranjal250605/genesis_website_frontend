@@ -566,6 +566,55 @@
       "heading": "[Affiliations]",
       "affiliation1": "Kyoto University Graduate School of Energy Science, Doctoral Program in Energy Economics",
       "affiliation2": "Kyushu University GX Lab, I²CNER (International Institute for Carbon-Neutral Energy Research: 2019-2025)"
-    }
+    },
+    "cta": "Explore GX Training Program"
+  },
+  "gx_training_page": {
+    "back": "Back to Services",
+    "badge": "Business Development Reskilling Support Course",
+    "subsidy_badge": "Up to 75% Subsidized",
+    "eyebrow": "GX TRAINING",
+    "title": "GX Reskilling <1>Support Course</1>",
+    "subtitle": "A future-oriented human resource development program to accelerate GX across your organization — 10 hours, ¥400,000 per person.",
+    "overview_eyebrow": "Program Overview",
+    "overview_title": "Why <1>GX Reskilling</1>?",
+    "overview_body": "GX (Green Transformation) is a critical theme for improving corporate competitiveness and achieving sustainable growth. This program comprehensively covers the latest GX policies, international knowledge, and emerging business models — nurturing the talent who will lead the industry forward. Subsidy application support is fully included.",
+    "stat_hours": "10",
+    "stat_hours_label": "Training Hours",
+    "stat_cost": "¥400K",
+    "stat_cost_label": "Per Person (excl. tax)",
+    "stat_subsidy": "75%",
+    "stat_subsidy_label": "Max Subsidy",
+    "curriculum_eyebrow": "Curriculum",
+    "curriculum_title": "10-Hour <1>Program Structure</1>",
+    "curriculum_subtitle": "E-Learning · Off-the-job Training · From fundamentals to cutting-edge foresight",
+    "modules": [
+      { "num": "01", "title": "GX Fundamentals & Global Trends", "desc": "Core concepts of Green Transformation and the world's major movements, policy directions, and institutional momentum." },
+      { "num": "02", "title": "Applied GX Policy Models", "desc": "Practical GX policy models from METI and the Ministry of the Environment — regulatory frameworks translated into action." },
+      { "num": "03", "title": "Green Finance & Climate Change", "desc": "Latest developments in climate finance, carbon markets, and capital mobilization strategies for the green economy." },
+      { "num": "04", "title": "US GX Policy & Regulation", "desc": "Institutional frameworks, incentive schemes, and policy differences between the US, EU, and Japan compared." },
+      { "num": "05", "title": "Corporate GX Strategy", "desc": "Enterprise case studies — how leading companies integrate GX into competitive strategy and organizational culture." },
+      { "num": "06", "title": "Internal GX Challenges", "desc": "Identifying and systematically resolving GX-related issues within your own organization using actionable frameworks." },
+      { "num": "07", "title": "Energy Security", "desc": "Supply-demand balance, stability, and strategic energy considerations in the transition to a carbon-neutral society." },
+      { "num": "08", "title": "Circular Economy", "desc": "Building circular economic models — frameworks, case studies, and practical implementation across industries." },
+      { "num": "09", "title": "Carbon Credits", "desc": "Systems, markets, and the practical corporate utilization of carbon credit mechanisms for compliance and strategy." },
+      { "num": "10", "title": "Future Research 2030–2050", "desc": "Forward-looking insights and strategic foresight to navigate the net-zero transition over the coming decades." }
+    ],
+    "subsidy_eyebrow": "Subsidy Benefits",
+    "subsidy_title": "Maximize Your <1>Investment</1>",
+    "subsidies": [
+      { "title": "Up to 75% Subsidy", "desc": "Training costs subsidized by up to 75% for SMEs under the Business Development Reskilling Support Scheme." },
+      { "title": "¥1,000 / Hour Stipend", "desc": "Participants receive a ¥1,000 per hour stipend during active training hours to offset time cost." },
+      { "title": "DX Cost Integration", "desc": "Training and DX-related costs can be combined — maximizing the value of each subsidy application." },
+      { "title": "Scalable Enrollment", "desc": "Additional enrollees are fully supported, driving significant per-capita cost reduction at organizational scale." }
+    ],
+    "outcomes_eyebrow": "Training Outcomes",
+    "outcomes_title": "What You <1>Gain</1>",
+    "outcomes": [
+      "Develop strong human resources equipped to lead GX promotion and decarbonization initiatives.",
+      "Rapid knowledge acquisition directly linked to management strategy and executive decision-making.",
+      "Acquire international judgment and foresight grounded in global GX policy comparisons.",
+      "Practical reskilling directly applicable to your organization's next phase of business development."
+    ]
   }
 }

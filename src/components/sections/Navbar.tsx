@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Logo from '@/components/images/logo.png';
-import { Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import MenuOverlay from '@/components/sections/MenuOverlay';
 
 interface NavbarProps {
@@ -11,7 +11,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onHomeReset }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

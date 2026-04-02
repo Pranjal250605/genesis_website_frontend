@@ -27,6 +27,8 @@ import UpdatesPage from "@/pages/UpdatesPage" // New import
 import OpenApplicationPage from "@/pages/OpenApplicationPage"
 import JapanPortfolioPage from "@/pages/JapanPortfolioPage"
 import ContactUsPage from "@/pages/ContactUsPage"
+import GxTrainingPage from "@/pages/GxTrainingPage"
+import GxBrochurePage from "@/pages/GxBrochurePage"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -37,11 +39,13 @@ type Page =
   | "impact-innovation"
   | "careers"
   | "social-initiatives"
-  | "join-us" // New page type
-  | "updates" // New page type
+  | "join-us"
+  | "updates"
   | "open-application"
   | "japan-portfolio"
   | "contact-us"
+  | "gx-training"
+  | "gx-brochure"
 
 const urlMap: Record<Page, string> = {
   home: "/",
@@ -55,6 +59,8 @@ const urlMap: Record<Page, string> = {
   "open-application": "/open-application",
   "japan-portfolio": "/japan-portfolio",
   "contact-us": "/contact-us",
+  "gx-training": "/gx-training",
+  "gx-brochure": "/gx-brochure",
 }
 
 function cleanupScrollState() {
@@ -66,16 +72,19 @@ function cleanupScrollState() {
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home")
   const [homeKey, setHomeKey] = useState(0)
+  const [pageKey, setPageKey] = useState(0)
 
   const handleNavigate = (page: Page) => {
     cleanupScrollState()
     window.history.pushState({ page }, "", urlMap[page])
     setCurrentPage(page)
+    setPageKey((k) => k + 1)
   }
 
   const handleHomeReset = () => {
     cleanupScrollState()
     setHomeKey((k) => k + 1)
+    setPageKey((k) => k + 1)
   }
 
   // Handle browser back/forward
@@ -126,7 +135,7 @@ export default function App() {
       lenis.destroy()
       gsap.ticker.remove(update)
     }
-  }, [currentPage, homeKey])
+  }, [currentPage, homeKey, pageKey])
 
   return (
     <div className="min-h-screen bg-[#050505]">
@@ -146,43 +155,51 @@ export default function App() {
         )}
 
         {currentPage === "about-us" && (
-          <AboutUsPage onNavigate={handleNavigate} />
+          <AboutUsPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "services" && (
-          <ServicesPage onNavigate={handleNavigate} />
+          <ServicesPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "impact-innovation" && (
-          <ImpactInnovationPage onNavigate={handleNavigate} />
+          <ImpactInnovationPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "careers" && (
-          <CareersPage onNavigate={handleNavigate} />
+          <CareersPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "social-initiatives" && (
-          <SocialInitiativesPage onNavigate={handleNavigate} />
+          <SocialInitiativesPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "join-us" && (
-          <JoinUsPage onNavigate={handleNavigate} />
+          <JoinUsPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "updates" && (
-          <UpdatesPage onNavigate={handleNavigate} />
+          <UpdatesPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "open-application" && (
-          <OpenApplicationPage onNavigate={handleNavigate} />
+          <OpenApplicationPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "japan-portfolio" && (
-          <JapanPortfolioPage onNavigate={handleNavigate} />
+          <JapanPortfolioPage key={pageKey} onNavigate={handleNavigate} />
         )}
 
         {currentPage === "contact-us" && (
-          <ContactUsPage onNavigate={handleNavigate} />
+          <ContactUsPage key={pageKey} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "gx-training" && (
+          <GxTrainingPage key={pageKey} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "gx-brochure" && (
+          <GxBrochurePage key={pageKey} onNavigate={handleNavigate} />
         )}
       </main>
     </div>
