@@ -6,7 +6,12 @@
       "mcp__ide__getDiagnostics",
       "Bash(npx vite build:*)",
       "Bash(npm install:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(gh run:*)",
+      "Bash(npm --version)",
+      "Bash(python3 -c \"import json,sys; p=json.load\\(sys.stdin\\); print\\('engines:', p.get\\('engines', 'not set'\\)\\)\")",
+      "Bash(npm show:*)",
+      "Bash(node -e \"const v=require\\('./node_modules/vite/package.json'\\); console.log\\('vite engines:', JSON.stringify\\(v.engines\\)\\)\")"
     ]
   }
 }
