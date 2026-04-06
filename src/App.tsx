@@ -12,6 +12,7 @@ import Hero from "@/components/sections/Hero"
 import About from "@/components/sections/About"
 import Core from "@/components/sections/Core"
 import Global_Footprint from "@/components/sections/Global_Footprint"
+import JapanOffices from "@/components/sections/JapanOffices"
 import Partners from "@/components/sections/Partners"
 import CeoVision from "@/components/sections/CeoVision"
 import Contact from "@/components/sections/Contact"
@@ -148,6 +149,7 @@ export default function App() {
             <About />
             <Core />
             <Global_Footprint />
+            <JapanOffices />
             <Partners />
             <CeoVision />
             <Contact onNavigate={handleNavigate} />

@@ -85,6 +85,10 @@ export default function Global() {
           <p className="text-white/70 text-sm sm:text-lg leading-7 mx-auto max-w-2xl">
             {t('globalSection.subtitle')}
           </p>
+          <p className="mt-4 inline-flex items-center gap-2 text-amber-400/80 text-xs sm:text-sm font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block animate-pulse" />
+            {t('globalSection.japanNote')}
+          </p>
         </div>
 
         {/* 2. MAP CONTAINER: Constrained Width & Centered */}

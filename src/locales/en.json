@@ -83,6 +83,7 @@
   "globalSection": {
     "title": "Global Footprint",
     "subtitle": "Operating across key international hubs, we connect innovation, technology, and strategy to deliver global impact.",
+    "japanNote": "In Japan, our presence spans three cities — Hiroshima, Hakata, and Sapporo.",
     "locations": {
       "hiroshima": {
         "name": "Hiroshima",
@@ -96,6 +97,32 @@
         "name": "Dubai",
         "subtitle": "UAE Office",
         "badge": "Expanding"
+      }
+    }
+  },
+  "japanOfficesSection": {
+    "eyebrow": "JAPAN · 3 CITIES",
+    "title": "Our Japan\nPresence",
+    "subtitle": "From Hiroshima to Hakata to Sapporo — three cities, one unified vision driving Japan's transformation.",
+    "badges": {
+      "hq": "Headquarters",
+      "satellite": "Satellite Office"
+    },
+    "offices": {
+      "hiroshima": {
+        "city": "Hiroshima",
+        "prefecture": "Hiroshima Prefecture · Western Japan",
+        "description": "Our founding city and operational headquarters. Where the GENESIS and Edify story began — and where the core of our strategy takes shape."
+      },
+      "hakata": {
+        "city": "Hakata",
+        "prefecture": "Fukuoka Prefecture · Kyushu",
+        "description": "Gateway to Kyushu and the southern archipelago. Our Hakata office bridges innovation with one of Japan's fastest-growing regional economies."
+      },
+      "sapporo": {
+        "city": "Sapporo",
+        "prefecture": "Hokkaido · Northern Japan",
+        "description": "Northern Japan's innovation frontier. The Sapporo office leads our Hokkaido expansion under Edify's strategic regional growth initiative."
       }
     }
   },
@@ -120,28 +147,28 @@
     "mentorsTitle": "Industry & Academic <1>Mentors</1>",
     "leadership": {
       "ky": { "name": "Kohei Yoshida", "role": "GENESIS CEO / Edify CEO", "initials": "KY" },
-      "nn": { "name": "Nick Nakatani", "role": "Edify COO / Corporate Strategy", "initials": "NN" },
+      "nn": { "name": "Nick Nakatani", "role": "President's Office / Edify COO / Corporate Strategy / IPO Preparation", "initials": "NN" },
       "tm": { "name": "Toshiaki Miyatake", "role": "GENESIS CTO / Edify CMO", "initials": "TM" },
       "sm": { "name": "Shushi Matsui", "role": "General Manager of Business Operations", "initials": "SM" },
-      "yy": { "name": "Yutaka Yamamoto", "role": "General Manager of Construction Division", "initials": "YY" },
+      "yy": { "name": "Yutaka Yamamoto", "role": "GENESIS General Manager of Construction Division", "initials": "YY" },
       "rr": { "name": "Rahul Rai", "role": "Edify CTO / Head of India", "initials": "RR" },
-      "ym": { "name": "Yuma Murakami", "role": "Head of Product Development", "initials": "YM" },
+      "ym": { "name": "Yuma Murakami", "role": "GENESIS Head of Product Development", "initials": "YM" },
       "ks": { "name": "Kota Sudo", "role": "Edify Chief Strategy Officer", "initials": "KS" },
-      "ka": { "name": "Kotaro Abe", "role": "Edify Hokkaido CEO", "initials": "KA" },
+      "ka": { "name": "Abe", "role": "Edify Hokkaido CEO", "initials": "KA" },
       "aa": { "name": "Ayaka Abe", "role": "Edify Hokkaido COO", "initials": "AA" },
       "tf": { "name": "Takako Fujiwara", "role": "Chief Research Officer / Executive Officer", "initials": "TF" },
       "rb": { "name": "Reshu Bansal", "role": "Edify CAIO / Engineer", "initials": "RB" },
-      "ky2": { "name": "Kao Yamamoto", "role": "Corporate Planning", "initials": "KY" },
-      "mn": { "name": "Midori Nishidate", "role": "Corporate Planning", "initials": "MN" },
+      "ky2": { "name": "Kao Yamamoto", "role": "Edify Corporate Planning Department", "initials": "KY" },
+      "mn": { "name": "Midori Nishidate", "role": "GENESIS Corporate Planning Department", "initials": "MN" },
       "mo": { "name": "Moena", "role": "Edify India Recruitment Advisor", "initials": "MO" },
-      "tk": { "name": "Taiki Kondo", "role": "GENESIS Real Estate Division Manager", "initials": "TK" },
+      "tk": { "name": "Taiki Kondo", "role": "GENESIS Sales Division", "initials": "TK" },
       "km": { "name": "Kaito Miyamoto", "role": "Team Member", "initials": "KM" },
       "ni": { "name": "Nishiguchi", "role": "Intern", "initials": "NI" }
     },
     "mentors": {
       "ph": { "name": "Praful Hambarde", "role": "Advisory Member / IIT Mandi Assistant Professor", "initials": "PH" },
       "mo2": { "name": "Makoto Oda", "role": "Outside Director / Lawyer", "initials": "MO" },
-      "ko": { "name": "Koshimizu", "role": "Advisory Lawyer", "initials": "KO" },
+      "ko": { "name": "Koshimizu", "role": "GENESIS Corporate Lawyer", "initials": "KO" },
       "ue": { "name": "Ueno", "role": "Financial Advisor", "initials": "UE" },
       "ma": { "name": "Matsuda", "role": "Advisory Tax Accountant", "initials": "MA" }
     }

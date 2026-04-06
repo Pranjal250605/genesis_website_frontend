@@ -1,6 +1,7 @@
 import AboutUs from "@/components/sections/AboutUs"
 import TeamMarquee from "@/components/sections/TeamMarquee"
 import Global_Footprint from "@/components/sections/Global_Footprint"
+import JapanOffices from "@/components/sections/JapanOffices"
 
 interface AboutUsPageProps {
   onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers") => void
@@ -12,6 +13,7 @@ export default function AboutUsPage({ onNavigate: _onNavigate }: AboutUsPageProp
       <AboutUs />
       <TeamMarquee />
       <Global_Footprint />
+      <JapanOffices />
     </div>
   )
 }
