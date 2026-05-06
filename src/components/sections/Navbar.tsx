@@ -6,7 +6,7 @@ import MenuOverlay from '@/components/sections/MenuOverlay';
 
 interface NavbarProps {
   currentPage: string;
-  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates" | "japan-portfolio") => void;
+  onNavigate: (page: "home" | "about-us" | "services" | "impact-innovation" | "careers" | "social-initiatives" | "join-us" | "updates" | "japan-portfolio" | "aarc") => void;
   onHomeReset: () => void;
 }
 

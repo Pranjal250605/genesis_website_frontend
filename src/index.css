@@ -16,6 +16,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'ITC Busorama Std';
+  src: url('/fonts/Busorama ITC Std Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {

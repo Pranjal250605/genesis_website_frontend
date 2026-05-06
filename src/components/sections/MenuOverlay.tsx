@@ -10,6 +10,7 @@ const menuItemKeys = [
   "socialInitiativesUpper",
   "impactInnovationUpper",
   "japanPortfolioUpper",
+  "aarcUpper",
 ];
 
 interface MenuOverlayProps {
@@ -26,6 +27,7 @@ interface MenuOverlayProps {
       | "join-us"
       | "updates"
       | "japan-portfolio"
+      | "aarc"
   ) => void;
 }
 
@@ -48,7 +50,7 @@ export default function MenuOverlay({
   }, [isOpen]);
 
   const handleClick = (index: number) => {
-    const pages = ["about-us", "services", "careers", "social-initiatives", "impact-innovation", "japan-portfolio"] as const;
+    const pages = ["about-us", "services", "careers", "social-initiatives", "impact-innovation", "japan-portfolio", "aarc"] as const;
     onNavigate(pages[index]);
     onClose();
   };

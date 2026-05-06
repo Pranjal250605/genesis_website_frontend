@@ -30,6 +30,8 @@ import JapanPortfolioPage from "@/pages/JapanPortfolioPage"
 import ContactUsPage from "@/pages/ContactUsPage"
 import GxTrainingPage from "@/pages/GxTrainingPage"
 import GxBrochurePage from "@/pages/GxBrochurePage"
+import AARCPage from "@/pages/AARCPage"
+import ChatWidget from "@/components/chat/ChatWidget"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -47,6 +49,7 @@ type Page =
   | "contact-us"
   | "gx-training"
   | "gx-brochure"
+  | "aarc"
 
 const urlMap: Record<Page, string> = {
   home: "/",
@@ -62,6 +65,7 @@ const urlMap: Record<Page, string> = {
   "contact-us": "/contact-us",
   "gx-training": "/gx-training",
   "gx-brochure": "/gx-brochure",
+  aarc: "/aarc",
 }
 
 function cleanupScrollState() {
@@ -141,6 +145,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#050505]">
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} onHomeReset={handleHomeReset} />
+      <ChatWidget />
 
       <main>
         {currentPage === "home" && (
@@ -202,6 +207,10 @@ export default function App() {
 
         {currentPage === "gx-brochure" && (
           <GxBrochurePage key={pageKey} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "aarc" && (
+          <AARCPage key={pageKey} onNavigate={handleNavigate} />
         )}
       </main>
     </div>
